@@ -1,0 +1,4212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Your Genetic Code</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #00ffcc;
+            --secondary: #ff00ff;
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --accent: #ffaa00;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            cursor: crosshair;
+        }
+        
+        /* Cosmic background */
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0a 100%);
+            z-index: -2;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* DNA Helix Animation */
+        .dna-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 400px;
+            opacity: 0.1;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .dna-strand {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        
+        .dna-pair {
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, transparent 45%, transparent 55%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2rem, 8vw, 6rem);
+            font-weight: 900;
+            text-align: center;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% { filter: brightness(1) drop-shadow(0 0 20px rgba(0, 255, 204, 0.5)); }
+            100% { filter: brightness(1.2) drop-shadow(0 0 40px rgba(255, 0, 255, 0.8)); }
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-align: center;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 0.8; transform: translateY(0); }
+        }
+        
+        .start-journey {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .start-journey:hover {
+            color: var(--dark);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--primary);
+        }
+        
+        .start-journey::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .start-journey:hover::before {
+            left: 0;
+        }
+        
+        /* Chapter Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav.visible {
+            transform: translateY(0);
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Content Sections */
+        .content {
+            display: none;
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: contentFade 0.5s ease-out;
+        }
+        
+        .content.active {
+            display: block;
+        }
+        
+        @keyframes contentFade {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .chapter {
+            margin-bottom: 4rem;
+        }
+        
+        .chapter h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .chapter h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+        
+        .chapter h3 {
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            color: var(--accent);
+        }
+        
+        .chapter p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .quote {
+            border-left: 3px solid var(--secondary);
+            padding-left: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+        
+        /* Interactive Elements */
+        .consciousness-meter {
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .consciousness-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 15px;
+            width: 0%;
+            transition: width 2s ease;
+        }
+        
+        .meditation-prompt {
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .pulse {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            animation: pulse 6s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+        }
+        
+        /* Wisdom Cards */
+        .wisdom-card {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .wisdom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .wisdom-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+            animation: wisdomPulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes wisdomPulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.1; }
+        }
+        
+        .wisdom-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            filter: sepia(1) hue-rotate(280deg) brightness(1.5);
+            display: inline-block;
+            animation: wisdomGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes wisdomGlow {
+            0% { filter: sepia(1) hue-rotate(280deg) brightness(1.5) drop-shadow(0 0 10px rgba(138, 43, 226, 0.5)); }
+            100% { filter: sepia(1) hue-rotate(280deg) brightness(2) drop-shadow(0 0 20px rgba(0, 255, 204, 0.8)); }
+        }
+        
+        .wisdom-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .wisdom-content h4 {
+            color: var(--accent);
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .wisdom-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--secondary);
+            position: relative;
+        }
+        
+        .wisdom-quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            font-size: 2rem;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+        
+        .wisdom-context {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-top: 1rem;
+        }
+        
+        /* Wisdom Card Responsive */
+        @media (max-width: 768px) {
+            .wisdom-card {
+                padding: 1.5rem;
+            }
+            
+            .wisdom-icon {
+                font-size: 1.5rem;
+            }
+            
+            .wisdom-content h4 {
+                font-size: 1.1rem;
+            }
+            
+            .wisdom-quote {
+                font-size: 1rem;
+                padding-left: 1rem;
+            }
+        }
+        
+        /* Random Quote Display */
+        .floating-quote {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            max-width: 400px;
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            border-radius: 15px;
+            padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            cursor: pointer;
+            z-index: 50;
+        }
+        
+        .floating-quote.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-quote:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .floating-quote-text {
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+        
+        .floating-quote-source {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-family: 'Orbitron', monospace;
+            letter-spacing: 0.05em;
+        }
+        
+        .floating-quote-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-quote-close:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: rgba(255, 0, 0, 0.5);
+            transform: rotate(90deg);
+        }
+        
+        /* Quote Details Modal */
+        .quote-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .quote-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .quote-modal-content {
+            background: rgba(26, 26, 46, 0.95);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+        
+        @keyframes modalSlide {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        
+        .quote-modal-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            filter: sepia(1) hue-rotate(280deg) brightness(2);
+        }
+        
+        .quote-modal-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-modal-period {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+        
+        .quote-modal-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .quote-modal-teaching {
+            background: rgba(0, 255, 204, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .quote-modal-teaching h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: var(--light);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .quote-modal-close:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        
+        /* Quote Bookmarking Styles */
+        .bookmark-btn {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .bookmark-btn:hover {
+            transform: scale(1.2);
+            color: var(--accent);
+        }
+        
+        .bookmark-btn.bookmarked {
+            color: var(--accent);
+        }
+        
+        .bookmarks-toggle {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(138, 43, 226, 0.2);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+        
+        .bookmarks-toggle:hover {
+            background: rgba(138, 43, 226, 0.3);
+            border-color: var(--primary);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+        
+        .bookmarks-panel {
+            position: fixed;
+            left: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: rgba(26, 26, 46, 0.98);
+            border-right: 2px solid var(--primary);
+            transition: left 0.3s ease;
+            z-index: 150;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        
+        .bookmarks-panel.open {
+            left: 0;
+        }
+        
+        .bookmarks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .bookmarks-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .bookmarks-close {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: var(--light);
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .bookmarks-close:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        
+        .bookmarks-empty {
+            text-align: center;
+            opacity: 0.6;
+            padding: 3rem 1rem;
+        }
+        
+        .bookmark-item {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .bookmark-item:hover {
+            transform: translateX(5px);
+            border-color: var(--primary);
+        }
+        
+        .bookmark-quote {
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0.5rem;
+        }
+        
+        .bookmark-source {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .bookmark-remove {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            border-radius: 50%;
+            color: rgba(255, 100, 100, 0.8);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .bookmark-remove:hover {
+            background: rgba(255, 0, 0, 0.3);
+            border-color: rgba(255, 0, 0, 0.5);
+            transform: scale(1.1);
+        }
+        
+        .bookmarks-actions {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .bookmark-action-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .bookmark-action-btn:hover {
+            background: rgba(0, 255, 204, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+        }
+        
+        /* Responsive for bookmarks */
+        @media (max-width: 768px) {
+            .bookmarks-panel {
+                width: 100%;
+                left: -100%;
+            }
+            
+            .bookmarks-toggle {
+                bottom: 5rem;
+                left: 1rem;
+            }
+        }
+        
+        /* Responsive for floating quote */
+        @media (max-width: 768px) {
+            .floating-quote {
+                bottom: 1rem;
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+            }
+        }
+        
+        /* Living Library Styles */
+        .library-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .library-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .period-filter {
+            padding: 0.75rem 1.5rem;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            color: var(--light);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .period-filter:hover {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+        }
+        
+        .period-filter.active {
+            background: var(--primary);
+            color: var(--dark);
+            border-color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .library-search {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        #library-search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            background: rgba(26, 26, 46, 0.5);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 30px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
+        #library-search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(26, 26, 46, 0.7);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+        
+        #library-search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .library-stats {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent);
+            font-family: 'Orbitron', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .library-stats .divider {
+            margin: 0 1rem;
+            opacity: 0.5;
+        }
+        
+        .library-stats .count {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Library Grid */
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .library-card {
+            background: rgba(26, 26, 46, 0.4);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .library-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .library-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+            background: rgba(26, 26, 46, 0.6);
+        }
+        
+        .library-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .library-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            filter: sepia(1) hue-rotate(280deg) brightness(1.5);
+            display: block;
+            text-align: center;
+        }
+        
+        .library-card-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+        
+        .library-card-period {
+            font-size: 0.9rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .library-card-teaching {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            font-style: italic;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .library-card-quote-count {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+        
+        /* Text Modal Styles */
+        .text-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .text-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .text-modal .modal-content {
+            background: rgba(26, 26, 46, 0.98);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalZoom 0.3s ease;
+        }
+        
+        @keyframes modalZoom {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .text-modal .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            color: var(--light);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .text-modal .close-modal:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            filter: sepia(1) hue-rotate(280deg) brightness(2);
+        }
+        
+        .modal-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-subtitle {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .modal-tradition,
+        .modal-teaching {
+            background: rgba(138, 43, 226, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .modal-tradition h4,
+        .modal-teaching h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .modal-quotes {
+            margin: 2rem 0;
+        }
+        
+        .modal-quote-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .modal-quote-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .modal-quote-context {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            padding-left: 1rem;
+            border-left: 2px solid var(--secondary);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .modal-actions button {
+            padding: 0.75rem 2rem;
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        .modal-actions button:hover {
+            background: rgba(0, 255, 204, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+        }
+        
+        /* Wisdom Timeline Styles */
+        .wisdom-timeline-container {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(26, 26, 46, 0.3);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8rem;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-controls {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .timeline-zoom,
+        .timeline-reset {
+            width: 35px;
+            height: 35px;
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-zoom:hover,
+        .timeline-reset:hover {
+            background: rgba(0, 255, 204, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+        }
+        
+        .timeline-viewport {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: grab;
+        }
+        
+        .timeline-viewport:active {
+            cursor: grabbing;
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            transform: translateY(-50%);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+        
+        .timeline-eras {
+            position: absolute;
+            top: 20%;
+            left: 0;
+            right: 0;
+            height: 60%;
+        }
+        
+        .timeline-era {
+            position: absolute;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-era:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .era-label {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            text-align: center;
+        }
+        
+        .era-dates {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .timeline-nodes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .timeline-node {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        }
+        
+        .timeline-node:hover {
+            transform: translate(-50%, -50%) scale(1.3);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.8);
+            z-index: 10;
+        }
+        
+        .timeline-node.eastern {
+            background: var(--primary);
+        }
+        
+        .timeline-node.western {
+            background: var(--secondary);
+        }
+        
+        .timeline-node.mystical {
+            background: var(--accent);
+        }
+        
+        .timeline-tooltip {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 26, 46, 0.95);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1rem;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+        
+        .timeline-node:hover .timeline-tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: 70px;
+        }
+        
+        .tooltip-title {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+        
+        .tooltip-period {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tooltip-teaching {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+        
+        .timeline-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+        }
+        
+        /* Timeline Responsive */
+        @media (max-width: 768px) {
+            .wisdom-timeline-container {
+                padding: 1rem;
+            }
+            
+            .timeline-viewport {
+                height: 300px;
+            }
+            
+            .timeline-controls {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin-bottom: 1rem;
+            }
+            
+            .era-label {
+                font-size: 0.8rem;
+            }
+            
+            .era-dates {
+                font-size: 0.7rem;
+            }
+            
+            .timeline-legend {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+        }
+        
+        /* Library Responsive */
+        @media (max-width: 768px) {
+            .library-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .library-navigation {
+                gap: 0.5rem;
+            }
+            
+            .period-filter {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .text-modal .modal-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-actions button {
+                width: 100%;
+            }
+        }
+        
+        /* Timeline Styles */
+        .timeline-section {
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .timeline-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .timeline-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-zoom,
+        .timeline-reset {
+            padding: 0.5rem 1.5rem;
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+        
+        .timeline-zoom:hover,
+        .timeline-reset:hover {
+            background: rgba(0, 255, 204, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+        }
+        
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            background: rgba(26, 26, 46, 0.3);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-track {
+            position: relative;
+            height: 100%;
+            min-width: 2000px;
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--primary) 0%, 
+                var(--secondary) 33%, 
+                var(--accent) 66%, 
+                var(--primary) 100%);
+            transform: translateY(-50%);
+            opacity: 0.5;
+        }
+        
+        .timeline-nodes {
+            position: relative;
+            height: 100%;
+        }
+        
+        .timeline-node {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            z-index: 10;
+        }
+        
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            opacity: 0.3;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-node:hover::before {
+            transform: scale(1.5);
+        }
+        
+        .timeline-node:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+            z-index: 20;
+        }
+        
+        .timeline-node.ancient {
+            background: rgba(138, 43, 226, 0.8);
+            border: 2px solid var(--primary);
+        }
+        
+        .timeline-node.medieval {
+            background: rgba(255, 0, 255, 0.8);
+            border: 2px solid var(--secondary);
+        }
+        
+        .timeline-node.renaissance {
+            background: rgba(255, 170, 0, 0.8);
+            border: 2px solid var(--accent);
+        }
+        
+        .timeline-node.modern {
+            background: rgba(0, 255, 204, 0.8);
+            border: 2px solid var(--primary);
+        }
+        
+        .timeline-label {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 26, 46, 0.95);
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            text-align: center;
+        }
+        
+        .timeline-node:hover .timeline-label {
+            opacity: 1;
+            bottom: -70px;
+        }
+        
+        .timeline-label-title {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+        
+        .timeline-label-period {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+        
+        .timeline-connection {
+            position: absolute;
+            height: 2px;
+            background: rgba(138, 43, 226, 0.3);
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-connection:hover {
+            background: var(--primary);
+            height: 3px;
+        }
+        
+        .timeline-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .legend-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid;
+        }
+        
+        .legend-dot.ancient {
+            background: rgba(138, 43, 226, 0.8);
+            border-color: var(--primary);
+        }
+        
+        .legend-dot.medieval {
+            background: rgba(255, 0, 255, 0.8);
+            border-color: var(--secondary);
+        }
+        
+        .legend-dot.renaissance {
+            background: rgba(255, 170, 0, 0.8);
+            border-color: var(--accent);
+        }
+        
+        .legend-dot.modern {
+            background: rgba(0, 255, 204, 0.8);
+            border-color: var(--primary);
+        }
+        
+        /* Timeline Era Markers */
+        .timeline-era {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .timeline-era.ancient {
+            background: var(--primary);
+        }
+        
+        .timeline-era.medieval {
+            background: var(--secondary);
+        }
+        
+        .timeline-era.renaissance {
+            background: var(--accent);
+        }
+        
+        .timeline-era.modern {
+            background: var(--primary);
+        }
+        
+        .timeline-year-marker {
+            position: absolute;
+            top: 0;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            transform: translateX(-50%);
+        }
+        
+        /* Timeline Responsive */
+        @media (max-width: 768px) {
+            .timeline-container {
+                height: 300px;
+                padding: 1rem;
+            }
+            
+            .timeline-node {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .timeline-controls {
+                flex-wrap: wrap;
+            }
+            
+            .timeline-legend {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Relationships Web Styles */
+        .relationships-section {
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .relationships-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+        
+        .relationships-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        
+        .connection-filters {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .connection-filter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .connection-filter input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+        
+        .connection-filter:hover {
+            color: var(--primary);
+        }
+        
+        .web-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: rgba(26, 26, 46, 0.3);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        #relationships-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .web-tooltip {
+            position: absolute;
+            background: rgba(26, 26, 46, 0.95);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 1rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+            max-width: 250px;
+        }
+        
+        .web-tooltip.visible {
+            opacity: 1;
+        }
+        
+        .web-tooltip-title {
+            font-family: 'Orbitron', monospace;
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .web-tooltip-connections {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .web-legend {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .web-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .web-legend-line {
+            width: 30px;
+            height: 3px;
+            border-radius: 2px;
+        }
+        
+        .web-legend-line.consciousness {
+            background: #00ffcc;
+        }
+        
+        .web-legend-line.awakening {
+            background: #ff00ff;
+        }
+        
+        .web-legend-line.nonduality {
+            background: #ffaa00;
+        }
+        
+        .web-legend-line.detachment {
+            background: #00aaff;
+        }
+        
+        .web-legend-line.presence {
+            background: #ff6600;
+        }
+        
+        /* Web Responsive */
+        @media (max-width: 768px) {
+            .web-container {
+                height: 400px;
+            }
+            
+            .connection-filters {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .web-legend {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .chapter h2 {
+                font-size: 2rem;
+            }
+            
+            .nav ul {
+                gap: 1rem;
+            }
+        }
+
+        /* Study Paths Section */
+        .study-paths-section {
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .study-paths-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .study-paths-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .study-paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .study-path-card {
+            background: rgba(26, 26, 46, 0.5);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .study-path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.2);
+            border-color: var(--primary);
+        }
+
+        .path-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+
+        .path-card-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .path-card-description {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .path-card-progress {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .path-card-progress .path-progress-bar-outer {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            height: 10px;
+            overflow: hidden;
+            margin-bottom: 0.25rem;
+        }
+
+        .path-card-progress .path-progress-bar-inner {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .path-card-progress span {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .path-card-view-btn {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .path-card-view-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Path Modal Styles */
+        .path-modal .modal-content {
+            background: rgba(26, 26, 46, 0.98);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 2rem; /* Adjusted padding */
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .path-modal .modal-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .path-modal .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .path-modal .modal-title {
+            font-size: 1.8rem;
+        }
+        .path-modal .modal-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .path-modal-progress {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .path-modal-progress .path-progress-bar-outer {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            height: 16px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .path-modal-progress .path-progress-bar-inner {
+            background: var(--accent);
+            height: 100%;
+            border-radius: 8px;
+            transition: width 0.5s ease;
+        }
+        .path-modal-progress .count, .path-modal-progress .total {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .path-modal-texts-list {
+            max-height: 40vh; /* Limit height to encourage scrolling if many texts */
+            overflow-y: auto;
+            padding-right: 10px; /* For scrollbar */
+        }
+
+        .path-text-item {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: background-color 0.3s ease;
+        }
+        .path-text-item:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .path-text-item input[type="checkbox"] {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .path-text-item label {
+            flex-grow: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .path-text-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            filter: sepia(1) hue-rotate(280deg) brightness(1.2);
+        }
+
+        .path-text-view-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .path-text-view-btn:hover {
+            background: rgba(0, 255, 204, 0.2);
+        }
+
+        /* Web Responsive */
+        @media (max-width: 768px) {
+            .study-paths-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-bg"></div>
+    <div class="stars"></div>
+    <div class="dna-container">
+        <div class="dna-strand"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#awakening">The Awakening</a></li>
+            <li><a href="#patterns">Breaking Patterns</a></li>
+            <li><a href="#ancient">Ancient Wisdom</a></li>
+            <li><a href="#consciousness">Expanding Consciousness</a></li>
+            <li><a href="#potential">Full Potential</a></li>
+            <li><a href="#library">Living Library</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>BREAKING YOUR GENETIC CODE</h1>
+        <p class="subtitle">Awaken from the unconscious patterns that bind you</p>
+        <button class="start-journey" onclick="startJourney()">Begin Your Journey</button>
+    </section>
+    
+    <!-- Content Sections -->
+    <section class="content" id="intro">
+        <div class="chapter">
+            <h2>Introduction</h2>
+            <p>You are more than your biology. More than the cultural programming that shapes your daily existence. This experience is a guide to breaking free from the unconscious patterns that keep you asleep, trapped in cycles of behavior dictated by hormones, social conditioning, and tribal instincts.</p>
+            
+            <div class="quote">
+                "The first step to freedom is recognizing that you are not free."
+            </div>
+            
+            <div class="wisdom-card">
+                <div class="wisdom-icon">🕉️</div>
+                <div class="wisdom-content">
+                    <h4>The Upanishads (800-200 BCE)</h4>
+                    <p class="wisdom-quote">"As a person acts, so he becomes in life. Those who do good become good; those who do harm become bad."</p>
+                    <p class="wisdom-context">The ancient Vedic texts understood that our patterns shape our reality - a truth modern neuroscience confirms.</p>
+                </div>
+            </div>
+            
+            <p>Throughout human history, there have been those who awakened early—individuals who saw through the veil of everyday consciousness and glimpsed the deeper truths of existence. They understood that most of humanity moves through life in a state of unconscious reaction, driven by forces they neither understand nor control.</p>
+            
+            <div class="consciousness-meter">
+                <div class="consciousness-fill" id="meter"></div>
+            </div>
+            
+            <p>This journey begins with a simple recognition: you have been programmed. Your genes carry ancient instructions. Your culture has installed software in your mind. But you also have something else—the capacity to wake up, to become conscious, to rewrite your own code.</p>
+            
+
+            
+
+        </div>
+    </section>
+    
+    <section class="content" id="awakening">
+        <div class="chapter">
+            <h2>The Awakening</h2>
+            <h3>Recognizing the Sleep</h3>
+            <p>Most people live their entire lives without ever truly waking up. They follow scripts written by evolution, society, and circumstance. They chase goals that aren't truly their own, react to stimuli with predetermined responses, and mistake the prison of their conditioning for freedom.</p>
+            
+            <div class="meditation-prompt">
+                <div class="pulse"></div>
+                <p>Take a moment. Breathe. Notice your thoughts. Where do they come from?</p>
+            </div>
+            
+            <p>The awakening begins when you start to question: Why do I want what I want? Why do I fear what I fear? Why do I believe what I believe? These questions are the keys that unlock the cage of unconscious living.</p>
+            
+            <div class="wisdom-card">
+                <div class="wisdom-icon">☸️</div>
+                <div class="wisdom-content">
+                    <h4>The Dhammapada (3rd century BCE)</h4>
+                    <p class="wisdom-quote">"All things arise and pass away. But the awakened awake forever."</p>
+                    <p class="wisdom-context">Consciousness itself is the constant witness to all change - awakening to this truth is liberation.</p>
+                </div>
+            </div>
+            
+            <h3>The Moment of Clarity</h3>
+            <p>For some, awakening comes through crisis. For others, through contemplation. Throughout history, many have found it through sacred plants and fungi—technologies of consciousness that temporarily dissolve the barriers between the conscious and unconscious mind.</p>
+            
+            <p>But however it arrives, the awakening shares common features: a sudden recognition of the automaticity of most human behavior, a sense of stepping outside oneself and observing from a new perspective, and an understanding that there is more to existence than the narrow band of reality we typically inhabit.</p>
+            
+
+            
+
+        </div>
+    </section>
+    
+    <section class="content" id="patterns">
+        <div class="chapter">
+            <h2>Breaking Patterns</h2>
+            <h3>The Genetic Prison</h3>
+            <p>Your DNA contains instructions that served your ancestors well but may trap you in outdated patterns. The drive for status, the need for tribal belonging, the fear of the unknown—these are all genetic programs running in the background of your consciousness.</p>
+            
+            <div class="quote">
+                "To break your genetic code is not to deny your humanity, but to transcend its limitations."
+            </div>
+            
+            <p>Understanding these patterns is the first step to freedom. When you recognize that your anger, jealousy, or fear are often just chemical signals designed for a world that no longer exists, you can begin to choose different responses.</p>
+            
+            <div class="wisdom-card">
+                <div class="wisdom-icon">👑</div>
+                <div class="wisdom-content">
+                    <h4>Marcus Aurelius - Meditations (170 CE)</h4>
+                    <p class="wisdom-quote">"You have power over your mind - not outside events. Realize this, and you will find strength."</p>
+                    <p class="wisdom-context">True power comes from mastering internal states, not external circumstances - this breaks the victim pattern.</p>
+                </div>
+            </div>
+            
+            <h3>Cultural Conditioning</h3>
+            <p>Beyond genetics lies another layer of programming: culture. From birth, you've been taught what to value, what to fear, what to strive for. These cultural codes often conflict with both your genetic drives and your highest potential.</p>
+            
+            <p>Breaking free requires a radical honesty about which beliefs serve you and which merely serve the systems that benefit from your unconsciousness. It means questioning everything, especially the things you're not supposed to question.</p>
+            
+
+            
+
+        </div>
+    </section>
+    
+    <section class="content" id="ancient">
+        <div class="chapter">
+            <h2>Ancient Wisdom</h2>
+            <h3>The Perennial Philosophy</h3>
+            <p>Across cultures and throughout time, awakened individuals have discovered similar truths. From the mystics of ancient India to the shamans of the Amazon, from the Greek philosophers to the Sufi poets, there runs a common thread of understanding about the nature of consciousness and human potential.</p>
+            
+            <p>This perennial philosophy teaches that ordinary consciousness is but one mode of awareness, that reality is far more fluid and interconnected than it appears, and that human beings have the capacity to access extraordinary states of being.</p>
+            
+
+            
+            <div class="wisdom-card">
+                <div class="wisdom-icon">☯️</div>
+                <div class="wisdom-content">
+                    <h4>Tao Te Ching (6th century BCE)</h4>
+                    <p class="wisdom-quote">"When I let go of what I am, I become what I might be."</p>
+                    <p class="wisdom-context">Breaking your genetic code requires releasing fixed identity.</p>
+                </div>
+            </div>
+            
+            <h3>Sacred Technologies</h3>
+            <p>For millennia, humans have used various technologies to expand consciousness: meditation, breathwork, fasting, dance, and yes, psychedelic plants and fungi. These are not escapes from reality but tools for seeing reality more clearly.</p>
+            
+            <div class="meditation-prompt">
+                <div class="pulse"></div>
+                <p>Ancient wisdom lives not in books but in direct experience. What have you always known but never allowed yourself to acknowledge?</p>
+            </div>
+            
+            <p>The insights gained from these practices consistently point to the same revelations: the interconnectedness of all things, the illusory nature of the separate self, and the vast potential that lies dormant within human consciousness.</p>
+            
+
+            
+
+        </div>
+    </section>
+    
+    <section class="content" id="consciousness">
+        <div class="chapter">
+            <h2>Expanding Consciousness</h2>
+            <h3>Beyond the Default Mode</h3>
+            <p>Your brain has a default mode—a standard operating procedure that keeps you functioning but also keeps you limited. Expanding consciousness means learning to shift out of this default mode and access the fuller spectrum of human awareness.</p>
+            
+            <p>This expansion isn't just personal; it's planetary. As more individuals wake up to their true nature and potential, humanity as a whole moves closer to a collective awakening. We begin to see that our individual consciousness is part of a larger web of awareness that encompasses all life.</p>
+            
+            <div class="wisdom-card">
+                <div class="wisdom-icon">👁️</div>
+                <div class="wisdom-content">
+                    <h4>William Blake (18th-19th century)</h4>
+                    <p class="wisdom-quote">"If the doors of perception were cleansed every thing would appear to man as it is, Infinite."</p>
+                    <p class="wisdom-context">Our conditioned perception limits reality - cleansing consciousness reveals the infinite nature of existence.</p>
+                </div>
+            </div>
+            
+            <h3>The Practice of Presence</h3>
+            <p>Consciousness expansion isn't a one-time event but an ongoing practice. It requires cultivating presence—the ability to be fully here, now, aware of what's happening within and around you without the constant commentary of the conditioned mind.</p>
+            
+            <div class="quote">
+                "In presence, the genetic code loosens its grip, and you discover who you really are beneath the programming."
+            </div>
+            
+            <p>This practice transforms everything: how you relate to others, how you navigate challenges, how you create and contribute to the world. It's the foundation for a life lived consciously rather than mechanically.</p>
+            
+
+            
+
+        </div>
+    </section>
+    
+    <section class="content" id="potential">
+        <div class="chapter">
+            <h2>Full Potential</h2>
+            <h3>Individual Liberation</h3>
+            <p>When you break free from unconscious patterns, you don't become less human—you become more fully human. You access capacities that were always there but remained dormant under layers of conditioning.</p>
+            
+            <p>Creativity flows more freely. Intuition sharpens. Compassion deepens. You begin to live from a place of authentic choice rather than programmed reaction. This is not about becoming perfect but about becoming real.</p>
+            
+            <div class="wisdom-card">
+                <div class="wisdom-icon">🌟</div>
+                <div class="wisdom-content">
+                    <h4>Ralph Waldo Emerson (19th century)</h4>
+                    <p class="wisdom-quote">"What lies behind us and what lies before us are tiny matters compared to what lies within us."</p>
+                    <p class="wisdom-context">Your full potential exists within - not in external achievements but in consciousness itself.</p>
+                </div>
+            </div>
+            
+            <h3>Collective Evolution</h3>
+            <p>Your awakening doesn't happen in isolation. As you break your own genetic code, you create ripples that affect everyone around you. You become a living demonstration that another way is possible.</p>
+            
+            <div class="meditation-prompt">
+                <div class="pulse"></div>
+                <p>Imagine humanity awakened. What becomes possible when we all break free from unconscious patterns?</p>
+            </div>
+            
+            <p>This is the ultimate promise of breaking your genetic code: not just personal liberation but the evolution of our species. When enough individuals wake up, humanity itself can transcend its current limitations and step into a future we can barely imagine from our current state of consciousness.</p>
+            
+
+            
+            <h3>The Journey Continues</h3>
+            <p>This book is not an ending but a beginning. The journey of awakening is ongoing, deepening with each moment of conscious choice, each pattern recognized and released, each glimpse of the vast potential that lies within.</p>
+            
+            <div class="quote">
+                "You are both the prison and the key. The code and the one who breaks it. The sleeper and the awakened one."
+            </div>
+            
+            <p>Welcome to your awakening. Welcome to breaking your genetic code.</p>
+            
+
+        </div>
+    </section>
+    
+    <!-- Living Library Section -->
+    <section class="content" id="library">
+        <div class="chapter">
+            <h2>The Living Library</h2>
+            <p class="subtitle">Explore the timeless wisdom that has guided humanity's awakening throughout the ages.</p>
+            
+            <div class="library-intro">
+                <p>This collection represents humanity's greatest insights into consciousness, awakening, and the nature of reality. Each text is a doorway to deeper understanding, a map left by those who have walked the path before us.</p>
+            </div>
+            
+            <!-- Period Filter Navigation -->
+            <div class="library-navigation">
+                <button class="period-filter active" data-period="all">All Wisdom</button>
+                <button class="period-filter" data-period="ancient">Ancient Foundations</button>
+                <button class="period-filter" data-period="medieval">Medieval Mystics</button>
+                <button class="period-filter" data-period="renaissance">Renaissance & Modern</button>
+                <button class="period-filter" data-period="modern">Contemporary</button>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="library-search">
+                <input type="text" id="library-search-input" placeholder="Search by title, author, or tradition..." />
+                <div class="search-icon">🔍</div>
+            </div>
+            
+            <!-- Wisdom Timeline -->
+            <div class="wisdom-timeline-container" id="wisdom-timeline-container">
+                <h3 class="timeline-title">Journey Through Time</h3>
+                <p class="timeline-subtitle">Explore 2,800 years of consciousness evolution</p>
+                
+                <!-- Timeline Controls -->
+                <div class="timeline-controls">
+                    <button class="timeline-zoom" id="zoom-in" title="Zoom In">+</button>
+                    <button class="timeline-zoom" id="zoom-out" title="Zoom Out">-</button>
+                    <button class="timeline-reset" id="reset-view" title="Reset View">⟲</button>
+                </div>
+                
+                <!-- Timeline Viewport -->
+                <div class="timeline-viewport" id="timeline-viewport">
+                    <div class="timeline-content" id="timeline-content">
+                        <!-- Timeline Line -->
+                        <div class="timeline-line"></div>
+                        
+                        <!-- Era Markers -->
+                        <div class="timeline-eras">
+                            <div class="timeline-era" data-era="ancient" style="left: 0%; width: 35%;">
+                                <span class="era-label">Ancient Foundations</span>
+                                <span class="era-dates">800 BCE - 500 CE</span>
+                            </div>
+                            <div class="timeline-era" data-era="medieval" style="left: 35%; width: 20%;">
+                                <span class="era-label">Medieval Mystics</span>
+                                <span class="era-dates">500 - 1500 CE</span>
+                            </div>
+                            <div class="timeline-era" data-era="renaissance" style="left: 55%; width: 25%;">
+                                <span class="era-label">Renaissance & Modern</span>
+                                <span class="era-dates">1500 - 1900</span>
+                            </div>
+                            <div class="timeline-era" data-era="modern" style="left: 80%; width: 20%;">
+                                <span class="era-label">Contemporary</span>
+                                <span class="era-dates">1900 - Present</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Nodes (will be populated by JS) -->
+                        <div class="timeline-nodes" id="timeline-nodes"></div>
+                    </div>
+                </div>
+                
+                <!-- Timeline Legend -->
+                <div class="timeline-legend">
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: var(--primary);"></span>
+                        <span>Eastern Traditions</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: var(--secondary);"></span>
+                        <span>Western Philosophy</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot" style="background: var(--accent);"></span>
+                        <span>Mystical Traditions</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Display -->
+            <div class="library-stats">
+                <span id="showing-count">Showing <span class="count">28</span> texts</span>
+                <span class="divider">•</span>
+                <span id="period-range">Spanning 2,800 years of wisdom</span>
+            </div>
+            
+            <!-- Library Grid -->
+            <div class="library-grid" id="library-grid">
+                <!-- Dynamically populated -->
+            </div>
+            
+            <!-- Study Paths Section -->
+            <div class="study-paths-section">
+                <h3 class="study-paths-title">Curated Study Paths</h3>
+                <p class="study-paths-subtitle">Follow guided journeys through interconnected wisdom texts to deepen your understanding.</p>
+                <div class="study-paths-grid" id="study-paths-grid">
+                    <!-- Study paths will be dynamically populated here -->
+                </div>
+            </div>
+            
+            <!-- Study Path Detail Modal -->
+            <div class="path-modal" id="path-modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div class="modal-header">
+                        <div class="modal-icon" id="path-modal-icon"></div>
+                        <h3 class="modal-title" id="path-modal-title"></h3>
+                        <p class="modal-subtitle" id="path-modal-description"></p>
+                    </div>
+                    <div class="path-modal-progress" id="path-modal-progress-details">
+                        Progress: <span class="count">0</span> / <span class="total">0</span>
+                        <div class="path-progress-bar-outer">
+                            <div class="path-progress-bar-inner" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="path-modal-texts-list" id="path-modal-texts-list">
+                        <!-- Texts in the path will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Floating Quote Display -->
+    <div class="floating-quote" id="floatingQuote">
+        <button class="bookmark-btn" id="floatingBookmarkBtn" onclick="toggleBookmark()" title="Bookmark this quote">☆</button>
+        <div class="floating-quote-close" onclick="closeFloatingQuote()">×</div>
+        <div class="floating-quote-text" id="floatingQuoteText"></div>
+        <div class="floating-quote-source" id="floatingQuoteSource"></div>
+    </div>
+    
+    <!-- Bookmarks Toggle Button -->
+    <div class="bookmarks-toggle" onclick="toggleBookmarksPanel()" title="View saved quotes">
+        📚
+    </div>
+    
+    <!-- Bookmarks Panel -->
+    <div class="bookmarks-panel" id="bookmarksPanel">
+        <div class="bookmarks-header">
+            <h3 class="bookmarks-title">Saved Wisdom</h3>
+            <button class="bookmarks-close" onclick="toggleBookmarksPanel()">×</button>
+        </div>
+        <div id="bookmarksList">
+            <p class="bookmarks-empty">No quotes saved yet. Click the star on any quote to bookmark it.</p>
+        </div>
+        <div class="bookmarks-actions">
+            <button class="bookmark-action-btn" onclick="exportBookmarks()">Export Bookmarks</button>
+            <button class="bookmark-action-btn" onclick="clearAllBookmarks()">Clear All</button>
+        </div>
+    </div>
+    
+    <!-- Quote Details Modal -->
+    <div class="quote-modal" id="quoteModal">
+        <div class="quote-modal-content">
+            <button class="quote-modal-close" onclick="closeQuoteModal()">×</button>
+            <div class="quote-modal-icon" id="modalIcon"></div>
+            <h3 class="quote-modal-title" id="modalTitle"></h3>
+            <p class="quote-modal-period" id="modalPeriod"></p>
+            <p class="quote-modal-quote" id="modalQuote"></p>
+            <div class="quote-modal-teaching">
+                <h4>Key Teaching</h4>
+                <p id="modalTeaching"></p>
+            </div>
+            <div class="quote-modal-teaching">
+                <h4>Tradition</h4>
+                <p id="modalTradition"></p>
+            </div>
+            <div class="quote-modal-teaching">
+                <h4>Modern Relevance</h4>
+                <p id="modalContext"></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Text Detail Modal -->
+    <div class="text-modal" id="text-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <div class="modal-icon"></div>
+                <h3 class="modal-title"></h3>
+                <p class="modal-subtitle"></p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-tradition"></div>
+                <div class="modal-teaching"></div>
+                <div class="modal-quotes"></div>
+                <div class="modal-actions">
+                    <button class="explore-chapters">Find in Chapters</button>
+                    <button class="bookmark-all">Bookmark All Quotes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Wisdom Texts Data Structure
+        const wisdomTexts = {
+            ancient: {
+                name: "Ancient Foundations (Pre-500 CE)",
+                texts: {
+                    upanishads: {
+                        title: "The Upanishads",
+                        period: "800-200 BCE",
+                        tradition: "Vedic/Hindu",
+                        keyTeaching: "Tat Tvam Asi - Thou Art That",
+                        icon: "🕉️",
+                        quotes: [
+                            {
+                                text: "As a person acts, so he becomes in life. Those who do good become good; those who do harm become bad.",
+                                context: "The ancient Vedic texts understood that our patterns shape our reality - a truth modern neuroscience confirms."
+                            },
+                            {
+                                text: "From the unreal lead me to the real, from darkness to light, from death to immortality.",
+                                context: "The journey of awakening is universal - moving from illusion to truth."
+                            },
+                            {
+                                text: "You are what your deep, driving desire is. As your desire is, so is your will.",
+                                context: "Our deepest intentions create our reality - breaking the code starts with conscious desire."
+                            }
+                        ]
+                    },
+                    taoTeChing: {
+                        title: "Tao Te Ching",
+                        period: "6th century BCE",
+                        tradition: "Taoist",
+                        keyTeaching: "Wu Wei - Effortless Action",
+                        icon: "☯️",
+                        quotes: [
+                            {
+                                text: "The Tao that can be named is not the eternal Tao.",
+                                context: "True reality exists beyond our conceptual frameworks and mental constructs."
+                            },
+                            {
+                                text: "When I let go of what I am, I become what I might be.",
+                                context: "Breaking your genetic code requires releasing fixed identity."
+                            },
+                            {
+                                text: "Nature does not hurry, yet everything is accomplished.",
+                                context: "Consciousness expansion follows natural rhythms, not forced timelines."
+                            }
+                        ]
+                    },
+                    bhagavadGita: {
+                        title: "Bhagavad Gita",
+                        period: "400 BCE",
+                        tradition: "Hindu",
+                        keyTeaching: "Karma Yoga - Action without attachment",
+                        icon: "🏹",
+                        quotes: [
+                            {
+                                text: "You have a right to perform your prescribed duty, but you are not entitled to the fruits of action.",
+                                context: "True freedom comes from acting without being enslaved by outcomes."
+                            },
+                            {
+                                text: "The wise see that there is action in the midst of inaction and inaction in the midst of action.",
+                                context: "Consciousness operates beyond our ordinary understanding of doing and being."
+                            }
+                        ]
+                    },
+                    dhammapada: {
+                        title: "The Dhammapada",
+                        period: "3rd century BCE",
+                        tradition: "Buddhist",
+                        keyTeaching: "The Middle Way",
+                        icon: "☸️",
+                        quotes: [
+                            {
+                                text: "All things arise and pass away. But the awakened awake forever.",
+                                context: "Consciousness itself is the constant witness to all change."
+                            },
+                            {
+                                text: "We are what we think. All that we are arises with our thoughts.",
+                                context: "Mental patterns create our reality - changing thoughts changes everything."
+                            }
+                        ]
+                    },
+                    platoCave: {
+                        title: "Plato's Republic",
+                        period: "380 BCE",
+                        tradition: "Greek Philosophy",
+                        keyTeaching: "The Allegory of the Cave",
+                        icon: "🏛️",
+                        quotes: [
+                            {
+                                text: "The prison-house is the world of sight, the light of the fire is the sun.",
+                                context: "Most people mistake shadows for reality - awakening means turning toward the light."
+                            },
+                            {
+                                text: "The unexamined life is not worth living.",
+                                context: "Self-inquiry is the foundation of breaking free from unconscious patterns."
+                            }
+                        ]
+                    },
+                    marcusAurelius: {
+                        title: "Meditations",
+                        period: "170 CE",
+                        tradition: "Stoic Philosophy",
+                        keyTeaching: "Amor Fati - Love of fate",
+                        icon: "👑",
+                        quotes: [
+                            {
+                                text: "You have power over your mind - not outside events. Realize this, and you will find strength.",
+                                context: "True power comes from mastering internal states, not external circumstances."
+                            },
+                            {
+                                text: "Everything we hear is an opinion, not a fact. Everything we see is perspective, not truth.",
+                                context: "Breaking free requires seeing through the illusions of consensus reality."
+                            }
+                        ]
+                    },
+
+                }
+            },
+            medieval: {
+                name: "Medieval Mystics (500-1500 CE)",
+                texts: {
+                    cloudUnknowing: {
+                        title: "The Cloud of Unknowing",
+                        period: "14th century",
+                        tradition: "Christian Mysticism",
+                        keyTeaching: "Apophatic theology",
+                        icon: "☁️",
+                        quotes: [
+                            {
+                                text: "By love he can be grasped and held, but by thought, neither grasped nor held.",
+                                context: "Ultimate reality transcends mental understanding - it must be experienced."
+                            }
+                        ]
+                    },
+                    rumi: {
+                        title: "Rumi's Poetry",
+                        period: "13th century",
+                        tradition: "Sufi",
+                        keyTeaching: "Divine Love",
+                        icon: "🌹",
+                        quotes: [
+                            {
+                                text: "You were born with wings, why prefer to crawl through life?",
+                                context: "We have capacities far beyond our genetic programming - awakening activates them."
+                            },
+                            {
+                                text: "Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.",
+                                context: "Personal transformation is the key to collective evolution."
+                            }
+                        ]
+                    },
+                    ibnArabi: {
+                        title: "Ibn Arabi's Works",
+                        period: "12th-13th century",
+                        tradition: "Sufi",
+                        keyTeaching: "Unity of Being",
+                        icon: "✨",
+                        quotes: [
+                            {
+                                text: "The self is an ocean without a shore. Gazing upon it has no beginning or end.",
+                                context: "Consciousness is infinite - our limited sense of self is just a wave."
+                            }
+                        ]
+                    }
+                }
+            },
+            renaissance: {
+                name: "Renaissance & Modern (1500-1900)",
+                texts: {
+                    blake: {
+                        title: "William Blake",
+                        period: "18th-19th century",
+                        tradition: "Visionary Poetry",
+                        keyTeaching: "Imagination as divine",
+                        icon: "👁️",
+                        quotes: [
+                            {
+                                text: "If the doors of perception were cleansed every thing would appear to man as it is, Infinite.",
+                                context: "Our conditioned perception limits reality - cleansing it reveals the infinite."
+                            },
+                            {
+                                text: "The imagination is not a state: it is the human existence itself.",
+                                context: "We are not passive receivers of reality but active creators through consciousness."
+                            }
+                        ]
+                    },
+                    emerson: {
+                        title: "Ralph Waldo Emerson",
+                        period: "19th century",
+                        tradition: "Transcendentalism",
+                        keyTeaching: "Self-reliance",
+                        icon: "🌟",
+                        quotes: [
+                            {
+                                text: "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+                                context: "The power to break free exists within - not in external circumstances."
+                            },
+                            {
+                                text: "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+                                context: "Breaking genetic and cultural codes requires authentic self-expression."
+                            }
+                        ]
+                    },
+                    thoreau: {
+                        title: "Henry David Thoreau",
+                        period: "19th century",
+                        tradition: "Transcendentalism",
+                        keyTeaching: "Simple living, high thinking",
+                        icon: "🌲",
+                        quotes: [
+                            {
+                                text: "I went to the woods because I wished to live deliberately.",
+                                context: "Conscious living requires stepping out of automatic patterns."
+                            }
+                        ]
+                    }
+                }
+            },
+            modern: {
+                name: "Contemporary Awakening (1900-Present)",
+                texts: {
+                    huxley: {
+                        title: "Aldous Huxley",
+                        period: "20th century",
+                        tradition: "Perennial Philosophy",
+                        keyTeaching: "Consciousness exploration",
+                        icon: "🚪",
+                        quotes: [
+                            {
+                                text: "There are things known and there are things unknown, and in between are the doors of perception.",
+                                context: "Expanding consciousness opens doors to realities beyond ordinary perception."
+                            }
+                        ]
+                    },
+                    ramDass: {
+                        title: "Ram Dass",
+                        period: "20th-21st century",
+                        tradition: "Eastern-Western Synthesis",
+                        keyTeaching: "Be Here Now",
+                        icon: "🌸",
+                        quotes: [
+                            {
+                                text: "We're all just walking each other home.",
+                                context: "The journey of awakening is both individual and collective."
+                            },
+                            {
+                                text: "The quieter you become, the more you can hear.",
+                                context: "Stillness reveals the deeper patterns that run our lives."
+                            }
+                        ]
+                    },
+                    tolle: {
+                        title: "Eckhart Tolle",
+                        period: "21st century",
+                        tradition: "Contemporary Spirituality",
+                        keyTeaching: "The Power of Now",
+                        icon: "⏰",
+                        quotes: [
+                            {
+                                text: "Realize deeply that the present moment is all you have. Make the NOW the primary focus of your life.",
+                                context: "Genetic patterns lose their grip when we anchor in present awareness."
+                            }
+                        ]
+                    },
+                    watts: {
+                        title: "Alan Watts",
+                        period: "20th century",
+                        tradition: "Eastern-Western Bridge",
+                        keyTeaching: "The wisdom of insecurity",
+                        icon: "🌊",
+                        quotes: [
+                            {
+                                text: "You are an aperture through which the universe is looking at and exploring itself.",
+                                context: "Consciousness uses human form to know itself - you are that process."
+                            }
+                        ]
+                    }
+                }
+            }
+        };
+        
+        // Create stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Create DNA helix
+        function createDNA() {
+            const dnaStrand = document.querySelector('.dna-strand');
+            for (let i = 0; i < 20; i++) {
+                const pair = document.createElement('div');
+                pair.className = 'dna-pair';
+                pair.style.top = i * 20 + 'px';
+                pair.style.transform = `rotateY(${i * 18}deg) translateZ(50px)`;
+                dnaStrand.appendChild(pair);
+            }
+        }
+        
+        // Start journey function
+        function startJourney() {
+            document.getElementById('hero').style.display = 'none';
+            document.getElementById('nav').classList.add('visible');
+            document.getElementById('intro').classList.add('active');
+            
+            // Animate consciousness meter
+            setTimeout(() => {
+                document.getElementById('meter').style.width = '30%';
+            }, 500);
+        }
+        
+        // Navigation
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Hide all content sections
+                document.querySelectorAll('.content').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Show target section
+                document.getElementById(targetId).classList.add('active');
+                
+                // Update consciousness meter
+                const meter = document.getElementById('meter');
+                const progress = {
+                    'intro': '30%',
+                    'awakening': '45%',
+                    'patterns': '60%',
+                    'ancient': '75%',
+                    'consciousness': '90%',
+                    'potential': '100%'
+                };
+                meter.style.width = progress[targetId] || '30%';
+            });
+        });
+        
+        // Mouse trail effect
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.style.position = 'fixed';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            trail.style.width = '10px';
+            trail.style.height = '10px';
+            trail.style.background = 'radial-gradient(circle, rgba(0,255,204,0.5) 0%, transparent 70%)';
+            trail.style.borderRadius = '50%';
+            trail.style.pointerEvents = 'none';
+            trail.style.transition = 'transform 0.5s, opacity 0.5s';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.style.transform = 'scale(3)';
+                trail.style.opacity = '0';
+            }, 10);
+            
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        });
+        
+        // Initialize
+        createStars();
+        createDNA();
+        
+        // Random Quote Display Functionality
+        let currentQuoteData = null;
+        let quoteRotationInterval = null;
+        let floatingQuoteVisible = false;
+        
+        // Gather all quotes from wisdomTexts
+        function getAllQuotes() {
+            const allQuotes = [];
+            
+            Object.keys(wisdomTexts).forEach(period => {
+                const periodData = wisdomTexts[period];
+                Object.keys(periodData.texts).forEach(textKey => {
+                    const text = periodData.texts[textKey];
+                    text.quotes.forEach(quote => {
+                        allQuotes.push({
+                            quote: quote.text,
+                            context: quote.context,
+                            source: text.title,
+                            period: text.period,
+                            tradition: text.tradition,
+                            keyTeaching: text.keyTeaching,
+                            icon: text.icon,
+                            textKey: textKey,
+                            periodKey: period
+                        });
+                    });
+                });
+            });
+            
+            return allQuotes;
+        }
+        
+        // Display random quote
+        function displayRandomQuote() {
+            const quotes = getAllQuotes();
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            currentQuoteData = quotes[randomIndex];
+            
+            const floatingQuote = document.getElementById('floatingQuote');
+            const quoteText = document.getElementById('floatingQuoteText');
+            const quoteSource = document.getElementById('floatingQuoteSource');
+            
+            quoteText.textContent = `"${currentQuoteData.quote}"`;
+            quoteSource.textContent = `— ${currentQuoteData.source}`;
+            
+            // Add click handler for details
+            floatingQuote.onclick = function(e) {
+                if (!e.target.classList.contains('floating-quote-close')) {
+                    showQuoteModal();
+                }
+            };
+            
+            // Show with animation
+            setTimeout(() => {
+                floatingQuote.classList.add('visible');
+                floatingQuoteVisible = true;
+            }, 100);
+        }
+        
+        // Show quote modal with details
+        function showQuoteModal() {
+            if (!currentQuoteData) return;
+            
+            const modal = document.getElementById('quoteModal');
+            document.getElementById('modalIcon').textContent = currentQuoteData.icon;
+            document.getElementById('modalTitle').textContent = currentQuoteData.source;
+            document.getElementById('modalPeriod').textContent = currentQuoteData.period;
+            document.getElementById('modalQuote').textContent = `"${currentQuoteData.quote}"`;
+            document.getElementById('modalTeaching').textContent = currentQuoteData.keyTeaching;
+            document.getElementById('modalTradition').textContent = currentQuoteData.tradition;
+            document.getElementById('modalContext').textContent = currentQuoteData.context;
+            
+            modal.classList.add('active');
+            
+            // Close on backdrop click
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    closeQuoteModal();
+                }
+            };
+        }
+        
+        // Close quote modal
+        function closeQuoteModal() {
+            const modal = document.getElementById('quoteModal');
+            modal.classList.remove('active');
+        }
+        
+        // Close floating quote
+        function closeFloatingQuote() {
+            const floatingQuote = document.getElementById('floatingQuote');
+            floatingQuote.classList.remove('visible');
+            floatingQuoteVisible = false;
+            
+            // Stop rotation when closed
+            if (quoteRotationInterval) {
+                clearInterval(quoteRotationInterval);
+                quoteRotationInterval = null;
+            }
+        }
+        
+        // Start quote rotation
+        function startQuoteRotation() {
+            // Display first quote after 3 seconds
+            setTimeout(() => {
+                if (!floatingQuoteVisible) {
+                    displayRandomQuote();
+                }
+            }, 3000);
+            
+            // Rotate every 30 seconds
+            quoteRotationInterval = setInterval(() => {
+                if (floatingQuoteVisible) {
+                    // Fade out
+                    const floatingQuote = document.getElementById('floatingQuote');
+                    floatingQuote.classList.remove('visible');
+                    
+                    // Display new quote after fade
+                    setTimeout(() => {
+                        displayRandomQuote();
+                    }, 500);
+                }
+            }, 30000);
+        }
+        
+        // Start quote rotation when page loads
+        startQuoteRotation();
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeQuoteModal();
+                if (document.getElementById('bookmarksPanel').classList.contains('open')) {
+                    toggleBookmarksPanel();
+                }
+            }
+        });
+        
+        // Bookmarking Functionality
+        let bookmarks = [];
+        
+        // Load bookmarks from localStorage
+        function loadBookmarks() {
+            const saved = localStorage.getItem('wisdomBookmarks');
+            if (saved) {
+                bookmarks = JSON.parse(saved);
+                updateBookmarksDisplay();
+            }
+        }
+        
+        // Save bookmarks to localStorage
+        function saveBookmarks() {
+            localStorage.setItem('wisdomBookmarks', JSON.stringify(bookmarks));
+        }
+        
+        // Check if current quote is bookmarked
+        function isBookmarked(quoteData) {
+            return bookmarks.some(b => b.quote === quoteData.quote && b.source === quoteData.source);
+        }
+        
+        // Toggle bookmark for current quote
+        function toggleBookmark() {
+            if (!currentQuoteData) return;
+            
+            const bookmarkBtn = document.getElementById('floatingBookmarkBtn');
+            const isCurrentlyBookmarked = isBookmarked(currentQuoteData);
+            
+            if (isCurrentlyBookmarked) {
+                // Remove bookmark
+                bookmarks = bookmarks.filter(b => !(b.quote === currentQuoteData.quote && b.source === currentQuoteData.source));
+                bookmarkBtn.textContent = '☆';
+                bookmarkBtn.classList.remove('bookmarked');
+            } else {
+                // Add bookmark
+                bookmarks.push({
+                    ...currentQuoteData,
+                    savedAt: new Date().toISOString()
+                });
+                bookmarkBtn.textContent = '★';
+                bookmarkBtn.classList.add('bookmarked');
+            }
+            
+            saveBookmarks();
+            updateBookmarksDisplay();
+        }
+        
+        // Update bookmark button state
+        function updateBookmarkButton() {
+            if (!currentQuoteData) return;
+            
+            const bookmarkBtn = document.getElementById('floatingBookmarkBtn');
+            if (isBookmarked(currentQuoteData)) {
+                bookmarkBtn.textContent = '★';
+                bookmarkBtn.classList.add('bookmarked');
+            } else {
+                bookmarkBtn.textContent = '☆';
+                bookmarkBtn.classList.remove('bookmarked');
+            }
+        }
+        
+        // Toggle bookmarks panel
+        function toggleBookmarksPanel() {
+            const panel = document.getElementById('bookmarksPanel');
+            panel.classList.toggle('open');
+        }
+        
+        // Update bookmarks display
+        function updateBookmarksDisplay() {
+            const bookmarksList = document.getElementById('bookmarksList');
+            
+            if (bookmarks.length === 0) {
+                bookmarksList.innerHTML = '<p class="bookmarks-empty">No quotes saved yet. Click the star on any quote to bookmark it.</p>';
+                return;
+            }
+            
+            bookmarksList.innerHTML = bookmarks.map((bookmark, index) => `
+                <div class="bookmark-item">
+                    <button class="bookmark-remove" onclick="removeBookmark(${index})" title="Remove bookmark">×</button>
+                    <div class="bookmark-quote">"${bookmark.quote}"</div>
+                    <div class="bookmark-source">— ${bookmark.source}</div>
+                </div>
+            `).join('');
+        }
+        
+        // Remove bookmark by index
+        function removeBookmark(index) {
+            bookmarks.splice(index, 1);
+            saveBookmarks();
+            updateBookmarksDisplay();
+            updateBookmarkButton();
+        }
+        
+        // Export bookmarks
+        function exportBookmarks() {
+            if (bookmarks.length === 0) {
+                alert('No bookmarks to export');
+                return;
+            }
+            
+            const exportData = {
+                title: 'Breaking Your Genetic Code - Wisdom Collection',
+                exportedAt: new Date().toISOString(),
+                bookmarks: bookmarks
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `wisdom-bookmarks-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        // Clear all bookmarks
+        function clearAllBookmarks() {
+            if (bookmarks.length === 0) return;
+            
+            if (confirm('Are you sure you want to clear all bookmarks? This cannot be undone.')) {
+                bookmarks = [];
+                saveBookmarks();
+                updateBookmarksDisplay();
+                updateBookmarkButton();
+            }
+        }
+        
+        // Update display random quote to include bookmark state
+        const originalDisplayRandomQuote = displayRandomQuote;
+        displayRandomQuote = function() {
+            originalDisplayRandomQuote();
+            updateBookmarkButton();
+        };
+        
+        // Load bookmarks on page load
+        loadBookmarks();
+        
+        // Living Library Functionality
+        let currentFilter = 'all';
+        let searchTerm = '';
+        let libraryTexts = [];
+        
+        // Initialize library texts array
+        function initializeLibraryTexts() {
+            libraryTexts = [];
+            
+            Object.keys(wisdomTexts).forEach(periodKey => {
+                const period = wisdomTexts[periodKey];
+                Object.keys(period.texts).forEach(textKey => {
+                    const text = period.texts[textKey];
+                    libraryTexts.push({
+                        ...text,
+                        periodKey: periodKey,
+                        textKey: textKey,
+                        periodName: period.name,
+                        quoteCount: text.quotes.length
+                    });
+                });
+            });
+        }
+        
+        // Populate library grid
+        function populateLibraryGrid(filter = 'all', search = '') {
+            const grid = document.getElementById('library-grid');
+            const countElement = document.querySelector('#showing-count .count');
+            
+            let filteredTexts = libraryTexts;
+            
+            // Apply period filter
+            if (filter !== 'all') {
+                filteredTexts = filteredTexts.filter(text => text.periodKey === filter);
+            }
+            
+            // Apply search filter
+            if (search) {
+                const searchLower = search.toLowerCase();
+                filteredTexts = filteredTexts.filter(text => 
+                    text.title.toLowerCase().includes(searchLower) ||
+                    text.tradition.toLowerCase().includes(searchLower) ||
+                    text.keyTeaching.toLowerCase().includes(searchLower)
+                );
+            }
+            
+            // Update count
+            countElement.textContent = filteredTexts.length;
+            
+            // Clear grid
+            grid.innerHTML = '';
+            
+            // Populate with cards
+            filteredTexts.forEach(text => {
+                const card = document.createElement('div');
+                card.className = 'library-card';
+                card.onclick = () => showTextDetails(text);
+                
+                card.innerHTML = `
+                    <div class="library-card-icon">${text.icon}</div>
+                    <h3 class="library-card-title">${text.title}</h3>
+                    <p class="library-card-period">${text.period}</p>
+                    <p class="library-card-teaching">${text.keyTeaching}</p>
+                    <span class="library-card-quote-count">${text.quoteCount} quotes</span>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            // Show empty state if no results
+            if (filteredTexts.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem; opacity: 0.7;">
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">No wisdom texts found</p>
+                        <p>Try adjusting your filters or search terms</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Show text details in modal
+        function showTextDetails(text) {
+            const modal = document.getElementById('text-modal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            // Populate modal header
+            modalContent.querySelector('.modal-icon').textContent = text.icon;
+            modalContent.querySelector('.modal-title').textContent = text.title;
+            modalContent.querySelector('.modal-subtitle').textContent = text.period;
+            
+            // Populate modal body
+            modalContent.querySelector('.modal-tradition').innerHTML = `
+                <h4>Tradition</h4>
+                <p>${text.tradition}</p>
+            `;
+            
+            modalContent.querySelector('.modal-teaching').innerHTML = `
+                <h4>Key Teaching</h4>
+                <p>${text.keyTeaching}</p>
+            `;
+            
+            // Populate quotes
+            const quotesHtml = text.quotes.map((quote, index) => `
+                <div class="modal-quote-item">
+                    <div class="modal-quote-text">"${quote.text}"</div>
+                    <div class="modal-quote-context">${quote.context}</div>
+                </div>
+            `).join('');
+            
+            modalContent.querySelector('.modal-quotes').innerHTML = `
+                <h4 style="color: var(--primary); margin-bottom: 1rem; font-family: 'Orbitron', monospace;">Wisdom Quotes</h4>
+                ${quotesHtml}
+            `;
+            
+            // Set up action buttons
+            modalContent.querySelector('.explore-chapters').onclick = () => {
+                closeTextModal();
+                // Could implement: find and highlight this text in chapters
+                alert('This feature will highlight where this text appears in the chapters.');
+            };
+            
+            modalContent.querySelector('.bookmark-all').onclick = () => {
+                let addedCount = 0;
+                text.quotes.forEach(quote => {
+                    const quoteData = {
+                        quote: quote.text,
+                        context: quote.context,
+                        source: text.title,
+                        period: text.period,
+                        tradition: text.tradition,
+                        keyTeaching: text.keyTeaching,
+                        icon: text.icon,
+                        savedAt: new Date().toISOString()
+                    };
+                    
+                    if (!bookmarks.some(b => b.quote === quoteData.quote && b.source === quoteData.source)) {
+                        bookmarks.push(quoteData);
+                        addedCount++;
+                    }
+                });
+                
+                if (addedCount > 0) {
+                    saveBookmarks();
+                    updateBookmarksDisplay();
+                    alert(`Added ${addedCount} new quotes to your bookmarks!`);
+                } else {
+                    alert('All quotes from this text are already bookmarked.');
+                }
+            };
+            
+            // Show modal
+            modal.classList.add('active');
+            
+            // Close on backdrop click
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    closeTextModal();
+                }
+            };
+        }
+        
+        // Close text modal
+        function closeTextModal() {
+            const modal = document.getElementById('text-modal');
+            modal.classList.remove('active');
+        }
+        
+        // Set up library event listeners
+        function setupLibraryEventListeners() {
+            // Period filter buttons
+            document.querySelectorAll('.period-filter').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.period-filter').forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Update filter and repopulate
+                    currentFilter = button.getAttribute('data-period');
+                    populateLibraryGrid(currentFilter, searchTerm);
+                });
+            });
+            
+            // Search input
+            const searchInput = document.getElementById('library-search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    searchTerm = e.target.value;
+                    populateLibraryGrid(currentFilter, searchTerm);
+                });
+            }
+            
+            // Close modal button
+            const closeModalBtn = document.querySelector('.text-modal .close-modal');
+            if (closeModalBtn) {
+                closeModalBtn.onclick = closeTextModal;
+            }
+        }
+        
+        // Augment setupLibraryEventListeners to include Timeline and Study Paths
+        const originalSetupLibraryForAugmentation = setupLibraryEventListeners;
+        setupLibraryEventListeners = function() {
+            originalSetupLibraryForAugmentation();
+            setupTimelineControls();    // Initialize Timeline
+            loadAllStudyPathProgress(); // Load study path progress
+            populateStudyPathsGrid(); // Populate study paths
+            console.log('Augmented setupLibraryEventListeners called: Timeline and Study Paths initialized.');
+        };
+        
+        // Update navigation to include library
+        const originalNavHandler = document.querySelectorAll('.nav a').forEach;
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (link.getAttribute('href') === '#library') {
+                    e.preventDefault();
+                    const targetId = 'library';
+                    
+                    // Hide all content sections
+                    document.querySelectorAll('.content').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show library section
+                    document.getElementById(targetId).classList.add('active');
+                    
+                    // Initialize library if not already done
+                    if (libraryTexts.length === 0) {
+                        initializeLibraryTexts();
+                        populateLibraryGrid();
+                        setupLibraryEventListeners();
+                    }
+                }
+            });
+        });
+        
+        // Initialize library when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Library will be initialized when user clicks on it
+        });
+        
+        // Old timeline code removed.
+        
+        // Relationships Web Functionality
+        const webNodes = [];
+        let webConnections = [];
+        let webCanvas = null;
+        let webCtx = null;
+        let hoveredNode = null;
+        let activeConnections = {
+            consciousness: true,
+            awakening: true,
+            nonduality: true,
+            detachment: true,
+            presence: true
+        };
+        
+        // Define text relationships
+        const textRelationships = [
+            // Consciousness connections
+            { from: 'upanishads', to: 'bhagavadGita', type: 'consciousness', strength: 1 },
+            { from: 'upanishads', to: 'blake', type: 'consciousness', strength: 0.7 },
+            { from: 'platoCave', to: 'blake', type: 'consciousness', strength: 0.8 },
+            { from: 'blake', to: 'huxley', type: 'consciousness', strength: 0.9 },
+            { from: 'emeraldTablet', to: 'watts', type: 'consciousness', strength: 0.6 },
+            
+            // Awakening connections
+            { from: 'dhammapada', to: 'tolle', type: 'awakening', strength: 0.9 },
+            { from: 'platoCave', to: 'rumi', type: 'awakening', strength: 0.7 },
+            { from: 'rumi', to: 'ramDass', type: 'awakening', strength: 0.8 },
+            { from: 'cloudUnknowing', to: 'tolle', type: 'awakening', strength: 0.7 },
+            
+            // Non-duality connections
+            { from: 'upanishads', to: 'taoTeChing', type: 'nonduality', strength: 0.8 },
+            { from: 'taoTeChing', to: 'watts', type: 'nonduality', strength: 0.9 },
+            { from: 'ibnArabi', to: 'rumi', type: 'nonduality', strength: 0.9 },
+            { from: 'upanishads', to: 'ibnArabi', type: 'nonduality', strength: 0.7 },
+            
+            // Detachment connections
+            { from: 'bhagavadGita', to: 'marcusAurelius', type: 'detachment', strength: 0.8 },
+            { from: 'dhammapada', to: 'marcusAurelius', type: 'detachment', strength: 0.7 },
+            { from: 'taoTeChing', to: 'thoreau', type: 'detachment', strength: 0.6 },
+            
+            // Presence connections
+            { from: 'dhammapada', to: 'ramDass', type: 'presence', strength: 0.8 },
+            { from: 'ramDass', to: 'tolle', type: 'presence', strength: 0.9 },
+            { from: 'marcusAurelius', to: 'tolle', type: 'presence', strength: 0.7 },
+            { from: 'cloudUnknowing', to: 'ramDass', type: 'presence', strength: 0.6 }
+        ];
+        
+        // Study Paths Data
+        const studyPaths = [
+            {
+                id: 'path_foundations',
+                title: "Foundations of Awakening",
+                description: "Begin your journey with cornerstone texts that explore consciousness, reality, and the nature of self.",
+                icon: "🌱",
+                texts: ['upanishads', 'taoTeChing', 'platoCave', 'dhammapada'] 
+            },
+            {
+                id: 'path_mystical_depths',
+                title: "Diving into Mystical Depths",
+                description: "Explore the rich traditions of mystical insight from various cultures and eras.",
+                icon: "🌀",
+                texts: ['rumi', 'ibnArabi', 'cloudUnknowing', 'blake']
+            },
+            {
+                id: 'path_practical_wisdom',
+                title: "Practical Wisdom for Modern Life",
+                description: "Discover timeless guidance on living with presence, detachment, and inner strength.",
+                icon: "🧘",
+                texts: ['bhagavadGita', 'marcusAurelius', 'emerson', 'tolle']
+            },
+            {
+                id: 'path_eastern_synthesis',
+                title: "Eastern Philosophies Synthesis",
+                description: "A focused exploration of interconnected ideas from major Eastern wisdom traditions.",
+                icon: "⛩️",
+                texts: ['upanishads', 'taoTeChing', 'bhagavadGita', 'dhammapada']
+            }
+        ];
+        
+        let studyPathProgress = {}; // In-memory cache for progress
+
+        // Load all study path progress from localStorage
+        function loadAllStudyPathProgress() {
+            const storedProgress = localStorage.getItem('studyPathProgress');
+            if (storedProgress) {
+                studyPathProgress = JSON.parse(storedProgress);
+            } else {
+                // Initialize if not found
+                studyPaths.forEach(path => {
+                    studyPathProgress[path.id] = {};
+                    path.texts.forEach(textKey => {
+                        studyPathProgress[path.id][textKey] = false; // Default to unread
+                    });
+                });
+                localStorage.setItem('studyPathProgress', JSON.stringify(studyPathProgress));
+            }
+        }
+
+        // Get progress for a specific path
+        function getPathProgress(pathId) {
+            return studyPathProgress[pathId] || {};
+        }
+
+        // Save progress for a specific text in a path
+        function saveTextProgressInPath(pathId, textKey, isCompleted) {
+            if (!studyPathProgress[pathId]) {
+                studyPathProgress[pathId] = {};
+            }
+            studyPathProgress[pathId][textKey] = isCompleted;
+            localStorage.setItem('studyPathProgress', JSON.stringify(studyPathProgress));
+        }
+
+        // Calculate progress metrics for a path
+        function calculatePathProgress(pathId) {
+            const path = studyPaths.find(p => p.id === pathId);
+            if (!path) return { completedCount: 0, totalCount: 0, percentage: 0 };
+            
+            const progress = getPathProgress(pathId);
+            let completedCount = 0;
+            const totalCount = path.texts.length;
+
+            path.texts.forEach(textKey => {
+                if (progress[textKey]) {
+                    completedCount++;
+                }
+            });
+            const percentage = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
+            return { completedCount, totalCount, percentage };
+        }
+
+        // Populate the study paths grid
+        function populateStudyPathsGrid() {
+            const grid = document.getElementById('study-paths-grid');
+            if (!grid) return;
+
+            grid.innerHTML = ''; // Clear existing cards
+
+            studyPaths.forEach(path => {
+                const card = document.createElement('div');
+                card.className = 'study-path-card';
+                card.dataset.pathId = path.id;
+
+                const { completedCount, totalCount, percentage } = calculatePathProgress(path.id);
+
+                card.innerHTML = `
+                    <div class="path-card-icon">${path.icon}</div>
+                    <h4 class="path-card-title">${path.title}</h4>
+                    <p class="path-card-description">${path.description}</p>
+                    <div class="path-card-progress">
+                        <div class="path-progress-bar-outer">
+                            <div class="path-progress-bar-inner" style="width: ${percentage}%;"></div>
+                        </div>
+                        <span>${completedCount} / ${totalCount} Texts Read</span>
+                    </div>
+                    <button class="path-card-view-btn">View Path</button>
+                `;
+
+                card.querySelector('.path-card-view-btn').addEventListener('click', () => {
+                    openPathModal(path);
+                });
+                grid.appendChild(card);
+            });
+        }
+
+        // Initialize relationships web
+        function initializeRelationshipsWeb() {
+            webCanvas = document.getElementById('relationships-canvas');
+            if (!webCanvas) return;
+            
+            webCtx = webCanvas.getContext('2d');
+            
+            // Set canvas size
+            const container = document.getElementById('web-container');
+            webCanvas.width = container.offsetWidth;
+            webCanvas.height = container.offsetHeight;
+            
+            // Create nodes
+            createWebNodes();
+            
+            // Set up event listeners
+            webCanvas.addEventListener('mousemove', handleWebMouseMove);
+            webCanvas.addEventListener('click', handleWebClick);
+            window.addEventListener('resize', () => {
+                webCanvas.width = container.offsetWidth;
+                webCanvas.height = container.offsetHeight;
+                drawRelationshipsWeb();
+            });
+            
+            // Set up connection filters
+            document.querySelectorAll('.connection-filter input').forEach(input => {
+                input.addEventListener('change', (e) => {
+                    const connectionType = e.target.getAttribute('data-connection');
+                    activeConnections[connectionType] = e.target.checked;
+                    drawRelationshipsWeb();
+                });
+            });
+            
+            // Initial draw
+            drawRelationshipsWeb();
+        }
+        
+        // Create web nodes
+        function createWebNodes() {
+            webNodes = [];
+            const centerX = webCanvas.width / 2;
+            const centerY = webCanvas.height / 2;
+            const radius = Math.min(centerX, centerY) - 100;
+            
+            // Get unique texts from timeline data
+            const uniqueTexts = [];
+            const textMap = {};
+            
+            Object.keys(wisdomTexts).forEach(periodKey => {
+                const period = wisdomTexts[periodKey];
+                Object.keys(period.texts).forEach(textKey => {
+                    const text = period.texts[textKey];
+                    uniqueTexts.push({
+                        ...text,
+                        key: textKey,
+                        periodKey: periodKey
+                    });
+                    textMap[textKey] = uniqueTexts.length - 1;
+                });
+            });
+            
+            // Position nodes in a circle
+            uniqueTexts.forEach((text, index) => {
+                const angle = (index / uniqueTexts.length) * Math.PI * 2 - Math.PI / 2;
+                webNodes.push({
+                    ...text,
+                    x: centerX + Math.cos(angle) * radius,
+                    y: centerY + Math.sin(angle) * radius,
+                    radius: 30,
+                    connections: []
+                });
+            });
+            
+            // Create connections
+            webConnections = textRelationships.map(rel => {
+                const fromIndex = textMap[rel.from];
+                const toIndex = textMap[rel.to];
+                return {
+                    ...rel,
+                    fromNode: webNodes[fromIndex],
+                    toNode: webNodes[toIndex]
+                };
+            });
+        }
+        
+        // Draw relationships web
+        function drawRelationshipsWeb() {
+            if (!webCtx) return;
+            
+            // Clear canvas
+            webCtx.clearRect(0, 0, webCanvas.width, webCanvas.height);
+            
+            // Draw connections
+            webConnections.forEach(connection => {
+                if (!activeConnections[connection.type]) return;
+                
+                webCtx.beginPath();
+                webCtx.moveTo(connection.fromNode.x, connection.fromNode.y);
+                webCtx.lineTo(connection.toNode.x, connection.toNode.y);
+                
+                // Set connection color based on type
+                const colors = {
+                    consciousness: '#00ffcc',
+                    awakening: '#ff00ff',
+                    nonduality: '#ffaa00',
+                    detachment: '#00aaff',
+                    presence: '#ff6600'
+                };
+                
+                webCtx.strokeStyle = colors[connection.type];
+                webCtx.lineWidth = connection.strength * 3;
+                webCtx.globalAlpha = 0.5;
+                webCtx.stroke();
+                webCtx.globalAlpha = 1;
+            });
+            
+            // Draw nodes
+            webNodes.forEach(node => {
+                // Node background
+                webCtx.beginPath();
+                webCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                
+                // Period-based colors
+                const periodColors = {
+                    ancient: 'rgba(138, 43, 226, 0.8)',
+                    medieval: 'rgba(255, 0, 255, 0.8)',
+                    renaissance: 'rgba(255, 170, 0, 0.8)',
+                    modern: 'rgba(0, 255, 204, 0.8)'
+                };
+                
+                webCtx.fillStyle = periodColors[node.periodKey];
+                webCtx.fill();
+                
+                // Node border
+                webCtx.strokeStyle = node === hoveredNode ? '#ffffff' : 'rgba(255, 255, 255, 0.3)';
+                webCtx.lineWidth = node === hoveredNode ? 3 : 2;
+                webCtx.stroke();
+                
+                // Node icon
+                webCtx.fillStyle = '#ffffff';
+                webCtx.font = '20px Arial';
+                webCtx.textAlign = 'center';
+                webCtx.textBaseline = 'middle';
+                webCtx.fillText(node.icon, node.x, node.y);
+            });
+        }
+        
+        // Handle mouse move on web
+        function handleWebMouseMove(e) {
+            const rect = webCanvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Check if hovering over a node
+            const previousHovered = hoveredNode;
+            hoveredNode = null;
+            
+            webNodes.forEach(node => {
+                const dx = x - node.x;
+                const dy = y - node.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < node.radius) {
+                    hoveredNode = node;
+                    showWebTooltip(node, e.clientX, e.clientY);
+                }
+            });
+            
+            if (!hoveredNode) {
+                hideWebTooltip();
+            }
+            
+            if (previousHovered !== hoveredNode) {
+                drawRelationshipsWeb();
+            }
+            
+            // Change cursor
+            webCanvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+        }
+        
+        // Handle click on web
+        function handleWebClick(e) {
+            if (hoveredNode) {
+                showTextDetails(hoveredNode);
+            }
+        }
+        
+        // Show web tooltip
+        function showWebTooltip(node, x, y) {
+            const tooltip = document.getElementById('web-tooltip');
+            if (!tooltip) return;
+            
+            // Count connections
+            const connections = webConnections.filter(c => 
+                (c.fromNode === node || c.toNode === node) && activeConnections[c.type]
+            );
+            
+            const connectionsByType = {};
+            connections.forEach(c => {
+                if (!connectionsByType[c.type]) connectionsByType[c.type] = 0;
+                connectionsByType[c.type]++;
+            });
+            
+            const connectionsHtml = Object.entries(connectionsByType)
+                .map(([type, count]) => `${type}: ${count}`)
+                .join('<br>');
+            
+            tooltip.innerHTML = `
+                <div class="web-tooltip-title">${node.title}</div>
+                <div class="web-tooltip-connections">
+                    <strong>Connections:</strong><br>
+                    ${connectionsHtml || 'None visible'}
+                </div>
+            `;
+            
+            tooltip.style.left = (x + 20) + 'px';
+            tooltip.style.top = (y - 40) + 'px';
+            tooltip.classList.add('visible');
+        }
+        
+        // Hide web tooltip
+        function hideWebTooltip() {
+            const tooltip = document.getElementById('web-tooltip');
+            if (tooltip) {
+                tooltip.classList.remove('visible');
+            }
+        }
+        
+        // Wisdom Timeline Functionality
+        let timelineScale = 1;
+        let timelineOffset = { x: 0, y: 0 };
+        let isDragging = false;
+        let dragStart = { x: 0, y: 0 };
+        
+        // Calculate position on timeline based on year
+        function calculateTimelinePosition(year) {
+            // Timeline spans from -800 BCE to 2025 CE = 2825 years
+            const startYear = -800;
+            const endYear = 2025;
+            const totalYears = endYear - startYear;
+            
+            // Calculate percentage position
+            const position = ((year - startYear) / totalYears) * 100;
+            return Math.max(0, Math.min(100, position));
+        }
+        
+        // Get tradition category for styling
+        function getTraditionCategory(tradition) {
+            const eastern = ['Vedic/Hindu', 'Buddhist', 'Taoist', 'Sufi'];
+            const western = ['Greek Philosophy', 'Stoic Philosophy', 'Transcendentalism'];
+            const mystical = ['Hermetic', 'Christian Mysticism', 'Visionary Poetry', 'Perennial Philosophy', 'Eastern-Western Synthesis', 'Contemporary Spirituality', 'Eastern-Western Bridge'];
+            
+            if (eastern.some(t => tradition.includes(t))) return 'eastern';
+            if (western.some(t => tradition.includes(t))) return 'western';
+            return 'mystical';
+        }
+        
+        // Convert period string to year
+        function periodToYear(period) {
+            // Extract year from period string
+            const matches = period.match(/-?\d+/);
+            if (matches) {
+                let year = parseInt(matches[0]);
+                // Handle BCE dates
+                if (period.includes('BCE')) {
+                    year = -Math.abs(year);
+                }
+                // For ranges, use the midpoint
+                if (period.includes('-')) {
+                    const rangeMatch = period.match(/(-?\d+)[^\d]+(-?\d+)/);
+                    if (rangeMatch) {
+                        const start = parseInt(rangeMatch[1]);
+                        const end = parseInt(rangeMatch[2]);
+                        year = Math.floor((start + end) / 2);
+                        if (period.includes('BCE')) {
+                            year = -Math.abs(year);
+                        }
+                    }
+                }
+                // Handle centuries
+                if (period.includes('century')) {
+                    const centuryMatch = period.match(/(\d+)\w+\s+century/);
+                    if (centuryMatch) {
+                        const century = parseInt(centuryMatch[1]);
+                        year = (century - 1) * 100 + 50; // Middle of century
+                    }
+                }
+                return year;
+            }
+            return 2000; // Default to modern era
+        }
+        
+        // Populate timeline with nodes
+        function populateTimeline() {
+            const nodesContainer = document.getElementById('timeline-nodes');
+            if (!nodesContainer) return;
+            
+            // Clear existing nodes
+            nodesContainer.innerHTML = '';
+            
+            // Create nodes for each text
+            libraryTexts.forEach((text, index) => {
+                const year = periodToYear(text.period);
+                const position = calculateTimelinePosition(year);
+                const category = getTraditionCategory(text.tradition);
+                
+                // Create node element
+                const node = document.createElement('div');
+                node.className = `timeline-node ${category}`;
+                node.style.left = `${position}%`;
+                node.style.top = '50%';
+                
+                // Alternate vertical positions to avoid overlap
+                const verticalOffset = (index % 3 - 1) * 80;
+                node.style.marginTop = `${verticalOffset}px`;
+                
+                // Add icon
+                node.textContent = text.icon;
+                
+                // Create tooltip
+                const tooltip = document.createElement('div');
+                tooltip.className = 'timeline-tooltip';
+                tooltip.innerHTML = `
+                    <div class="tooltip-title">${text.title}</div>
+                    <div class="tooltip-period">${text.period}</div>
+                    <div class="tooltip-teaching">${text.keyTeaching}</div>
+                `;
+                node.appendChild(tooltip);
+                
+                // Add click handler
+                node.addEventListener('click', () => {
+                    showTextDetails(text);
+                });
+                
+                nodesContainer.appendChild(node);
+            });
+        }
+        
+        // Setup timeline controls
+        function setupTimelineControls() {
+            // Populate timeline
+            populateTimeline();
+            
+            // Set up timeline controls
+            const zoomIn = document.getElementById('zoom-in');
+            const zoomOut = document.getElementById('zoom-out');
+            const resetView = document.getElementById('reset-view');
+            const viewport = document.getElementById('timeline-viewport');
+            const content = document.getElementById('timeline-content');
+            
+            if (zoomIn) {
+                zoomIn.addEventListener('click', () => {
+                    timelineScale = Math.min(timelineScale * 1.2, 3);
+                    updateTimelineTransform();
+                });
+            }
+            
+            if (zoomOut) {
+                zoomOut.addEventListener('click', () => {
+                    timelineScale = Math.max(timelineScale / 1.2, 0.5);
+                    updateTimelineTransform();
+                });
+            }
+            
+            if (resetView) {
+                resetView.addEventListener('click', () => {
+                    timelineScale = 1;
+                    timelineOffset = { x: 0, y: 0 };
+                    updateTimelineTransform();
+                });
+            }
+            
+            // Add drag functionality
+            if (viewport) {
+                viewport.addEventListener('mousedown', startDrag);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('mouseup', endDrag);
+                
+                // Touch events for mobile
+                viewport.addEventListener('touchstart', (e) => startDrag(e.touches[0]));
+                viewport.addEventListener('touchmove', (e) => {
+                    e.preventDefault();
+                    drag(e.touches[0]);
+                });
+                viewport.addEventListener('touchend', endDrag);
+            }
+        }
+        
+        // Update timeline transform
+        function updateTimelineTransform() {
+            const content = document.getElementById('timeline-content');
+            if (content) {
+                content.style.transform = `scale(${timelineScale}) translate(${timelineOffset.x}px, ${timelineOffset.y}px)`;
+            }
+        }
+        
+        // Drag functionality
+        function startDrag(e) {
+            isDragging = true;
+            dragStart = {
+                x: e.clientX - timelineOffset.x,
+                y: e.clientY - timelineOffset.y
+            };
+        }
+        
+        function drag(e) {
+            if (!isDragging) return;
+            
+            e.preventDefault();
+            timelineOffset = {
+                x: e.clientX - dragStart.x,
+                y: e.clientY - dragStart.y
+            };
+            
+            // Limit drag range
+            const maxOffset = 200;
+            timelineOffset.x = Math.max(-maxOffset, Math.min(maxOffset, timelineOffset.x));
+            timelineOffset.y = Math.max(-maxOffset/2, Math.min(maxOffset/2, timelineOffset.y));
+            
+            updateTimelineTransform();
+        }
+        
+        function endDrag() {
+            isDragging = false;
+        }
+
+        // Helper function to find a wisdom text by its key (used in openPathModal)
+        function findWisdomTextByKey(textKey) {
+            for (const period in wisdomTexts) {
+                if (wisdomTexts[period].texts[textKey]) {
+                    return {
+                        ...wisdomTexts[period].texts[textKey],
+                        key: textKey, // Ensure the key is part of the returned object
+                        periodKey: period // And the period key
+                    };
+                }
+            }
+            console.warn('Wisdom text not found for key:', textKey); // For debugging
+            return null;
+        }
+
+        // Function to open and populate the study path detail modal
+        function openPathModal(path) {
+            const modal = document.getElementById('path-modal');
+            if (!modal) return;
+
+            // Populate header
+            modal.querySelector('#path-modal-icon').textContent = path.icon;
+            modal.querySelector('#path-modal-title').textContent = path.title;
+            modal.querySelector('#path-modal-description').textContent = path.description;
+
+            const textsList = modal.querySelector('#path-modal-texts-list');
+            textsList.innerHTML = ''; // Clear previous texts
+
+            const pathProgressData = getPathProgress(path.id);
+
+            path.texts.forEach(textKey => {
+                const textData = findWisdomTextByKey(textKey);
+                if (!textData) return;
+
+                const item = document.createElement('div');
+                item.className = 'path-text-item';
+                item.dataset.textKey = textKey;
+
+                const checkboxId = `chk-${textKey}-${path.id}`;
+                const isCompleted = pathProgressData[textKey] || false;
+
+                item.innerHTML = `
+                    <input type="checkbox" id="${checkboxId}" data-text-key="${textKey}" ${isCompleted ? 'checked' : ''}>
+                    <label for="${checkboxId}">
+                        <span class="path-text-icon">${textData.icon}</span>
+                        ${textData.title}
+                    </label>
+                    <button class="path-text-view-btn">View Details</button>
+                `;
+
+                textsList.appendChild(item); // Append first
+
+                // Event listener for checkbox change (added after appending)
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', (e) => {
+                    saveTextProgressInPath(path.id, textKey, e.target.checked);
+                    // Call display update functions (to be added fully later)
+                    if (typeof updatePathModalProgressDisplay === 'function') updatePathModalProgressDisplay(path.id);
+                    if (typeof updatePathCardDisplay === 'function') updatePathCardDisplay(path.id); 
+                });
+
+                // Event listener for view details button
+                const viewBtn = item.querySelector('.path-text-view-btn');
+                viewBtn.addEventListener('click', () => {
+                    showTextDetails(textData); // Uses existing function
+                });
+            });
+            
+            // Initial call to display progress (function to be added fully later)
+             if (typeof updatePathModalProgressDisplay === 'function') updatePathModalProgressDisplay(path.id);
+
+            // Close button
+            const closeBtn = modal.querySelector('.close-modal');
+            if(closeBtn) { // Ensure close button exists
+                closeBtn.onclick = () => modal.classList.remove('active');
+            }
+            
+            // Show modal
+            modal.classList.add('active');
+            
+            // Close on backdrop click
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            };
+        }
+
+        // Helper to update progress display in the modal
+        function updatePathModalProgressDisplay(pathId) {
+            const path = studyPaths.find(p => p.id === pathId);
+            if (!path) return;
+            
+            const modal = document.getElementById('path-modal');
+            // Only update if the modal for this path (or any path modal) is active
+            if (!modal || !modal.classList.contains('active')) return; 
+            // More robust check: if modal is active AND displaying this specific path (needs path.id stored on modal)
+            // For now, we assume if path-modal is active, it's for the path being updated.
+
+            const { completedCount, totalCount, percentage } = calculatePathProgress(pathId);
+            
+            const countEl = modal.querySelector('#path-modal-progress-details .count');
+            const totalEl = modal.querySelector('#path-modal-progress-details .total');
+            const barEl = modal.querySelector('#path-modal-progress-details .path-progress-bar-inner');
+
+            if(countEl) countEl.textContent = completedCount;
+            if(totalEl) totalEl.textContent = totalCount;
+            if(barEl) barEl.style.width = `${percentage}%`;
+        }
+
+        // Helper to update a specific path card in the grid
+        function updatePathCardDisplay(pathId) {
+            const card = document.querySelector(`.study-path-card[data-path-id="${pathId}"]`);
+            if (!card) return;
+
+            const { completedCount, totalCount, percentage } = calculatePathProgress(pathId);
+            const progressBarInner = card.querySelector('.path-progress-bar-inner');
+            const progressText = card.querySelector('.path-card-progress span');
+
+            if(progressBarInner) progressBarInner.style.width = `${percentage}%`;
+            if(progressText) progressText.textContent = `${completedCount} / ${totalCount} Texts Read`;
+        }
+
+    </script>
+</body>
+</html>
