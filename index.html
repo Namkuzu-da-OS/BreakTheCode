@@ -65,7 +65,6 @@
             }
 
             .star { animation: none; opacity: 0.5; }
-            .dna-strand { animation: none; }
             .consciousness-meter .meter { transition: none; }
         }
 
@@ -136,30 +135,15 @@
             border-radius: 50%;
         }
         
-        /* DNA Helix - Subtle background element */
-        .dna-container {
+        /* DNA Helix - Elegant architectural wireframe */
+        .dna-canvas {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 400px;
-            opacity: 0.03;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .dna-strand {
-            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-        }
-
-        .dna-pair {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary) 0%, transparent 50%, var(--secondary) 100%);
+            z-index: 1;
+            pointer-events: none;
         }
         
         /* Hero Section */
@@ -171,46 +155,73 @@
             align-items: center;
             position: relative;
             z-index: 10;
+            padding: 2rem;
         }
-        
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-line {
+            width: 60px;
+            height: 1px;
+            background: rgba(0, 255, 204, 0.4);
+            margin: 0 auto 2.5rem;
+        }
+
         .hero h1 {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(2rem, 7vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 6rem);
             font-weight: 700;
             text-align: center;
-            letter-spacing: 0.15em;
-            margin-bottom: 1.5rem;
+            letter-spacing: 0.12em;
+            line-height: 1.1;
+            margin-bottom: 2rem;
             color: var(--light);
-            text-shadow: 0 0 60px rgba(0, 255, 204, 0.3);
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 0.35em;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 0.8rem;
+            font-family: 'Rajdhani', sans-serif;
         }
 
         .subtitle {
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            font-weight: 400;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-weight: 300;
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 3rem;
-            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 4rem;
+            letter-spacing: 0.08em;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
         }
-        
+
         .start-journey {
-            padding: 1rem 2.5rem;
-            font-size: 0.9rem;
+            padding: 1.1rem 3rem;
+            font-size: 0.75rem;
             font-weight: 600;
             font-family: 'Rajdhani', sans-serif;
             background: transparent;
             color: var(--primary);
-            border: 1px solid rgba(0, 255, 204, 0.4);
-            border-radius: 2px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 0;
             cursor: pointer;
-            transition: all var(--transition-normal);
+            transition: background-color var(--transition-normal), border-color var(--transition-normal);
             text-transform: uppercase;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
         }
 
         .start-journey:hover {
-            background: rgba(0, 255, 204, 0.1);
-            border-color: var(--primary);
+            background: rgba(0, 255, 204, 0.08);
+            border-color: rgba(0, 255, 204, 0.6);
         }
         
         /* Chapter Navigation */
@@ -258,8 +269,8 @@
         .content {
             display: none;
             min-height: 100vh;
-            padding: 6rem 2rem 4rem;
-            max-width: 800px;
+            padding: 8rem 2rem 6rem;
+            max-width: 720px;
             margin: 0 auto;
         }
 
@@ -268,42 +279,55 @@
         }
 
         .chapter {
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
         }
 
         .chapter h2 {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(1.5rem, 4vw, 2.25rem);
-            font-weight: 600;
-            margin-bottom: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 3.5rem;
+            margin-top: 2rem;
             color: var(--light);
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
-            padding-bottom: 1rem;
+            letter-spacing: 0.08em;
+            line-height: 1.15;
+        }
+
+        .chapter h2::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background: rgba(0, 255, 204, 0.5);
+            margin-bottom: 1.5rem;
         }
 
         .chapter h3 {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            font-weight: 600;
-            margin: 3rem 0 1.25rem;
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-weight: 500;
+            margin: 4rem 0 1.5rem;
             color: var(--primary);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
         }
 
         .chapter p {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            margin-bottom: 1.75rem;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.15rem;
+            line-height: 2;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 300;
         }
 
         .quote {
-            border-left: 2px solid rgba(255, 0, 255, 0.4);
-            padding-left: 1.5rem;
-            margin: 2.5rem 0;
+            border-left: 1px solid rgba(0, 255, 204, 0.3);
+            padding: 0.5rem 0 0.5rem 2rem;
+            margin: 3.5rem 0;
             font-style: italic;
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.35rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
         }
         
         /* Interactive Elements */
@@ -346,49 +370,45 @@
         
         /* Wisdom Cards */
         .wisdom-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 4px;
-            padding: 2rem;
-            margin: 2.5rem 0;
-            transition: border-color var(--transition-normal);
-        }
-
-        .wisdom-card:hover {
-            border-color: rgba(0, 255, 204, 0.2);
+            background: transparent;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 0;
+            padding: 2.5rem 0;
+            margin: 0;
         }
 
         .wisdom-icon {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            opacity: 0.6;
             display: inline-block;
         }
 
         .wisdom-content h4 {
-            color: rgba(255, 255, 255, 0.9);
-            font-family: 'Orbitron', monospace;
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.8rem;
             font-weight: 500;
-            margin-bottom: 1rem;
-            letter-spacing: 0.08em;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
         }
 
         .wisdom-quote {
             font-style: italic;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.75);
-            margin-bottom: 1rem;
-            padding-left: 1.25rem;
-            border-left: 2px solid rgba(0, 255, 204, 0.3);
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.25rem;
+            padding-left: 0;
+            border-left: none;
         }
 
         .wisdom-context {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.6;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.7;
         }
         
         /* Wisdom Card Responsive */
@@ -2227,9 +2247,7 @@
 <body>
     <div class="cosmic-bg"></div>
     <div class="stars"></div>
-    <div class="dna-container">
-        <div class="dna-strand"></div>
-    </div>
+    <canvas class="dna-canvas" id="dna-canvas"></canvas>
     
     <!-- Navigation -->
     <nav class="nav" id="nav">
@@ -2247,9 +2265,12 @@
     
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <h1>BREAKING YOUR GENETIC CODE</h1>
-        <p class="subtitle">Awaken from the unconscious patterns that bind you</p>
-        <button class="start-journey" onclick="startJourney()">Begin Your Journey</button>
+        <div class="hero-content">
+            <div class="hero-line"></div>
+            <h1><span>A Journey Into</span>BREAKING YOUR<br>GENETIC CODE</h1>
+            <p class="subtitle">Awaken from the unconscious patterns that bind you. Transcend the biological and cultural programming that shapes your existence.</p>
+            <button class="start-journey" onclick="startJourney()">Begin Your Journey</button>
+        </div>
     </section>
     
     <!-- Content Sections -->
@@ -3042,15 +3063,124 @@
             }
         }
         
-        // Create DNA helix
-        function createDNA() {
-            const dnaStrand = document.querySelector('.dna-strand');
-            for (let i = 0; i < 20; i++) {
-                const pair = document.createElement('div');
-                pair.className = 'dna-pair';
-                pair.style.top = i * 20 + 'px';
-                pair.style.transform = `rotateY(${i * 18}deg) translateZ(50px)`;
-                dnaStrand.appendChild(pair);
+        // Elegant DNA Helix - Architectural wireframe
+        function initDNAHelix() {
+            const canvas = document.getElementById('dna-canvas');
+            const ctx = canvas.getContext('2d');
+            let animationId;
+            let time = 0;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resize();
+            window.addEventListener('resize', resize);
+
+            // Helix parameters
+            const helixConfig = {
+                centerX: () => canvas.width / 2,
+                centerY: () => canvas.height / 2,
+                radius: 120,
+                verticalSpacing: 28,
+                pairs: 24,
+                rotationSpeed: 0.0003,
+                phaseOffset: Math.PI
+            };
+
+            function drawHelix() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const cx = helixConfig.centerX();
+                const cy = helixConfig.centerY();
+                const startY = cy - (helixConfig.pairs * helixConfig.verticalSpacing) / 2;
+
+                // Store points for connecting lines
+                const strand1Points = [];
+                const strand2Points = [];
+
+                // Calculate all points
+                for (let i = 0; i < helixConfig.pairs; i++) {
+                    const y = startY + i * helixConfig.verticalSpacing;
+                    const angle = time + (i * 0.3);
+
+                    // Strand 1
+                    const x1 = cx + Math.cos(angle) * helixConfig.radius;
+                    const z1 = Math.sin(angle);
+
+                    // Strand 2 (opposite phase)
+                    const x2 = cx + Math.cos(angle + helixConfig.phaseOffset) * helixConfig.radius;
+                    const z2 = Math.sin(angle + helixConfig.phaseOffset);
+
+                    strand1Points.push({ x: x1, y, z: z1 });
+                    strand2Points.push({ x: x2, y, z: z2 });
+                }
+
+                // Draw vertical strands (thin architectural lines)
+                ctx.lineWidth = 1;
+                ctx.lineCap = 'round';
+
+                // Strand 1
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(0, 255, 204, 0.15)';
+                for (let i = 0; i < strand1Points.length; i++) {
+                    const p = strand1Points[i];
+                    if (i === 0) ctx.moveTo(p.x, p.y);
+                    else ctx.lineTo(p.x, p.y);
+                }
+                ctx.stroke();
+
+                // Strand 2
+                ctx.beginPath();
+                ctx.strokeStyle = 'rgba(255, 0, 255, 0.12)';
+                for (let i = 0; i < strand2Points.length; i++) {
+                    const p = strand2Points[i];
+                    if (i === 0) ctx.moveTo(p.x, p.y);
+                    else ctx.lineTo(p.x, p.y);
+                }
+                ctx.stroke();
+
+                // Draw connecting rungs (base pairs)
+                for (let i = 0; i < strand1Points.length; i++) {
+                    const p1 = strand1Points[i];
+                    const p2 = strand2Points[i];
+
+                    // Depth-based opacity for 3D effect
+                    const avgZ = (p1.z + p2.z) / 2;
+                    const opacity = 0.04 + (avgZ + 1) * 0.04;
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.stroke();
+
+                    // Small nodes at connection points
+                    const nodeOpacity = 0.1 + (p1.z + 1) * 0.1;
+                    ctx.beginPath();
+                    ctx.fillStyle = `rgba(0, 255, 204, ${nodeOpacity})`;
+                    ctx.arc(p1.x, p1.y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    ctx.fillStyle = `rgba(255, 0, 255, ${nodeOpacity * 0.8})`;
+                    ctx.arc(p2.x, p2.y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                time += helixConfig.rotationSpeed;
+                animationId = requestAnimationFrame(drawHelix);
+            }
+
+            // Respect reduced motion preference
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                time = 0.5; // Static position
+                drawHelix();
+                cancelAnimationFrame(animationId);
+            } else {
+                drawHelix();
             }
         }
         
@@ -3167,7 +3297,7 @@
         
         // Initialize
         createStars();
-        createDNA();
+        initDNAHelix();
         
         // Random Quote Display Functionality
         let currentQuoteData = null;
