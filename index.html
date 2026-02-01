@@ -952,6 +952,7 @@
             font-size: 2rem;
             margin-bottom: 1rem;
             opacity: 0.8;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", sans-serif;
             display: block;
             text-align: center;
         }
@@ -1297,6 +1298,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1rem;
+            font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Android Emoji", "EmojiSymbols", sans-serif;
         }
 
         .timeline-node:hover {
@@ -2806,7 +2808,7 @@
                         period: "400 BCE",
                         tradition: "Hindu",
                         keyTeaching: "Karma Yoga - Action without attachment",
-                        icon: "🏹",
+                        icon: "🔥",
                         quotes: [
                             {
                                 text: "You have a right to perform your prescribed duty, but you are not entitled to the fruits of action.",
@@ -3806,6 +3808,7 @@
                     // Update filter and repopulate
                     currentFilter = button.getAttribute('data-period');
                     populateLibraryGrid(currentFilter, searchTerm);
+                    populateTimeline(currentFilter);
                 });
             });
             
@@ -3837,7 +3840,7 @@
         // Old timeline code removed.
         
         // Relationships Web Functionality
-        const webNodes = [];
+        let webNodes = [];
         let webConnections = [];
         let webCanvas = null;
         let webCtx = null;
@@ -3857,8 +3860,7 @@
             { from: 'upanishads', to: 'blake', type: 'consciousness', strength: 0.7 },
             { from: 'platoCave', to: 'blake', type: 'consciousness', strength: 0.8 },
             { from: 'blake', to: 'huxley', type: 'consciousness', strength: 0.9 },
-            { from: 'emeraldTablet', to: 'watts', type: 'consciousness', strength: 0.6 },
-            
+
             // Awakening connections
             { from: 'dhammapada', to: 'tolle', type: 'awakening', strength: 0.9 },
             { from: 'platoCave', to: 'rumi', type: 'awakening', strength: 0.7 },
@@ -4302,15 +4304,32 @@
         }
         
         // Populate timeline with nodes
-        function populateTimeline() {
+        function populateTimeline(filter = 'all') {
             const nodesContainer = document.getElementById('timeline-nodes');
             if (!nodesContainer) return;
-            
+
             // Clear existing nodes
             nodesContainer.innerHTML = '';
-            
+
+            // Filter texts based on period
+            let filteredTexts = libraryTexts;
+            if (filter !== 'all') {
+                filteredTexts = filteredTexts.filter(text => text.periodKey === filter);
+            }
+
+            // Update period range stats
+            const periodRangeEl = document.getElementById('period-range');
+            if (periodRangeEl && filteredTexts.length > 0) {
+                const years = filteredTexts.map(text => periodToYear(text.period));
+                const minYear = Math.min(...years);
+                const maxYear = Math.max(...years);
+                const yearSpan = Math.abs(maxYear - minYear);
+                const formattedSpan = yearSpan.toLocaleString();
+                periodRangeEl.textContent = `Spanning ${formattedSpan} years of wisdom`;
+            }
+
             // Create nodes for each text
-            libraryTexts.forEach((text, index) => {
+            filteredTexts.forEach((text, index) => {
                 const year = periodToYear(text.period);
                 const position = calculateTimelinePosition(year);
                 const category = getTraditionCategory(text.tradition);
