@@ -1644,6 +1644,19 @@
             padding-top: 4rem;
             border-top: 1px solid rgba(138, 43, 226, 0.3);
         }
+
+        /* Break the Wisdom Web out of parent constraints for full width */
+        .chapter.relationships-section {
+            width: 100vw !important;
+            max-width: none !important;
+            position: relative !important;
+            left: 50% !important;
+            margin-left: -50vw !important;
+            margin-right: -50vw !important;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            box-sizing: border-box;
+        }
         
         .relationships-title {
             font-family: 'Orbitron', monospace;
@@ -1693,17 +1706,46 @@
         .web-container {
             position: relative;
             width: 100%;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
+            height: 750px;
+            background: radial-gradient(ellipse at center, rgba(20, 20, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 70%, rgba(5, 5, 10, 1) 100%);
+            border: 1px solid rgba(0, 255, 204, 0.15);
+            border-radius: 12px;
             overflow: hidden;
             margin-bottom: 2rem;
+            box-shadow:
+                0 0 30px rgba(0, 255, 204, 0.05),
+                0 0 60px rgba(138, 43, 226, 0.03),
+                inset 0 0 100px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Make the Wisdom Web section wider for better visualization */
+        .relationships-section .web-container {
+            width: calc(100vw - 64px);
+            max-width: 1600px;
+            height: 850px;
+            margin: 0 auto 2rem auto;
+            overflow: visible;
+        }
+
+        @media (max-width: 1024px) {
+            .relationships-section {
+                width: 100%;
+                left: 0;
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .relationships-section .web-container {
+                width: 100%;
+                height: 500px;
+            }
         }
 
         #relationships-canvas {
-            width: 100%;
-            height: 100%;
+            display: block;
+            max-width: 100%;
+            height: auto;
         }
 
         .web-tooltip {
@@ -2165,7 +2207,7 @@
             }
 
             .web-container {
-                height: 700px;
+                height: 950px;
             }
         }
 
@@ -3852,6 +3894,13 @@
             detachment: true,
             presence: true
         };
+
+        // Animation state for gorgeous effects
+        let webAnimationId = null;
+        let webTime = 0;
+        let particles = [];
+        const particlePool = [];
+        const MAX_PARTICLES = 200;
         
         // Define text relationships
         const textRelationships = [
@@ -4014,37 +4063,113 @@
         function initializeRelationshipsWeb() {
             webCanvas = document.getElementById('relationships-canvas');
             if (!webCanvas) return;
-            
+
             webCtx = webCanvas.getContext('2d');
-            
-            // Set canvas size
+
+            // Set canvas size based on viewport for maximum spread
             const container = document.getElementById('web-container');
-            webCanvas.width = container.offsetWidth;
-            webCanvas.height = container.offsetHeight;
-            
+            const desiredWidth = Math.min(window.innerWidth - 100, 1500);
+            const desiredHeight = 800;
+
+            // Set container size explicitly
+            container.style.width = desiredWidth + 'px';
+            container.style.height = desiredHeight + 'px';
+
+            // Set canvas to match
+            webCanvas.width = desiredWidth;
+            webCanvas.height = desiredHeight;
+            webCanvas.style.width = desiredWidth + 'px';
+            webCanvas.style.height = desiredHeight + 'px';
+
             // Create nodes
             createWebNodes();
-            
+
+            // Initialize particle pool
+            for (let i = 0; i < MAX_PARTICLES; i++) {
+                particlePool.push({ active: false, x: 0, y: 0, progress: 0, speed: 0, connection: null });
+            }
+
             // Set up event listeners
             webCanvas.addEventListener('mousemove', handleWebMouseMove);
             webCanvas.addEventListener('click', handleWebClick);
             window.addEventListener('resize', () => {
-                webCanvas.width = container.offsetWidth;
-                webCanvas.height = container.offsetHeight;
-                drawRelationshipsWeb();
+                const newWidth = Math.min(window.innerWidth - 100, 1500);
+                const newHeight = 800;
+
+                container.style.width = newWidth + 'px';
+                container.style.height = newHeight + 'px';
+
+                webCanvas.width = newWidth;
+                webCanvas.height = newHeight;
+                webCanvas.style.width = newWidth + 'px';
+                webCanvas.style.height = newHeight + 'px';
+
+                createWebNodes();
             });
-            
+
             // Set up connection filters
             document.querySelectorAll('.connection-filter input').forEach(input => {
                 input.addEventListener('change', (e) => {
                     const connectionType = e.target.getAttribute('data-connection');
                     activeConnections[connectionType] = e.target.checked;
-                    drawRelationshipsWeb();
                 });
             });
-            
-            // Initial draw
-            drawRelationshipsWeb();
+
+            // Start animation loop
+            startWebAnimation();
+        }
+
+        function startWebAnimation() {
+            if (webAnimationId) cancelAnimationFrame(webAnimationId);
+
+            function animate() {
+                webTime += 0.016; // ~60fps time increment
+                updateParticles();
+                drawRelationshipsWeb();
+                webAnimationId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function stopWebAnimation() {
+            if (webAnimationId) {
+                cancelAnimationFrame(webAnimationId);
+                webAnimationId = null;
+            }
+        }
+
+        // Particle system for flowing energy along connections
+        function spawnParticle(connection) {
+            for (let p of particlePool) {
+                if (!p.active) {
+                    p.active = true;
+                    p.progress = 0;
+                    p.speed = 0.003 + Math.random() * 0.004;
+                    p.connection = connection;
+                    p.size = 2 + Math.random() * 2;
+                    p.direction = Math.random() > 0.5 ? 1 : -1;
+                    return;
+                }
+            }
+        }
+
+        function updateParticles() {
+            // Spawn new particles occasionally
+            webConnections.forEach(conn => {
+                if (activeConnections[conn.type] && Math.random() < 0.02 * conn.strength) {
+                    spawnParticle(conn);
+                }
+            });
+
+            // Update existing particles
+            for (let p of particlePool) {
+                if (p.active) {
+                    p.progress += p.speed * p.direction;
+                    if (p.progress > 1 || p.progress < 0) {
+                        p.active = false;
+                    }
+                }
+            }
         }
         
         // Create web nodes
@@ -4052,7 +4177,7 @@
             webNodes = [];
             const centerX = webCanvas.width / 2;
             const centerY = webCanvas.height / 2;
-            const radius = Math.min(centerX, centerY) - 100;
+            const radius = Math.min(centerX, centerY) - 25; // Maximum spread with minimal margin
             
             // Get unique texts from timeline data
             const uniqueTexts = [];
@@ -4078,7 +4203,7 @@
                     ...text,
                     x: centerX + Math.cos(angle) * radius,
                     y: centerY + Math.sin(angle) * radius,
-                    radius: 30,
+                    radius: 24,
                     connections: []
                 });
             });
@@ -4095,67 +4220,199 @@
             });
         }
         
-        // Draw relationships web
+        // Connection colors with full RGB values for effects
+        const connectionColors = {
+            consciousness: { r: 0, g: 255, b: 204, hex: '#00ffcc' },
+            awakening: { r: 255, g: 0, b: 255, hex: '#ff00ff' },
+            nonduality: { r: 255, g: 170, b: 0, hex: '#ffaa00' },
+            detachment: { r: 0, g: 170, b: 255, hex: '#00aaff' },
+            presence: { r: 255, g: 102, b: 0, hex: '#ff6600' }
+        };
+
+        const periodColors = {
+            ancient: { r: 0, g: 255, b: 204, hex: '#00ffcc', glow: 'rgba(0, 255, 204, 0.6)' },
+            medieval: { r: 255, g: 0, b: 255, hex: '#ff00ff', glow: 'rgba(255, 0, 255, 0.6)' },
+            renaissance: { r: 255, g: 170, b: 0, hex: '#ffaa00', glow: 'rgba(255, 170, 0, 0.6)' },
+            modern: { r: 138, g: 43, b: 226, hex: '#8a2be2', glow: 'rgba(138, 43, 226, 0.6)' }
+        };
+
+        // Get bezier control point for curved lines
+        function getBezierControlPoint(from, to, curvature = 0.2) {
+            const midX = (from.x + to.x) / 2;
+            const midY = (from.y + to.y) / 2;
+            const dx = to.x - from.x;
+            const dy = to.y - from.y;
+            // Perpendicular offset for curve
+            const offsetX = -dy * curvature;
+            const offsetY = dx * curvature;
+            return { x: midX + offsetX, y: midY + offsetY };
+        }
+
+        // Get point along bezier curve
+        function getBezierPoint(from, control, to, t) {
+            const x = Math.pow(1 - t, 2) * from.x + 2 * (1 - t) * t * control.x + Math.pow(t, 2) * to.x;
+            const y = Math.pow(1 - t, 2) * from.y + 2 * (1 - t) * t * control.y + Math.pow(t, 2) * to.y;
+            return { x, y };
+        }
+
+        // Draw relationships web with gorgeous effects
         function drawRelationshipsWeb() {
             if (!webCtx) return;
-            
-            // Clear canvas
+
+            // Clear canvas with slight fade for trail effect
+            webCtx.fillStyle = 'rgba(10, 10, 10, 0.15)';
+            webCtx.fillRect(0, 0, webCanvas.width, webCanvas.height);
             webCtx.clearRect(0, 0, webCanvas.width, webCanvas.height);
-            
-            // Draw connections
+
+            // Determine connected nodes for hover highlighting
+            const connectedToHovered = new Set();
+            if (hoveredNode) {
+                webConnections.forEach(conn => {
+                    if (conn.fromNode === hoveredNode) connectedToHovered.add(conn.toNode);
+                    if (conn.toNode === hoveredNode) connectedToHovered.add(conn.fromNode);
+                });
+            }
+
+            // Draw connections with glow effect
             webConnections.forEach(connection => {
                 if (!activeConnections[connection.type]) return;
-                
+                if (!connection.fromNode || !connection.toNode) return;
+
+                const color = connectionColors[connection.type];
+                const isHighlighted = hoveredNode && (connection.fromNode === hoveredNode || connection.toNode === hoveredNode);
+                const isDimmed = hoveredNode && !isHighlighted;
+
+                // Pulsing glow intensity
+                const pulsePhase = webTime * 2 + connection.strength * Math.PI;
+                const pulseIntensity = 0.5 + 0.3 * Math.sin(pulsePhase);
+                const baseAlpha = isDimmed ? 0.1 : (isHighlighted ? 0.9 : 0.4 * pulseIntensity);
+
+                const ctrl = getBezierControlPoint(connection.fromNode, connection.toNode, 0.15);
+
+                // Outer glow layer
                 webCtx.beginPath();
                 webCtx.moveTo(connection.fromNode.x, connection.fromNode.y);
-                webCtx.lineTo(connection.toNode.x, connection.toNode.y);
-                
-                // Set connection color based on type (using CSS variables)
-                const rootStyles = getComputedStyle(document.documentElement);
-                const colors = {
-                    consciousness: rootStyles.getPropertyValue('--primary').trim() || '#00ffcc',
-                    awakening: rootStyles.getPropertyValue('--secondary').trim() || '#ff00ff',
-                    nonduality: rootStyles.getPropertyValue('--accent').trim() || '#ffaa00',
-                    detachment: rootStyles.getPropertyValue('--info').trim() || '#00aaff',
-                    presence: rootStyles.getPropertyValue('--warning').trim() || '#ff6600'
-                };
+                webCtx.quadraticCurveTo(ctrl.x, ctrl.y, connection.toNode.x, connection.toNode.y);
+                webCtx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${baseAlpha * 0.3})`;
+                webCtx.lineWidth = connection.strength * 12 + (isHighlighted ? 8 : 0);
+                webCtx.lineCap = 'round';
+                webCtx.stroke();
 
-                webCtx.strokeStyle = colors[connection.type];
-                webCtx.lineWidth = connection.strength * 3;
-                webCtx.globalAlpha = 0.5;
-                webCtx.stroke();
-                webCtx.globalAlpha = 1;
-            });
-            
-            // Draw nodes
-            webNodes.forEach(node => {
-                // Node background
+                // Middle glow layer
                 webCtx.beginPath();
-                webCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-                
-                // Period-based colors
-                const periodColors = {
-                    ancient: 'rgba(138, 43, 226, 0.8)',
-                    medieval: 'rgba(255, 0, 255, 0.8)',
-                    renaissance: 'rgba(255, 170, 0, 0.8)',
-                    modern: 'rgba(0, 255, 204, 0.8)'
-                };
-                
-                webCtx.fillStyle = periodColors[node.periodKey];
-                webCtx.fill();
-                
-                // Node border
-                webCtx.strokeStyle = node === hoveredNode ? '#ffffff' : 'rgba(255, 255, 255, 0.3)';
-                webCtx.lineWidth = node === hoveredNode ? 3 : 2;
+                webCtx.moveTo(connection.fromNode.x, connection.fromNode.y);
+                webCtx.quadraticCurveTo(ctrl.x, ctrl.y, connection.toNode.x, connection.toNode.y);
+                webCtx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${baseAlpha * 0.5})`;
+                webCtx.lineWidth = connection.strength * 6 + (isHighlighted ? 4 : 0);
                 webCtx.stroke();
-                
-                // Node icon
-                webCtx.fillStyle = '#ffffff';
-                webCtx.font = '20px Arial';
+
+                // Core line
+                webCtx.beginPath();
+                webCtx.moveTo(connection.fromNode.x, connection.fromNode.y);
+                webCtx.quadraticCurveTo(ctrl.x, ctrl.y, connection.toNode.x, connection.toNode.y);
+                webCtx.strokeStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${baseAlpha + 0.2})`;
+                webCtx.lineWidth = connection.strength * 2 + (isHighlighted ? 1 : 0);
+                webCtx.stroke();
+            });
+
+            // Draw particles flowing along connections
+            for (let p of particlePool) {
+                if (p.active && p.connection && activeConnections[p.connection.type]) {
+                    const conn = p.connection;
+                    if (!conn.fromNode || !conn.toNode) continue;
+
+                    const ctrl = getBezierControlPoint(conn.fromNode, conn.toNode, 0.15);
+                    const pos = getBezierPoint(conn.fromNode, ctrl, conn.toNode, p.progress);
+                    const color = connectionColors[conn.type];
+
+                    // Particle glow
+                    const gradient = webCtx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, p.size * 3);
+                    gradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, 0.9)`);
+                    gradient.addColorStop(0.5, `rgba(${color.r}, ${color.g}, ${color.b}, 0.3)`);
+                    gradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
+
+                    webCtx.beginPath();
+                    webCtx.arc(pos.x, pos.y, p.size * 3, 0, Math.PI * 2);
+                    webCtx.fillStyle = gradient;
+                    webCtx.fill();
+
+                    // Particle core
+                    webCtx.beginPath();
+                    webCtx.arc(pos.x, pos.y, p.size, 0, Math.PI * 2);
+                    webCtx.fillStyle = `rgba(255, 255, 255, 0.9)`;
+                    webCtx.fill();
+                }
+            }
+
+            // Draw nodes with glow effects
+            webNodes.forEach(node => {
+                const color = periodColors[node.periodKey] || periodColors.ancient;
+                const isHovered = node === hoveredNode;
+                const isConnected = connectedToHovered.has(node);
+                const isDimmed = hoveredNode && !isHovered && !isConnected;
+
+                // Breathing animation for nodes
+                const breathPhase = webTime * 1.5 + webNodes.indexOf(node) * 0.3;
+                const breathScale = 1 + 0.05 * Math.sin(breathPhase);
+                const nodeRadius = node.radius * breathScale;
+
+                const nodeAlpha = isDimmed ? 0.3 : 1;
+
+                // Outer glow (larger, softer)
+                if (!isDimmed) {
+                    const glowSize = isHovered ? 25 : (isConnected ? 18 : 12);
+                    const glowGradient = webCtx.createRadialGradient(node.x, node.y, nodeRadius, node.x, node.y, nodeRadius + glowSize);
+                    glowGradient.addColorStop(0, `rgba(${color.r}, ${color.g}, ${color.b}, ${isHovered ? 0.6 : 0.3})`);
+                    glowGradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, 0)`);
+
+                    webCtx.beginPath();
+                    webCtx.arc(node.x, node.y, nodeRadius + glowSize, 0, Math.PI * 2);
+                    webCtx.fillStyle = glowGradient;
+                    webCtx.fill();
+                }
+
+                // Node background with gradient
+                const bgGradient = webCtx.createRadialGradient(node.x - nodeRadius * 0.3, node.y - nodeRadius * 0.3, 0, node.x, node.y, nodeRadius);
+                bgGradient.addColorStop(0, `rgba(${Math.min(255, color.r + 60)}, ${Math.min(255, color.g + 60)}, ${Math.min(255, color.b + 60)}, ${nodeAlpha})`);
+                bgGradient.addColorStop(1, `rgba(${color.r}, ${color.g}, ${color.b}, ${nodeAlpha})`);
+
+                webCtx.beginPath();
+                webCtx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
+                webCtx.fillStyle = bgGradient;
+                webCtx.fill();
+
+                // Node border with glow on hover
+                if (isHovered) {
+                    webCtx.shadowColor = color.hex;
+                    webCtx.shadowBlur = 20;
+                }
+                webCtx.strokeStyle = isHovered ? '#ffffff' : (isConnected ? `rgba(255, 255, 255, 0.8)` : `rgba(255, 255, 255, ${0.3 * nodeAlpha})`);
+                webCtx.lineWidth = isHovered ? 3 : (isConnected ? 2.5 : 2);
+                webCtx.stroke();
+                webCtx.shadowBlur = 0;
+
+                // Node icon with emoji font
+                webCtx.fillStyle = `rgba(255, 255, 255, ${nodeAlpha})`;
+                webCtx.font = `${Math.round(18 * breathScale)}px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif`;
                 webCtx.textAlign = 'center';
                 webCtx.textBaseline = 'middle';
                 webCtx.fillText(node.icon, node.x, node.y);
             });
+
+            // Draw title for hovered node
+            if (hoveredNode) {
+                const labelY = hoveredNode.y - hoveredNode.radius - 20;
+                webCtx.font = 'bold 14px Rajdhani, sans-serif';
+                webCtx.textAlign = 'center';
+                webCtx.textBaseline = 'bottom';
+
+                // Text shadow/glow
+                webCtx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+                webCtx.shadowBlur = 4;
+                webCtx.fillStyle = '#ffffff';
+                webCtx.fillText(hoveredNode.title, hoveredNode.x, labelY);
+                webCtx.shadowBlur = 0;
+            }
         }
         
         // Handle mouse move on web
