@@ -1,5 +1,7 @@
 import { initializeJourneyBand } from "./bands/journey.js";
 import { initializeLibraryBand } from "./bands/library.js";
+import { initializeWebBand } from "./bands/web.js";
+import { initializeWeighingBand } from "./bands/weighing.js";
 
 const header = document.querySelector("[data-site-header]");
 const search = document.querySelector("[data-site-search]");
@@ -109,3 +111,5 @@ window.addEventListener("resize", () => {
 initializeRevealObserver();
 initializeJourneyBand();
 initializeLibraryBand();
+initializeWebBand();
+initializeWeighingBand();

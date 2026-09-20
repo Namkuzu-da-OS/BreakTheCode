@@ -56,7 +56,7 @@ Acceptance: header and hero match the master at 1440px and at 390px; hero LCP pl
 ## Packet 04 — Journey and Living Library bands
 
 - `js/bands/journey.js`, `js/bands/library.js`, rendered from `data/chapters.json` and `data/texts.json`.
-- Journey per §5.3: six framed portrait cards with gold chevrons between, number + real chapter title + two `cardLines` over a bottom gradient; 6 → 3×2 → snap-scroll rail. **Real chapter titles, not the mockup's placeholder names** (bible §2).
+- Journey per §5.3: six framed portrait cards with gold chevrons between, number + the exact `title` + the single exact `cardSubtitle` over a bottom gradient (bible §2 — verbatim, never padded to two lines); 6 → 3×2 → snap-scroll rail. **Real chapter titles, not the mockup's placeholder names** (bible §2).
 - Library per §5.4: six featured cards, framed plate + title + two lines, and the `EXPLORE ALL TEXTS →` link.
 - Cards are single links with real `href`s to `/journey/{chapter}` and `/library/{id}` (those pages land in packet 06; until then they may 404 — note it).
 
