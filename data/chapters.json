@@ -4,8 +4,7 @@
     "n": 1,
     "title": "Introduction",
     "cardLines": [
-      "See the patterns that shape you.",
-      "Recognize the code beneath them."
+      "Recognize the code"
     ],
     "prose": [
       "You are more than your biology. More than the cultural programming that shapes your daily existence. This experience is a guide to breaking free from the unconscious patterns that keep you asleep, trapped in cycles of behavior dictated by hormones, social conditioning, and tribal instincts.",
@@ -23,15 +22,15 @@
       "textId": "upanishads",
       "quote": "\"As a person acts, so he becomes in life. Those who do good become good; those who do harm become bad.\"",
       "context": "The ancient Vedic texts understood that our patterns shape our reality - a truth modern neuroscience confirms."
-    }
+    },
+    "cardSubtitle": "Recognize the code"
   },
   {
     "id": "awakening",
     "n": 2,
     "title": "The Awakening",
     "cardLines": [
-      "Question what you want and fear.",
-      "Step outside unconscious living."
+      "Question the automatic"
     ],
     "prose": [
       "Most people live their entire lives without ever truly waking up. They follow scripts written by evolution, society, and circumstance. They chase goals that aren't truly their own, react to stimuli with predetermined responses, and mistake the prison of their conditioning for freedom.",
@@ -51,15 +50,15 @@
       "textId": "dhammapada",
       "quote": "\"All things arise and pass away. But the awakened awake forever.\"",
       "context": "Consciousness itself is the constant witness to all change - awakening to this truth is liberation."
-    }
+    },
+    "cardSubtitle": "Question the automatic"
   },
   {
     "id": "patterns",
     "n": 3,
     "title": "Breaking Patterns",
     "cardLines": [
-      "Understand the programs running beneath.",
-      "Choose a different response."
+      "See biology and conditioning"
     ],
     "prose": [
       "Your DNA contains instructions that served your ancestors well but may trap you in outdated patterns. The drive for status, the need for tribal belonging, the fear of the unknown—these are all genetic programs running in the background of your consciousness.",
@@ -78,15 +77,15 @@
       "textId": "marcusAurelius",
       "quote": "\"You have power over your mind - not outside events. Realize this, and you will find strength.\"",
       "context": "True power comes from mastering internal states, not external circumstances - this breaks the victim pattern."
-    }
+    },
+    "cardSubtitle": "See biology and conditioning"
   },
   {
     "id": "ancient",
     "n": 4,
     "title": "Ancient Wisdom",
     "cardLines": [
-      "Follow the common thread within.",
-      "Experience what books cannot contain."
+      "Compare what humans discovered"
     ],
     "prose": [
       "Across cultures and throughout time, awakened individuals have discovered similar truths. From the mystics of ancient India to the shamans of the Amazon, from the Greek philosophers to the Sufi poets, there runs a common thread of understanding about the nature of consciousness and human potential.",
@@ -106,15 +105,15 @@
       "textId": "taoTeChing",
       "quote": "\"When I let go of what I am, I become what I might be.\"",
       "context": "Breaking your genetic code requires releasing fixed identity."
-    }
+    },
+    "cardSubtitle": "Compare what humans discovered"
   },
   {
     "id": "consciousness",
     "n": 5,
     "title": "Expanding Consciousness",
     "cardLines": [
-      "Shift beyond the default mode.",
-      "Practice presence in every moment."
+      "Practice attention and perspective"
     ],
     "prose": [
       "Your brain has a default mode—a standard operating procedure that keeps you functioning but also keeps you limited. Expanding consciousness means learning to shift out of this default mode and access the fuller spectrum of human awareness.",
@@ -133,15 +132,15 @@
       "textId": "blake",
       "quote": "\"If the doors of perception were cleansed every thing would appear to man as it is, Infinite.\"",
       "context": "Our conditioned perception limits reality - cleansing consciousness reveals the infinite nature of existence."
-    }
+    },
+    "cardSubtitle": "Practice attention and perspective"
   },
   {
     "id": "potential",
     "n": 6,
     "title": "Full Potential",
     "cardLines": [
-      "Live from authentic choice.",
-      "Create ripples of collective awakening."
+      "Live by conscious choice"
     ],
     "prose": [
       "When you break free from unconscious patterns, you don't become less human—you become more fully human. You access capacities that were always there but remained dormant under layers of conditioning.",
@@ -163,6 +162,7 @@
       "textId": "emerson",
       "quote": "\"What lies behind us and what lies before us are tiny matters compared to what lies within us.\"",
       "context": "Your full potential exists within - not in external achievements but in consciousness itself."
-    }
+    },
+    "cardSubtitle": "Live by conscious choice"
   }
 ]

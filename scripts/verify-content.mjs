@@ -73,11 +73,38 @@ function wordCount(line) {
 
 function assertCardLines(records, label) {
   for (const record of records) {
-    assert.equal(record.cardLines.length, 2, `${label} ${record.id} must have two card lines`);
+    assert.ok(
+      record.cardLines.length >= 1 && record.cardLines.length <= 2,
+      `${label} ${record.id} must have one or two card lines`
+    );
     for (const line of record.cardLines) {
       assert.ok(line.trim(), `${label} ${record.id} has an empty card line`);
       assert.ok(wordCount(line) <= 6, `${label} ${record.id} card line exceeds six words: ${line}`);
     }
+  }
+}
+
+// The six journey subtitles are the owner's own words (2026-09-19), not
+// builder-written copy. They are asserted verbatim so no later pass can
+// "improve" them.
+const APPROVED_CHAPTER_SUBTITLES = {
+  intro: 'Recognize the code',
+  awakening: 'Question the automatic',
+  patterns: 'See biology and conditioning',
+  ancient: 'Compare what humans discovered',
+  consciousness: 'Practice attention and perspective',
+  potential: 'Live by conscious choice'
+};
+
+function assertApprovedSubtitles(records) {
+  for (const record of records) {
+    const expected = APPROVED_CHAPTER_SUBTITLES[record.id];
+    assert.ok(expected, `chapter ${record.id} is not in the approved subtitle list`);
+    assert.equal(
+      record.cardSubtitle,
+      expected,
+      `chapter ${record.id} subtitle must read exactly "${expected}"`
+    );
   }
 }
 
@@ -111,6 +138,7 @@ assert.deepEqual(
   'chapter order or titles changed'
 );
 assertCardLines(chapters, 'chapter');
+assertApprovedSubtitles(chapters);
 for (const chapter of chapters) {
   assert.ok(chapter.prose.length > 0, `chapter ${chapter.id} has no prose`);
   assert.ok(chapter.wisdomCard.textId, `chapter ${chapter.id} has no wisdom text id`);

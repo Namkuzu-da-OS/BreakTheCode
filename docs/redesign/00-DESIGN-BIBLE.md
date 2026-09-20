@@ -12,6 +12,16 @@ Look at the master image before every packet. Someone comparing the finished sit
 
 `reference/secondary-editorial-mockup.png` is a **secondary** reference, used only for two things the master doesn't show in detail: the Living Library browse controls (search + filter pills + era timeline slider) and the "Read the Source" scholarship table. Its art direction is compatible; where the two disagree, **the master wins.**
 
+### Do not blend concepts (owner's instruction, 2026-09-19)
+
+Several concept images exist in this conversation and this repository. **Only the selected mockup is the design.** Do not pull a section, a name, a layout idea or a piece of copy from another concept simply because it exists somewhere — not from the archived temple/Court-map direction, not from an earlier hero generation, not from the secondary reference beyond the two elements named above.
+
+The separation that governs everything:
+
+> **The old site supplies content and functionality. The selected mockup supplies the design.**
+
+If something is not in the selected mockup and not in the old site's real content, it does not belong in this build. Raise it in NOTES.md instead of inventing it.
+
 ## 1. Identity — the name is not negotiable
 
 **The title is "Breaking Your Genetic Code."** That is the name of the book, and this site is the book's world: a digital experience, a conceptual companion, and a living archive that expands beyond the book while staying rooted in it.
@@ -32,8 +42,23 @@ The visible front end is replaced. The substance is the owner's and is preserved
 **Replace outright:** all CSS, every visual component, page layout, header and nav presentation, hero, cards, section shells, the type system, spacing system, backgrounds, colour system, imagery, decorative elements, visual hierarchy, mobile layout, interaction presentation. Do not keep a component merely because rewriting it is work.
 
 **Where the mockup's placeholder words conflict with real content, the real content wins and the composition stays.** Specifically:
-- The master's journey cards read `THE CONDITIONING / THE DESCENT / REMEMBRANCE / THE HEART / THE ASCENT / INTEGRATION`. The real chapters are **Introduction, The Awakening, Breaking Patterns, Ancient Wisdom, Expanding Consciousness, Full Potential**. Ship the **real** titles in the mockup's card design. (The mockup's names are stronger copy; renaming the chapters is the owner's call, not the builder's. Note it in NOTES.md, don't do it.)
-- The master's library cards show six Egyptian/Maya texts. Ship **six real texts chosen from the 16**, with all 16 on the Library page.
+
+**The six journey stages are settled (owner, 2026-09-19). Use exactly these — title and subtitle, verbatim:**
+
+| # | Title | Subtitle |
+|---|---|---|
+| 01 | Introduction | Recognize the code |
+| 02 | The Awakening | Question the automatic |
+| 03 | Breaking Patterns | See biology and conditioning |
+| 04 | Ancient Wisdom | Compare what humans discovered |
+| 05 | Expanding Consciousness | Practice attention and perspective |
+| 06 | Full Potential | Live by conscious choice |
+
+These are the owner's own words, stored as `title` and `cardSubtitle` in `data/chapters.json` and asserted verbatim by `scripts/verify-content.mjs`. **Do not rewrite, expand, shorten or "improve" them, and do not pad them to two lines.** One line under the title, as listed.
+
+**Explicitly rejected, never resurrect:** `THE CONDITIONING / THE DESCENT / REMEMBRANCE / THE HEART / THE ASCENT / INTEGRATION`. Those came from an earlier concept image and the owner has ruled them out.
+
+**The library cards** in the mockup name six Egyptian/Maya texts this project does not contain. Ship **six real texts chosen from the 16** (§6.1 fixes which), with all 16 on the Library page.
 
 Every ancient quote carries `source: { translator_or_edition, note, verified }`. Unverified quotes render with a quiet "paraphrase / attribution uncertain" mark. Nothing is silently presented as verbatim scripture. The Kybalion (1908) and the Emerald Tablet are never presented as ancient Egyptian.
 
@@ -104,7 +129,7 @@ On phones the plate switches to a portrait crop that keeps the pyramid and beam 
 ### 5.3 The Journey Within
 Panel band. Centred title **THE JOURNEY WITHIN** with subline **A RETURN TO WHAT HAS ALWAYS BEEN**; right micro-label `DIFFERENT PEOPLES / ONE TRUTH / ALWAYS`.
 
-Six portrait cards in a row (aspect ~3:4), separated by small gold chevron glyphs between them. Each card: full-bleed art inside a gold hairline frame, and over the lower third a dark gradient carrying the number (`01`, Cinzel, gold, `.8rem`), the chapter title (Cinzel caps, cream, `.95rem`) and two short lines of Cormorant (`.9rem`, `--stone`) — max six words per line, drawn from the chapter content. Whole card is one link to `/journey/{chapter}`.
+Six portrait cards in a row (aspect ~3:4), separated by small gold chevron glyphs between them. Each card: full-bleed art inside a gold hairline frame, and over the lower third a dark gradient carrying the number (`01`, Cinzel, gold, `.8rem`), the chapter title (Cinzel caps, cream, `.95rem`) and the approved subtitle on ONE line of Cormorant (`.9rem`, `--stone`) — verbatim from bible §2, never rewritten. Whole card is one link to `/journey/{chapter}`.
 
 Responsive: 6 across ≥1280px → 3 × 2 at 900–1279px → a horizontal snap-scroll rail below 900px (cards ~72vw, chevrons hidden).
 

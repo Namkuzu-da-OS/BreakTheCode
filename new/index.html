@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0B0A08">
+    <meta
+      name="description"
+      content="Breaking Your Genetic Code brings ancient wisdom into a modern journey of self-knowledge, awareness, and conscious change."
+    >
+    <meta property="og:title" content="Breaking Your Genetic Code">
+    <meta
+      property="og:description"
+      content="Ancient wisdom. Modern awakening. Remember who you are."
+    >
+    <meta property="og:type" content="website">
+    <title>Breaking Your Genetic Code</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    >
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/art/hero-threshold-mobile.webp"
+      type="image/webp"
+      media="(max-width: 599px)"
+      fetchpriority="high"
+    >
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/art/hero-threshold.webp"
+      type="image/webp"
+      media="(min-width: 600px)"
+      fetchpriority="high"
+    >
+    <link rel="icon" href="./assets/seal.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./css/tokens.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/bands.css">
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+      <div class="site-header__inner">
+        <a class="wordmark" href="./" aria-label="Breaking Your Genetic Code, home">
+          <img class="wordmark__seal" src="./assets/seal.svg" width="48" height="48" alt="">
+          <span class="wordmark__type" aria-hidden="true">
+            <span>Breaking Your</span>
+            <span>Genetic Code</span>
+          </span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="./journey/">Journey</a>
+          <a href="./library/">Library</a>
+          <a href="./web/">Wisdom Web</a>
+          <a href="./practices/">Practices</a>
+          <a href="./about/">About</a>
+        </nav>
+
+        <div class="header-actions">
+          <form class="site-search" role="search" action="./library/" data-site-search>
+            <label class="sr-only" for="site-search-input">Search the living library</label>
+            <input
+              class="site-search__input"
+              id="site-search-input"
+              name="q"
+              type="search"
+              placeholder="Search the library"
+              autocomplete="off"
+              data-search-input
+            >
+            <button
+              class="icon-button site-search__toggle"
+              type="button"
+              aria-label="Open search"
+              aria-expanded="false"
+              aria-controls="site-search-input"
+              data-search-toggle
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="10.8" cy="10.8" r="6.3"></circle>
+                <path d="m15.5 15.5 4.2 4.2"></path>
+              </svg>
+            </button>
+          </form>
+
+          <a class="header-cta" href="./journey/">Awaken Within</a>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            data-menu-toggle
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" data-mobile-menu>
+      <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+        <a href="./journey/">Journey</a>
+        <a href="./library/">Library</a>
+        <a href="./web/">Wisdom Web</a>
+        <a href="./practices/">Practices</a>
+        <a href="./about/">About</a>
+      </nav>
+      <form class="mobile-search" role="search" action="./library/">
+        <label for="mobile-search-input">Search the living library</label>
+        <div class="mobile-search__field">
+          <input id="mobile-search-input" name="q" type="search" placeholder="Title, tradition, teaching">
+          <button type="submit" aria-label="Search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.3"></circle>
+              <path d="m15.5 15.5 4.2 4.2"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="hero-title">
+        <picture class="hero__plate" aria-hidden="true">
+          <source
+            media="(max-width: 599px)"
+            srcset="./assets/art/hero-threshold-mobile.webp"
+            type="image/webp"
+          >
+          <source
+            media="(max-width: 599px)"
+            srcset="./assets/art/hero-threshold-mobile.jpg"
+            type="image/jpeg"
+          >
+          <source srcset="./assets/art/hero-threshold.webp" type="image/webp">
+          <img
+            src="./assets/art/hero-threshold.jpg"
+            width="2880"
+            height="1234"
+            alt="A temple threshold framed by colossal guardians, with a distant pyramid sending a column of light into the sky."
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </picture>
+
+        <div class="hero__vignette" aria-hidden="true"></div>
+
+        <div class="micro-label hero__micro-label hero__micro-label--left" aria-hidden="true">
+          <span>Consciousness</span>
+          <span>Heritage</span>
+          <span>Self-Knowledge</span>
+          <span>A Brighter Tomorrow</span>
+        </div>
+
+        <div class="micro-label hero__micro-label hero__micro-label--right" aria-hidden="true">
+          <span>Same Wisdom</span>
+          <span>A Higher Humanity</span>
+        </div>
+
+        <div class="hero__content">
+          <p class="hero__eyebrow">Ancient Wisdom. Modern Awakening.</p>
+          <h1 class="hero__title" id="hero-title">
+            <span class="hero__title-line">
+              <span>Breaking</span>
+              <span>Your</span>
+            </span>
+            <span class="hero__title-line">Genetic Code</span>
+          </h1>
+          <p class="hero__subline">Remember who you are.</p>
+          <div class="hero__actions">
+            <a class="button button--solid" href="./journey/">Begin the Journey <span aria-hidden="true">→</span></a>
+            <a class="button button--outline" href="./library/">Explore the Library</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer reveal-band">
+      <div class="site-footer__inner">
+        <a class="wordmark wordmark--footer" href="./" aria-label="Breaking Your Genetic Code, home">
+          <img class="wordmark__seal" src="./assets/seal.svg" width="44" height="44" alt="">
+          <span class="wordmark__type" aria-hidden="true">
+            <span>Breaking Your</span>
+            <span>Genetic Code</span>
+          </span>
+        </a>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="./journey/">Journey</a>
+          <a href="./library/">Library</a>
+          <a href="./web/">Wisdom Web</a>
+          <a href="./practices/">Practices</a>
+          <a href="./about/">About</a>
+        </nav>
+
+        <div class="site-footer__end">
+          <div class="social-links" aria-label="Social media">
+            <a href="https://www.youtube.com/" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="6.5" width="18" height="11" rx="3"></rect>
+                <path d="m10 9.2 5 2.8-5 2.8Z"></path>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+                <circle cx="12" cy="12" r="3.6"></circle>
+                <circle cx="17.4" cy="6.7" r=".7" class="social-links__fill"></circle>
+              </svg>
+            </a>
+            <a href="https://x.com/" aria-label="X">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 4.5 19 19.5M19 4.5 5 19.5"></path>
+              </svg>
+            </a>
+          </div>
+          <p>A more conscious world<br>is possible.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
