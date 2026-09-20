@@ -18,12 +18,12 @@ Final rasters are sRGB. Byte counts are the committed output sizes.
 | `journey-04` | 900 × 1200 | 113,196 B | 187,358 B |
 | `journey-05` | 900 × 1200 | 118,876 B | 234,461 B |
 | `journey-06` | 900 × 1200 | 114,852 B | 206,130 B |
-| `library-01` | 800 × 1000 | 117,470 B | 222,527 B |
-| `library-02` | 800 × 1000 | 117,892 B | 199,403 B |
-| `library-03` | 800 × 1000 | 118,656 B | 227,832 B |
-| `library-04` | 800 × 1000 | 118,576 B | 207,344 B |
-| `library-05` | 800 × 1000 | 117,956 B | 234,596 B |
-| `library-06` | 800 × 1000 | 117,984 B | 241,508 B |
+| `library-01` | 800 × 1000 | 118,956 B | 123,172 B |
+| `library-02` | 800 × 1000 | 119,178 B | 140,742 B |
+| `library-03` | 800 × 1000 | 114,694 B | 138,687 B |
+| `library-04` | 800 × 1000 | 113,518 B | 143,918 B |
+| `library-05` | 800 × 1000 | 117,582 B | 218,311 B |
+| `library-06` | 800 × 1000 | 119,522 B | 228,452 B |
 | `web-face-left` | 700 × 1050 | 111,300 B | 124,776 B |
 | `web-face-right` | 700 × 1050 | 107,226 B | 120,685 B |
 | `web-starfield` | 2560 × 1097 | 152,398 B | 287,067 B |
@@ -131,73 +131,91 @@ Constraints: photoreal, no exaggerated neon, no fantasy continents, no city-ligh
 ### `library-01.webp` and `library-01.jpg`
 
 ```text
+For this Living Library plate, section 6.1 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, light grade, intimate museum camera, fine dust, and the near-black warm treatment. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing anywhere. The authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark.
+
 Use case: historical-scene
-Asset type: Living Library artifact card plate, portrait 4:5
-Input image: the supplied master mockup is the binding production style reference; match it exactly.
-Primary request: a museum-like close view of a weathered painted tomb relief showing a dignified ancient scribe in profile, made from carved limestone with faded ochre, charcoal, muted turquoise, and gold pigments.
-Composition/framing: artifact fills the frame inside a dark stone niche, frontal camera, mounted-plate clarity, lower edge slightly darker for adjoining card copy.
-Lighting/mood: one soft amber raking light reveals chips, dust, and tool marks; deep surrounding shadow.
-Constraints: authentic hand-worked material; pictorial relief only, no readable writing, text, lettering, labels, logos, UI, watermark, modern display case or objects.
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: Image 1 is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: The Upanishads — one genuine Indian palm-leaf manuscript resting on a plain dark stone shelf inside a shallow unadorned niche. Show a compact stack of long oblong palm leaves, edges darkened and irregular with age, incised with fine Sanskrit lines, bound through two holes with simple cord; a few leaves are gently offset so the construction is unmistakable.
+Composition/framing: close frontal three-quarter museum study, manuscript centered and filling most of the portrait frame, shallow depth, no other objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: one warm off-frame brazier gives restrained amber raking light; deep shadow, fine dust, near-black warm grade.
+Materials/textures: dry fibrous palm leaf, worn cord, subtle incision marks, plain charcoal stone.
+Constraints: culturally and materially accurate Indian manuscript; writing remains small and artifact-scale. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, ornamental borders, people, labels, modern objects, UI, or watermark.
 ```
 
 ### `library-02.webp` and `library-02.jpg`
 
 ```text
+For this Living Library plate, section 6.1 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, light grade, intimate museum camera, fine dust, and the near-black warm treatment. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing anywhere. The authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark.
+
 Use case: historical-scene
-Asset type: Living Library artifact card plate, portrait 4:5
-Input image: the supplied master mockup is the binding production style reference; match it exactly.
-Primary request: a single aged clay wisdom tablet standing upright in a blackened temple niche, densely incised with abstract ancient wedge and pictographic marks, chipped edges and mineral patina.
-Composition/framing: close frontal artifact portrait, tablet centered and nearly fills frame, dark stone pedestal, lower edge slightly darker for adjoining card copy.
-Lighting/mood: warm amber raking light from one side and faint gold rim light, deep near-black surround, suspended dust.
-Constraints: marks must remain decorative and non-legible, no modern alphabet, no readable text, labels, logos, UI, watermark, people, modern objects.
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: Image 1 is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: Tao Te Ching — one genuine ancient Chinese bamboo-slip book resting on a plain dark stone shelf inside a shallow unadorned niche. Narrow aged bamboo slips are bound vertically with dark silk cord, partly unrolled in a gentle curve; sparse brush-inked early Chinese seal-script characters run vertically on the slips.
+Composition/framing: close frontal three-quarter museum study, bamboo book centered and filling most of the portrait frame, no extra objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: one warm off-frame brazier gives restrained amber raking light; deep shadow, fine dust, near-black warm grade.
+Materials/textures: split aged bamboo, frayed silk cord, dry black ink, plain charcoal stone.
+Constraints: culturally and materially accurate Chinese bamboo-slip manuscript; writing remains small and artifact-scale. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, ornamental borders, people, labels, modern objects, UI, or watermark.
 ```
 
 ### `library-03.webp` and `library-03.jpg`
 
 ```text
+For this Living Library plate, section 6.1 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, light grade, intimate museum camera, fine dust, and the near-black warm treatment. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing anywhere. The authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark.
+
 Use case: historical-scene
-Asset type: Living Library artifact card plate, portrait 4:5
-Input image: the supplied master mockup is the binding production style reference; match it exactly.
-Primary request: an unfurled, time-darkened papyrus vignette painted with a ceremonial passage through shadow toward a small golden sun disk, figures rendered as ancient flat relief art rather than living people, frayed fibers and mineral pigment.
-Composition/framing: papyrus mounted against weathered black stone, frontal museum-like close view, artifact fills most of frame, lower edge slightly darker for adjoining card copy.
-Lighting/mood: subtle amber firelight, deep vignette, tactile age and dust.
-Constraints: painted figures are part of the artifact only; no readable writing, modern alphabet, text, labels, logos, UI, watermark, modern objects.
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: Image 1 is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: The Dhammapada — one genuine Pali palm-leaf manuscript placed between two slim gilded Southeast Asian wooden covers, resting on a plain dark stone shelf inside a shallow unadorned niche. Long oblong leaves are bound through with cord, with neat incised rows of Pali script; only traces of black lacquer and worn gold remain on the carved wooden covers.
+Composition/framing: close frontal three-quarter museum study, closed covers slightly parted to reveal the manuscript leaves, centered and filling most of the portrait frame, no extra objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: one warm off-frame brazier gives restrained amber raking light; deep shadow, fine dust, near-black warm grade.
+Materials/textures: aged fibrous palm leaf, worn gilded wood, traces of lacquer, plain charcoal stone.
+Constraints: culturally and materially accurate Buddhist Pali manuscript; restrained cover ornament only, with no borrowed Egyptian or Maya design. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, people, labels, modern objects, UI, or watermark.
 ```
 
 ### `library-04.webp` and `library-04.jpg`
 
 ```text
+For this Living Library plate, section 6.1 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, light grade, intimate museum camera, fine dust, and the near-black warm treatment. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing anywhere. The authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark.
+
 Use case: historical-scene
-Asset type: Living Library artifact card plate, portrait 4:5
-Input image: the supplied master mockup is the binding production style reference; match it exactly.
-Primary request: a single carved feather of Ma'at as an ancient limestone and aged-gold relief, feather centered on a cracked dark temple slab, precise hand-tooled barbs, traces of faded ochre and turquoise pigment.
-Composition/framing: close frontal artifact portrait, feather fills the middle of the frame, black stone niche and shallow pedestal, lower edge slightly darker for adjoining card copy.
-Lighting/mood: warm gold raking light and deep shadow, solemn, restrained, tactile.
-Constraints: no scales, no living people, no readable writing, text, lettering, labels, logos, UI, watermark, modern objects.
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: Image 1 is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: Meditations — a materially accurate Roman writing set resting on a plain dark stone shelf inside a shallow unadorned niche: an open hinged wooden wax tablet with a few faint hand-scratched Greek lines in the dark wax, a slender bronze stylus laid beside it, and a partly unrolled papyrus roll bearing small Greek handwriting.
+Composition/framing: close frontal three-quarter museum still life, the wax tablet is the dominant centered artefact, papyrus and stylus clearly visible but subordinate, all objects contained in the portrait frame, lower edge slightly darker for adjoining card copy. Nothing else is present.
+Lighting/mood: warm amber raking light from an off-frame brazier; the light source is completely outside the image. Deep shadow, fine dust, near-black warm grade. No visible flame, brazier, lamp, bowl, pot, or vessel.
+Materials/textures: rubbed wood, matte dark beeswax, patinated bronze, fibrous aged papyrus, plain charcoal stone.
+Constraints: culturally and materially accurate Roman-era writing tools; no bust, statue, laurel, helmet, coin, architecture, visible light source, or extra prop. Absolutely no Egyptian or Maya motifs, hieroglyphs, glyphs, pyramids, columns, ornamental borders, people, labels, modern objects, UI, or watermark.
 ```
 
 ### `library-05.webp` and `library-05.jpg`
 
 ```text
+For this Living Library plate, section 6.1 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, light grade, intimate museum camera, fine dust, and the near-black warm treatment. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing anywhere. The authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark.
+
 Use case: historical-scene
-Asset type: Living Library artifact card plate, portrait 4:5
-Input image: the supplied master mockup is the binding production style reference; match it exactly.
-Primary request: a time-darkened folded Maya codex page made from bark paper, covered in faded ochre, charcoal, muted turquoise, and gold pictographic panels about creation and sacred cycles, its fibers, folds, and chipped pigment clearly visible.
-Composition/framing: frontal museum-like artifact close view, page centered against a black weathered stone niche, lower edge slightly darker for adjoining card copy.
-Lighting/mood: one restrained warm raking light, deep shadow, fine dust, grave and precious.
-Constraints: pictographic marks must be decorative and non-legible; no modern alphabet, readable text, labels, logos, UI, watermark, people, modern objects.
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: Image 1 is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: Rumi's Poetry — one genuine medieval Persian illuminated manuscript folio resting at a slight angle on a plain dark stone shelf inside a shallow unadorned niche. Elegant nastaʿlīq Persian script appears in orderly columns on aged cream paper, surrounded only by a refined narrow margin of lapis blue pigment, restrained floral arabesque, and worn gold leaf illumination.
+Composition/framing: close frontal three-quarter museum study, single folio centered and filling most of the portrait frame, its deckled edges and surface visible, no book stand or other objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: one warm off-frame brazier gives restrained amber raking light; deep shadow, fine dust, near-black warm grade.
+Materials/textures: warm handmade paper, carbon ink, mineral lapis pigment, cracked and abraded gold leaf, plain charcoal stone.
+Constraints: culturally and materially accurate Persian illuminated folio; Persian ornament only and kept narrow. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, people, labels, modern objects, UI, or watermark.
 ```
 
 ### `library-06.webp` and `library-06.jpg`
 
 ```text
+For this Living Library plate, section 6.1 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, light grade, intimate museum camera, fine dust, and the near-black warm treatment. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing anywhere. The authentic historical writing intrinsic to the specified printed page is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark.
+
 Use case: historical-scene
-Asset type: Living Library artifact card plate, portrait 4:5
-Input image: the supplied master mockup is the binding production style reference; match it exactly.
-Primary request: an ancient astronomical codex wheel carved and painted on layered bark paper and thin stone, concentric calendars, celestial dots, abstract animal and sun motifs, deeply aged ochre, charcoal, muted turquoise, and worn gold.
-Composition/framing: circular artifact centered and nearly fills the portrait frame, frontal mounted-plate view in a dark temple niche, lower edge slightly darker for adjoining card copy.
-Lighting/mood: warm amber edge light, deep near-black surround, tactile dust and worn fibers.
-Constraints: marks remain decorative and non-legible; not a machine or clock; no readable text, modern alphabet, labels, logos, UI, watermark, people, modern objects.
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: Image 1 is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: William Blake — one facsimile-like original late-eighteenth-century English relief-etched illuminated page made by William Blake, resting on a plain dark stone shelf inside a shallow unadorned niche. The single warm rag-paper leaf has a visible copperplate impression and irregular relief-printed handwritten verse in Blake's hand, surrounded by small fully clothed symbolic human figures, curling vines, flame forms, and translucent hand-coloured watercolor washes organically entwined with the printed text.
+Composition/framing: close frontal three-quarter museum study, single page centered and filling most of the portrait frame, slightly curled worn edges, no frame or other objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: warm amber raking light from an off-frame brazier; the light source is completely outside the image. Deep shadow, fine dust, near-black warm grade. No visible flame, brazier, lamp, bowl, pot, or vessel.
+Materials/textures: warm handmade rag paper, relief-printed sepia ink, translucent hand-applied watercolor, subtle plate emboss, plain charcoal stone.
+Constraints: unmistakably William Blake's own English Romantic relief-etched illuminated printing, not an ancient manuscript and not a generic medieval page. All illustrated figures are small, symbolic, fully clothed, nonsexual, and part of the printed page only. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, people outside the printed artwork, labels, modern objects, UI, or watermark.
 ```
 
 ### `web-face-left.webp` and `web-face-left.jpg`
@@ -262,6 +280,6 @@ Constraints: one internally consistent imaginary Egyptian-Maya civilisation, no 
 
 ## Derived QA artifact
 
-`contact-sheet.jpg` (1520 × 1550, 324,469 B) is a derived side-by-side review sheet assembled from the final WebP plates. It was not generated by `image_gen` and therefore has no generation prompt.
+`contact-sheet.jpg` (1520 × 1550, 323,553 B) is a derived side-by-side review sheet assembled from the final WebP plates. It was not generated by `image_gen` and therefore has no generation prompt.
 
 The hand-drawn vector seal is stored at `../seal.svg`; it is intentionally not a generated raster.
