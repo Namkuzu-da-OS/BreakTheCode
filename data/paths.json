@@ -1,0 +1,46 @@
+[
+  {
+    "id": "path_foundations",
+    "title": "Foundations of Awakening",
+    "description": "Begin your journey with cornerstone texts that explore consciousness, reality, and the nature of self.",
+    "texts": [
+      "upanishads",
+      "taoTeChing",
+      "platoCave",
+      "dhammapada"
+    ]
+  },
+  {
+    "id": "path_mystical_depths",
+    "title": "Diving into Mystical Depths",
+    "description": "Explore the rich traditions of mystical insight from various cultures and eras.",
+    "texts": [
+      "rumi",
+      "ibnArabi",
+      "cloudUnknowing",
+      "blake"
+    ]
+  },
+  {
+    "id": "path_practical_wisdom",
+    "title": "Practical Wisdom for Modern Life",
+    "description": "Discover timeless guidance on living with presence, detachment, and inner strength.",
+    "texts": [
+      "bhagavadGita",
+      "marcusAurelius",
+      "emerson",
+      "tolle"
+    ]
+  },
+  {
+    "id": "path_eastern_synthesis",
+    "title": "Eastern Philosophies Synthesis",
+    "description": "A focused exploration of interconnected ideas from major Eastern wisdom traditions.",
+    "texts": [
+      "upanishads",
+      "taoTeChing",
+      "bhagavadGita",
+      "dhammapada"
+    ]
+  }
+]

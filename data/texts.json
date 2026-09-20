@@ -1,0 +1,494 @@
+[
+  {
+    "id": "upanishads",
+    "era": "ancient",
+    "eraName": "Ancient Foundations (Pre-500 CE)",
+    "title": "The Upanishads",
+    "period": "800-200 BCE",
+    "tradition": "Vedic/Hindu",
+    "keyTeaching": "Tat Tvam Asi - Thou Art That",
+    "cardLines": [
+      "Tat Tvam Asi",
+      "Thou Art That"
+    ],
+    "quotes": [
+      {
+        "text": "As a person acts, so he becomes in life. Those who do good become good; those who do harm become bad.",
+        "context": "The ancient Vedic texts understood that our patterns shape our reality - a truth modern neuroscience confirms.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "From the unreal lead me to the real, from darkness to light, from death to immortality.",
+        "context": "The journey of awakening is universal - moving from illusion to truth.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "You are what your deep, driving desire is. As your desire is, so is your will.",
+        "context": "Our deepest intentions create our reality - breaking the code starts with conscious desire.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "taoTeChing",
+    "era": "ancient",
+    "eraName": "Ancient Foundations (Pre-500 CE)",
+    "title": "Tao Te Ching",
+    "period": "6th century BCE",
+    "tradition": "Taoist",
+    "keyTeaching": "Wu Wei - Effortless Action",
+    "cardLines": [
+      "Wu Wei",
+      "Effortless action"
+    ],
+    "quotes": [
+      {
+        "text": "The Tao that can be named is not the eternal Tao.",
+        "context": "True reality exists beyond our conceptual frameworks and mental constructs.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "When I let go of what I am, I become what I might be.",
+        "context": "Breaking your genetic code requires releasing fixed identity.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "Nature does not hurry, yet everything is accomplished.",
+        "context": "Consciousness expansion follows natural rhythms, not forced timelines.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "bhagavadGita",
+    "era": "ancient",
+    "eraName": "Ancient Foundations (Pre-500 CE)",
+    "title": "Bhagavad Gita",
+    "period": "400 BCE",
+    "tradition": "Hindu",
+    "keyTeaching": "Karma Yoga - Action without attachment",
+    "cardLines": [
+      "Karma Yoga",
+      "Action without attachment"
+    ],
+    "quotes": [
+      {
+        "text": "You have a right to perform your prescribed duty, but you are not entitled to the fruits of action.",
+        "context": "True freedom comes from acting without being enslaved by outcomes.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "The wise see that there is action in the midst of inaction and inaction in the midst of action.",
+        "context": "Consciousness operates beyond our ordinary understanding of doing and being.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "dhammapada",
+    "era": "ancient",
+    "eraName": "Ancient Foundations (Pre-500 CE)",
+    "title": "The Dhammapada",
+    "period": "3rd century BCE",
+    "tradition": "Buddhist",
+    "keyTeaching": "The Middle Way",
+    "cardLines": [
+      "The Middle Way",
+      "A path beyond extremes"
+    ],
+    "quotes": [
+      {
+        "text": "All things arise and pass away. But the awakened awake forever.",
+        "context": "Consciousness itself is the constant witness to all change.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "We are what we think. All that we are arises with our thoughts.",
+        "context": "Mental patterns create our reality - changing thoughts changes everything.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "platoCave",
+    "era": "ancient",
+    "eraName": "Ancient Foundations (Pre-500 CE)",
+    "title": "Plato's Republic",
+    "period": "380 BCE",
+    "tradition": "Greek Philosophy",
+    "keyTeaching": "The Allegory of the Cave",
+    "cardLines": [
+      "The Allegory of the Cave",
+      "Reality beyond illusion"
+    ],
+    "quotes": [
+      {
+        "text": "The prison-house is the world of sight, the light of the fire is the sun.",
+        "context": "Most people mistake shadows for reality - awakening means turning toward the light.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "The unexamined life is not worth living.",
+        "context": "Self-inquiry is the foundation of breaking free from unconscious patterns.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "marcusAurelius",
+    "era": "ancient",
+    "eraName": "Ancient Foundations (Pre-500 CE)",
+    "title": "Meditations",
+    "period": "170 CE",
+    "tradition": "Stoic Philosophy",
+    "keyTeaching": "Amor Fati - Love of fate",
+    "cardLines": [
+      "Amor Fati",
+      "Love of fate"
+    ],
+    "quotes": [
+      {
+        "text": "You have power over your mind - not outside events. Realize this, and you will find strength.",
+        "context": "True power comes from mastering internal states, not external circumstances.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "Everything we hear is an opinion, not a fact. Everything we see is perspective, not truth.",
+        "context": "Breaking free requires seeing through the illusions of consensus reality.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "cloudUnknowing",
+    "era": "medieval",
+    "eraName": "Medieval Mystics (500-1500 CE)",
+    "title": "The Cloud of Unknowing",
+    "period": "14th century",
+    "tradition": "Christian Mysticism",
+    "keyTeaching": "Apophatic theology",
+    "cardLines": [
+      "Apophatic theology",
+      "Knowing through unknowing"
+    ],
+    "quotes": [
+      {
+        "text": "By love he can be grasped and held, but by thought, neither grasped nor held.",
+        "context": "Ultimate reality transcends mental understanding - it must be experienced.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "rumi",
+    "era": "medieval",
+    "eraName": "Medieval Mystics (500-1500 CE)",
+    "title": "Rumi's Poetry",
+    "period": "13th century",
+    "tradition": "Sufi",
+    "keyTeaching": "Divine Love",
+    "cardLines": [
+      "Divine love",
+      "Ecstasy beyond separation"
+    ],
+    "quotes": [
+      {
+        "text": "You were born with wings, why prefer to crawl through life?",
+        "context": "We have capacities far beyond our genetic programming - awakening activates them.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.",
+        "context": "Personal transformation is the key to collective evolution.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "ibnArabi",
+    "era": "medieval",
+    "eraName": "Medieval Mystics (500-1500 CE)",
+    "title": "Ibn Arabi's Works",
+    "period": "12th-13th century",
+    "tradition": "Sufi",
+    "keyTeaching": "Unity of Being",
+    "cardLines": [
+      "Unity of Being",
+      "The one within all"
+    ],
+    "quotes": [
+      {
+        "text": "The self is an ocean without a shore. Gazing upon it has no beginning or end.",
+        "context": "Consciousness is infinite - our limited sense of self is just a wave.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "blake",
+    "era": "renaissance",
+    "eraName": "Renaissance & Modern (1500-1900)",
+    "title": "William Blake",
+    "period": "18th-19th century",
+    "tradition": "Visionary Poetry",
+    "keyTeaching": "Imagination as divine",
+    "cardLines": [
+      "Imagination as divine",
+      "Vision cleanses perception"
+    ],
+    "quotes": [
+      {
+        "text": "If the doors of perception were cleansed every thing would appear to man as it is, Infinite.",
+        "context": "Our conditioned perception limits reality - cleansing it reveals the infinite.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "The imagination is not a state: it is the human existence itself.",
+        "context": "We are not passive receivers of reality but active creators through consciousness.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "emerson",
+    "era": "renaissance",
+    "eraName": "Renaissance & Modern (1500-1900)",
+    "title": "Ralph Waldo Emerson",
+    "period": "19th century",
+    "tradition": "Transcendentalism",
+    "keyTeaching": "Self-reliance",
+    "cardLines": [
+      "Self-reliance",
+      "Trust what lies within"
+    ],
+    "quotes": [
+      {
+        "text": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+        "context": "The power to break free exists within - not in external circumstances.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+        "context": "Breaking genetic and cultural codes requires authentic self-expression.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "thoreau",
+    "era": "renaissance",
+    "eraName": "Renaissance & Modern (1500-1900)",
+    "title": "Henry David Thoreau",
+    "period": "19th century",
+    "tradition": "Transcendentalism",
+    "keyTeaching": "Simple living, high thinking",
+    "cardLines": [
+      "Simple living",
+      "High thinking"
+    ],
+    "quotes": [
+      {
+        "text": "I went to the woods because I wished to live deliberately.",
+        "context": "Conscious living requires stepping out of automatic patterns.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "huxley",
+    "era": "modern",
+    "eraName": "Contemporary Awakening (1900-Present)",
+    "title": "Aldous Huxley",
+    "period": "20th century",
+    "tradition": "Perennial Philosophy",
+    "keyTeaching": "Consciousness exploration",
+    "cardLines": [
+      "Consciousness exploration",
+      "Cleansing the doors of perception"
+    ],
+    "quotes": [
+      {
+        "text": "There are things known and there are things unknown, and in between are the doors of perception.",
+        "context": "Expanding consciousness opens doors to realities beyond ordinary perception.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "ramDass",
+    "era": "modern",
+    "eraName": "Contemporary Awakening (1900-Present)",
+    "title": "Ram Dass",
+    "period": "20th-21st century",
+    "tradition": "Eastern-Western Synthesis",
+    "keyTeaching": "Be Here Now",
+    "cardLines": [
+      "Be Here Now",
+      "Walk each other home"
+    ],
+    "quotes": [
+      {
+        "text": "We're all just walking each other home.",
+        "context": "The journey of awakening is both individual and collective.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      },
+      {
+        "text": "The quieter you become, the more you can hear.",
+        "context": "Stillness reveals the deeper patterns that run our lives.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "tolle",
+    "era": "modern",
+    "eraName": "Contemporary Awakening (1900-Present)",
+    "title": "Eckhart Tolle",
+    "period": "21st century",
+    "tradition": "Contemporary Spirituality",
+    "keyTeaching": "The Power of Now",
+    "cardLines": [
+      "The Power of Now",
+      "Presence dissolves ego"
+    ],
+    "quotes": [
+      {
+        "text": "Realize deeply that the present moment is all you have. Make the NOW the primary focus of your life.",
+        "context": "Genetic patterns lose their grip when we anchor in present awareness.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "watts",
+    "era": "modern",
+    "eraName": "Contemporary Awakening (1900-Present)",
+    "title": "Alan Watts",
+    "period": "20th century",
+    "tradition": "Eastern-Western Bridge",
+    "keyTeaching": "The wisdom of insecurity",
+    "cardLines": [
+      "The wisdom of insecurity",
+      "Flow with uncertainty"
+    ],
+    "quotes": [
+      {
+        "text": "You are an aperture through which the universe is looking at and exploring itself.",
+        "context": "Consciousness uses human form to know itself - you are that process.",
+        "source": {
+          "translator_or_edition": "",
+          "note": "",
+          "verified": false
+        }
+      }
+    ]
+  }
+]

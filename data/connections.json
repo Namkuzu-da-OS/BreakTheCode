@@ -1,0 +1,126 @@
+{
+  "types": [
+    {
+      "id": "consciousness",
+      "label": "Consciousness",
+      "color": "#00ffcc"
+    },
+    {
+      "id": "awakening",
+      "label": "Awakening",
+      "color": "#ff00ff"
+    },
+    {
+      "id": "nonduality",
+      "label": "Non-duality",
+      "color": "#ffaa00"
+    },
+    {
+      "id": "detachment",
+      "label": "Detachment",
+      "color": "#00aaff"
+    },
+    {
+      "id": "presence",
+      "label": "Presence",
+      "color": "#ff6600"
+    }
+  ],
+  "connections": [
+    {
+      "from": "upanishads",
+      "to": "bhagavadGita",
+      "type": "consciousness"
+    },
+    {
+      "from": "upanishads",
+      "to": "blake",
+      "type": "consciousness"
+    },
+    {
+      "from": "platoCave",
+      "to": "blake",
+      "type": "consciousness"
+    },
+    {
+      "from": "blake",
+      "to": "huxley",
+      "type": "consciousness"
+    },
+    {
+      "from": "dhammapada",
+      "to": "tolle",
+      "type": "awakening"
+    },
+    {
+      "from": "platoCave",
+      "to": "rumi",
+      "type": "awakening"
+    },
+    {
+      "from": "rumi",
+      "to": "ramDass",
+      "type": "awakening"
+    },
+    {
+      "from": "cloudUnknowing",
+      "to": "tolle",
+      "type": "awakening"
+    },
+    {
+      "from": "upanishads",
+      "to": "taoTeChing",
+      "type": "nonduality"
+    },
+    {
+      "from": "taoTeChing",
+      "to": "watts",
+      "type": "nonduality"
+    },
+    {
+      "from": "ibnArabi",
+      "to": "rumi",
+      "type": "nonduality"
+    },
+    {
+      "from": "upanishads",
+      "to": "ibnArabi",
+      "type": "nonduality"
+    },
+    {
+      "from": "bhagavadGita",
+      "to": "marcusAurelius",
+      "type": "detachment"
+    },
+    {
+      "from": "dhammapada",
+      "to": "marcusAurelius",
+      "type": "detachment"
+    },
+    {
+      "from": "taoTeChing",
+      "to": "thoreau",
+      "type": "detachment"
+    },
+    {
+      "from": "dhammapada",
+      "to": "ramDass",
+      "type": "presence"
+    },
+    {
+      "from": "ramDass",
+      "to": "tolle",
+      "type": "presence"
+    },
+    {
+      "from": "marcusAurelius",
+      "to": "tolle",
+      "type": "presence"
+    },
+    {
+      "from": "cloudUnknowing",
+      "to": "ramDass",
+      "type": "presence"
+    }
+  ]
+}

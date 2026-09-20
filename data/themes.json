@@ -1,0 +1,166 @@
+[
+  {
+    "id": "genetics",
+    "label": "Genetics",
+    "subline": "Lineage",
+    "featured": true,
+    "textIds": [
+      "upanishads",
+      "dhammapada",
+      "marcusAurelius"
+    ]
+  },
+  {
+    "id": "ancient-texts",
+    "label": "Ancient Texts",
+    "subline": "Wisdom",
+    "featured": true,
+    "textIds": [
+      "upanishads",
+      "taoTeChing",
+      "bhagavadGita",
+      "dhammapada",
+      "platoCave",
+      "marcusAurelius"
+    ]
+  },
+  {
+    "id": "shadow",
+    "label": "Shadow",
+    "subline": "Integration",
+    "featured": true,
+    "textIds": [
+      "platoCave",
+      "cloudUnknowing",
+      "blake"
+    ]
+  },
+  {
+    "id": "memory",
+    "label": "Memory",
+    "subline": "The Past",
+    "featured": true,
+    "textIds": [
+      "upanishads",
+      "platoCave",
+      "marcusAurelius"
+    ]
+  },
+  {
+    "id": "liberation",
+    "label": "Liberation",
+    "subline": "The Future",
+    "featured": true,
+    "textIds": [
+      "bhagavadGita",
+      "dhammapada",
+      "tolle"
+    ]
+  },
+  {
+    "id": "self",
+    "label": "Self",
+    "subline": "Identity",
+    "featured": true,
+    "textIds": [
+      "upanishads",
+      "emerson",
+      "ramDass"
+    ]
+  },
+  {
+    "id": "nature",
+    "label": "Nature",
+    "subline": "Cycles",
+    "featured": true,
+    "textIds": [
+      "taoTeChing",
+      "thoreau",
+      "watts"
+    ]
+  },
+  {
+    "id": "ritual",
+    "label": "Ritual",
+    "subline": "Practice",
+    "featured": true,
+    "textIds": [
+      "bhagavadGita",
+      "marcusAurelius",
+      "cloudUnknowing"
+    ]
+  },
+  {
+    "id": "language",
+    "label": "Language",
+    "subline": "Symbol",
+    "featured": true,
+    "textIds": [
+      "taoTeChing",
+      "rumi",
+      "blake"
+    ]
+  },
+  {
+    "id": "presence",
+    "label": "Presence",
+    "subline": "Awareness",
+    "featured": true,
+    "textIds": [
+      "dhammapada",
+      "marcusAurelius",
+      "ramDass",
+      "tolle"
+    ]
+  },
+  {
+    "id": "consciousness",
+    "label": "Consciousness",
+    "subline": "Perception",
+    "featured": false,
+    "textIds": [
+      "upanishads",
+      "platoCave",
+      "blake",
+      "huxley"
+    ]
+  },
+  {
+    "id": "awakening",
+    "label": "Awakening",
+    "subline": "Clarity",
+    "featured": false,
+    "textIds": [
+      "dhammapada",
+      "platoCave",
+      "rumi",
+      "ramDass",
+      "tolle"
+    ]
+  },
+  {
+    "id": "nonduality",
+    "label": "Non-duality",
+    "subline": "Oneness",
+    "featured": false,
+    "textIds": [
+      "upanishads",
+      "taoTeChing",
+      "ibnArabi",
+      "rumi",
+      "watts"
+    ]
+  },
+  {
+    "id": "detachment",
+    "label": "Detachment",
+    "subline": "Release",
+    "featured": false,
+    "textIds": [
+      "bhagavadGita",
+      "dhammapada",
+      "marcusAurelius",
+      "thoreau"
+    ]
+  }
+]
