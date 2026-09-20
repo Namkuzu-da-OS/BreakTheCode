@@ -152,7 +152,7 @@ Plates required (`assets/art/`, WebP + JPG fallback, sRGB):
 |---|---|---|
 | `hero-threshold` | 21:9, 2880w (+ 4:5 1400w phone crop) | Two colossal seated pharaonic guardians flanking a stepped pyramid throwing a vertical light beam into a clouded sky; fire braziers; one small robed figure walking in |
 | `journey-01`…`journey-06` | 3:4, 900w | One per chapter, matched to its meaning — conditioning/pattern, descent into a lit corridor, radiant sunburst of remembrance, luminous lotus, ascent up a temple stair to light, the whole earth from orbit |
-| `library-01`…`library-06` | 4:5, 800w | The artefact of each featured text: painted tomb relief, inscribed clay tablet, papyrus vignette, carved feather of Ma'at, Maya codex page, an astronomical codex wheel |
+| `library-01`…`library-06` | 4:5, 800w | The real artefact of each featured text — see §6.1. **Never an Egyptian or Maya artefact for a text that is neither.** |
 | `web-face-left`, `web-face-right` | 2:3, 700w | Weathered carved stone heads in deep shadow, one Egyptian, one Maya, edge-lit, for the band's left and right bleeds |
 | `web-starfield` | 21:9, 2560w | Deep night sky, dust lanes, faint nebula in cool blue over near-black — background only, no structures |
 | `weighing-scales` | 4:3, 1400w | A golden balance, white feather in one pan, a golden heart in the other, on a dark temple floor lit by a single warm source |
@@ -160,6 +160,25 @@ Plates required (`assets/art/`, WebP + JPG fallback, sRGB):
 | `seal` | 1:1 SVG, hand-drawn | The circular wordmark seal — a gold ring with an eye-and-rays glyph. **Vector, not generated raster.** |
 
 Budget: hero and panorama ≤ 400KB each as WebP, cards ≤ 120KB each; every `<img>` carries `width`, `height`, `loading="lazy"` (except the hero, which is eager and preloaded), and a real `alt`.
+
+### 6.1 The library plates must depict the actual text
+
+The master mockup's library cards are placeholder copy naming texts this project does not contain (Ptahhotep, Amenemope, Book of the Dead, Ma'at, Popol Vuh, Dresden Codex). The real library is Indian, Chinese, Greek, Roman, Sufi and English. **A plate must show the artefact tradition the text actually comes from.** An Egyptian relief standing in for the Upanishads is a lie the whole site is built to avoid — it is the exact failure this project exists to not commit.
+
+Continuity with the master comes from **palette, light and camera — never from Egyptian or Maya set dressing.** Each plate is the artefact resting on dark stone in a shallow niche, lit by warm off-frame brazier light, deep shadow, fine dust, same near-black warm grade as every other plate. No temple architecture, no hieroglyphs, no Maya glyphs around a text that is neither.
+
+Featured six for the home band, chosen because each has a genuine artefact tradition to depict:
+
+| File | Text | Plate subject |
+|---|---|---|
+| `library-01` | The Upanishads (`upanishads`) | An Indian palm-leaf manuscript, oblong leaves incised with Sanskrit and bound through with cord, edges darkened with age |
+| `library-02` | Tao Te Ching (`taoTeChing`) | A Chinese bamboo-slip book, narrow slips bound with silk cord, brush-inked seal-script characters, partly unrolled |
+| `library-03` | The Dhammapada (`dhammapada`) | A Pali palm-leaf manuscript between gilded wooden covers, script incised in neat rows, a little lacquer and gold remaining |
+| `library-04` | Meditations (`marcusAurelius`) | A Roman writing set — a wax tablet with a bronze stylus beside a partly unrolled papyrus roll in Greek |
+| `library-05` | Rumi's Poetry (`rumi`) | A Persian illuminated manuscript folio, nastaʿlīq script in columns, lapis and gold-leaf illumination in the margin |
+| `library-06` | William Blake (`blake`) | A relief-etched illuminated page in Blake's hand, hand-coloured figures entwined with the text, warm paper |
+
+The remaining texts are reached through `EXPLORE ALL TEXTS →`. On `/library/`, modern authors (Huxley, Ram Dass, Tolle, Watts) get a **typographic or abstract plate** in the same grade — never a fabricated "ancient artefact," which would be a second version of the same lie.
 
 ## 7. Technical requirements
 
