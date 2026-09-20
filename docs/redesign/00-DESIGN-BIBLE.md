@@ -32,9 +32,13 @@ Egyptian temple plan for the whole; the Maya own the Observatory.
 | **The Observatory** (El Caracol, Chichen Itza — a real Maya observatory) | Wisdom Web as a star map, plus a Time lens | `#relationships-web` + the timeline |
 | **Your Cartouche** | Bookmarks. A cartouche is a name ring: you are inscribing yourself. | Bookmarks panel, bookmark-all |
 
+### Sources are voices, not a costume (owner's principle, 2026-09-19)
+This is not an Egyptian site, a Maya site, or an adaptation of any one system. It pulls on all known human knowledge and makes something new for this time. Egypt, the Maya, the Vedas, the Stoics, the mystics all speak in it; none of them dresses it. Nothing on the site claims to *be* Luxor, a chakra system, or anyone's diagram. Where a source inspired a choice, credit it as inspiration on the spot.
+
 ### The Court (map) — the decision everything hangs on
-- An SVG site plan, drawn like an archaeological survey: thin gold lines on dark stone, small-caps labels, a north arrow, a scale bar. It should look like a real excavation plan, not a game map.
-- Axis runs bottom → top: Gate at the bottom, Halls I–VI in sequence upward, Hall VI at the top (deepest in the temple). House of Life wing to the left of the axis, Observatory to the right, Cartouche a small chapel beside the Gate.
+- **The map is a standing human figure**, drawn in thin limestone line, and the rooms are placed along the body. A teenager reads it in one second: *this is a map of me.* Inspiration (credited on the map in one line): Schwaller de Lubicz's reading of Luxor as "the temple in man" — but this is our own figure and our own placement, not his plan, and no claim is made that it is anatomically or historically "the" mapping. The walk goes through a body and a life, feet first.
+- Placement, feet → head, following the chapter order: Gate = the threshold beneath the feet; Hall I Recognition = the feet (the first step); Hall II The Awakening = the navel (where you were written); Hall III Breaking Patterns = the lungs (breath, rhythm, pattern); Hall IV Ancient Wisdom = the heart; Hall V Expanding Consciousness = the throat (your word); Hall VI Full Potential = the head. The Observatory = what the eyes look out at (a circle off the head, joined by a sightline). The House of Life = the left hand (what you read). Your Cartouche = the right hand (what you keep — a name-ring shape).
+- Rendering: gold rooms on dark stone, a dashed axis through the spine, small-caps labels, a short plate crediting the inspiration. Survey-drawing restraint; not a medical diagram, not a game map.
 - Rooms you have visited are **lit** (warm interior glow inside the outline). Unvisited rooms are outline only. Current room pulses very gently. This is the entire progress system.
 - Tap/click a room → travel. Keyboard: Tab between rooms, Enter to go. Phone: the plan fits one portrait screen with no scrolling; halls are large enough to tap (≥44px).
 - One line of guidance under the plan for first-time visitors: "Walk the halls in order, or go where you're drawn."

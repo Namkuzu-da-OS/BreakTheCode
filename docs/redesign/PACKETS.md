@@ -26,13 +26,13 @@ Acceptance: `node scripts/verify-content.mjs` passes. Commit: `content: extract 
 - `new/index.html`, `css/tokens.css`, `css/base.css`, `css/rooms.css`, `js/app.js`, `js/router.js`, `js/store.js`, `js/data.js`, `js/rooms/gate.js`, `js/rooms/court.js`.
 - Router per bible §3 (hash routes, back button, deep links, unknown route → court).
 - Gate: one screen, no scroll, per bible. "Enter" → `#/court`. Returning visitors (any visited room in store) land on the Court directly.
-- Court: the SVG survey plan per bible §3. Rooms are `<a>` elements inside the SVG with proper focus/aria. Lit state from `store.visited`. Layout must fit a 390×740 portrait viewport with no scroll, and scale up cleanly to 1400px. Draw it as a real plan: wall thickness, doorways as gaps, pylon towers at the Gate, the House of Life and Observatory as distinct footprints (the Observatory round — El Caracol is round).
+- Court: the standing figure with rooms along the body, per bible §3. Rooms are `<a>` elements inside the SVG with proper focus/aria. Lit state from `store.visited`. Layout must fit a 390×740 portrait viewport with no scroll, and scale up cleanly to 1400px. Reference mockup: `docs/redesign/mockups/court-figure.html` — match its placement; improve its drawing (the figure line should feel drawn by a hand, not a CAD tool).
 - Travel transition per bible.
 - Placeholder room modules for everything else that render the room's lintel and "under construction" glyph wall — so the whole map is navigable end-to-end from this packet on.
 
 Acceptance: open `new/index.html` from `file://`; every room reachable by click and by keyboard; lit-state persists across reload; no console errors; Lighthouse a11y ≥ 95 on the Court. Commit: `shell: router, gate, court map`.
 
-Reasoning: this is the hardest design packet. Spend the effort on the plan drawing. If the Court doesn't look like an excavation survey, it isn't done.
+Reasoning: this is the hardest design packet. Spend the effort on the figure drawing. If a stranger can't tell in one second that the map is a person, it isn't done.
 
 ---
 
