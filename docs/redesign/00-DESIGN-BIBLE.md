@@ -203,7 +203,29 @@ Featured six for the home band, chosen because each has a genuine artefact tradi
 | `library-05` | Rumi's Poetry (`rumi`) | A Persian illuminated manuscript folio, nastaʿlīq script in columns, lapis and gold-leaf illumination in the margin |
 | `library-06` | William Blake (`blake`) | A relief-etched illuminated page in Blake's hand, hand-coloured figures entwined with the text, warm paper |
 
-The remaining texts are reached through `EXPLORE ALL TEXTS →`. On `/library/`, modern authors (Huxley, Ram Dass, Tolle, Watts) get a **typographic or abstract plate** in the same grade — never a fabricated "ancient artefact," which would be a second version of the same lie.
+### 6.2 Plates for the remaining ten texts
+
+Same rule as §6.1: the artefact must belong to the tradition the text actually comes from, and continuity comes from palette, light and camera — never from Egyptian or Maya set dressing.
+
+**For the modern authors there is an extra honesty constraint.** Do not render a facsimile of a specific published edition. No legible titles, no author names, no recognisable cover art — the shared style preamble already forbids lettering, and that rule carries extra weight here. The plate depicts *the kind of object the work lives in*, not a counterfeit of a particular book. A convincing fake cover would be the same class of error as an Egyptian relief standing in for the Upanishads.
+
+| File | Text | Plate subject |
+|---|---|---|
+| `library-07` | Bhagavad Gita (`bhagavadGita`) | An illustrated Sanskrit manuscript folio, Devanagari in columns with a painted miniature border, aged paper |
+| `library-08` | Plato's Republic (`platoCave`) | A Greek papyrus roll partly unrolled on stone, uncial Greek hand, fragment edges worn |
+| `library-09` | The Cloud of Unknowing (`cloudUnknowing`) | A medieval English vellum codex, gothic hand in two columns, a plain rubricated initial, leather binding |
+| `library-10` | Ibn Arabi's Works (`ibnArabi`) | An Arabic manuscript in naskh script, gold rule margins, the page slightly cockled with age |
+| `library-11` | William Blake — *see §6.1* | Already generated as `library-06` |
+| `library-12` | Ralph Waldo Emerson (`emerson`) | A 19th-century American writing desk corner: an open handwritten journal, steel pen and inkwell, candle-warm light. No printed cover |
+| `library-13` | Henry David Thoreau (`thoreau`) | A worn cloth-bound 19th-century book closed on a plank table beside pond reeds and an oil lamp. No title visible |
+| `library-14` | Aldous Huxley (`huxley`) | A mid-century desk: a plain cloth hardback closed, reading glasses, a glass of water, low lamplight. No cover art |
+| `library-15` | Ram Dass (`ramDass`) | A square soft-bound book resting closed on a woven mat with a candle and marigolds. No title visible |
+| `library-16` | Eckhart Tolle (`tolle`) | A plain paperback closed on a still surface beside a single candle, very shallow depth of field. No cover art |
+| `library-17` | Alan Watts (`watts`) | A reel-to-reel tape deck in warm lamplight, reels mid-turn, a notebook beside it |
+
+Numbering note: `library-01`…`library-06` are the six featured texts in §6.1. These files carry the remaining ten in the order above; the page maps them by text `id`, not by number.
+
+The remaining texts are reached through `EXPLORE ALL TEXTS →`. On `/library/`, every text with a plate in §§6.1–6.2 uses that image; the typographic monogram remains only as a fallback for any future text that has no plate.
 
 ## 7. Technical requirements
 
