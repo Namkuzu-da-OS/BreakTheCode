@@ -1,3 +1,6 @@
+import { initializeJourneyBand } from "./bands/journey.js";
+import { initializeLibraryBand } from "./bands/library.js";
+
 const header = document.querySelector("[data-site-header]");
 const search = document.querySelector("[data-site-search]");
 const searchToggle = document.querySelector("[data-search-toggle]");
@@ -104,3 +107,5 @@ window.addEventListener("resize", () => {
 });
 
 initializeRevealObserver();
+initializeJourneyBand();
+initializeLibraryBand();
