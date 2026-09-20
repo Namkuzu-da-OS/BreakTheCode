@@ -24,6 +24,16 @@ Final rasters are sRGB. Byte counts are the committed output sizes.
 | `library-04` | 800 × 1000 | 113,518 B | 143,918 B |
 | `library-05` | 800 × 1000 | 117,582 B | 218,311 B |
 | `library-06` | 800 × 1000 | 119,522 B | 228,452 B |
+| `library-07` | 800 × 1000 | 116,836 B | 234,068 B |
+| `library-08` | 800 × 1000 | 119,822 B | 198,889 B |
+| `library-09` | 800 × 1000 | 118,450 B | 199,187 B |
+| `library-10` | 800 × 1000 | 115,530 B | 204,629 B |
+| `library-12` | 800 × 1000 | 111,134 B | 142,635 B |
+| `library-13` | 800 × 1000 | 119,588 B | 188,304 B |
+| `library-14` | 800 × 1000 | 116,212 B | 143,567 B |
+| `library-15` | 800 × 1000 | 114,664 B | 173,887 B |
+| `library-16` | 800 × 1000 | 89,752 B | 119,584 B |
+| `library-17` | 800 × 1000 | 103,474 B | 143,362 B |
 | `web-face-left` | 700 × 1050 | 111,300 B | 124,776 B |
 | `web-face-right` | 700 × 1050 | 107,226 B | 120,685 B |
 | `web-starfield` | 2560 × 1097 | 152,398 B | 287,067 B |
@@ -218,6 +228,159 @@ Materials/textures: warm handmade rag paper, relief-printed sepia ink, transluce
 Constraints: unmistakably William Blake's own English Romantic relief-etched illuminated printing, not an ancient manuscript and not a generic medieval page. All illustrated figures are small, symbolic, fully clothed, nonsexual, and part of the printed page only. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, people outside the printed artwork, labels, modern objects, UI, or watermark.
 ```
 
+### `library-07.webp` and `library-07.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, warm off-frame lighting, intimate museum camera, fine dust, and near-black warm grade. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing. Authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark. The illumination comes from outside the frame: absolutely no visible flame, candle, lamp, brazier, bowl, pot, or light fixture.
+
+Use case: historical-scene
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: Bhagavad Gita — one illustrated Sanskrit manuscript folio resting on a plain dark stone shelf inside a shallow unadorned niche. Aged warm paper, neat Devanagari columns, and a restrained painted Indian miniature border; unmistakably a loose manuscript folio, never a modern book cover.
+Composition/framing: close frontal three-quarter museum study, single folio centered and filling most of the portrait frame, shallow depth, lower edge slightly darker for adjoining card copy.
+Lighting/mood: restrained amber raking light from outside the frame; deep shadow, fine dust, near-black warm grade.
+Materials/textures: aged handmade paper, mineral pigments, dry ink, plain charcoal stone.
+Constraints: culturally and materially accurate Indian Sanskrit manuscript. No legible modern title or author name. No visible light source. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, pyramids, columns, statuary, people, modern objects, UI, or watermark.
+```
+
+### `library-08.webp` and `library-08.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, warm off-frame lighting, intimate museum camera, fine dust, and near-black warm grade. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing. Authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark. The illumination comes from outside the frame: absolutely no visible flame, candle, lamp, brazier, bowl, pot, or light fixture.
+
+Use case: historical-scene
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: Plato’s Republic — a materially accurate ancient Greek papyrus roll partly unrolled on a plain dark stone shelf inside a shallow unadorned niche. Dense small uncial Greek handwriting runs in narrow columns; edges are fragmented, worn and fibrous with age. The object is a scroll, not a bound codex.
+Composition/framing: close frontal three-quarter museum still life, roll centered and filling most of the portrait frame, one rolled end visible, no other objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: restrained amber raking light from outside the frame; deep shadow, fine dust, near-black warm grade.
+Materials/textures: dry aged papyrus fibers, faded carbon ink, plain charcoal stone.
+Constraints: culturally and materially accurate Greek papyrus manuscript; artifact-scale writing only. No visible light source. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, people, labels, modern objects, UI, or watermark.
+```
+
+### `library-09.webp` and `library-09.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the architectural subject matter in the shared preamble: continuity with the reference comes ONLY from palette, warm off-frame lighting, intimate museum camera, fine dust, and near-black warm grade. Do not include Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or set dressing. Authentic historical writing intrinsic to the specified manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark. The illumination comes from outside the frame: absolutely no visible flame, candle, lamp, brazier, bowl, pot, or light fixture.
+
+Use case: historical-scene
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: The Cloud of Unknowing — one late-fourteenth-century medieval English vellum codex resting open on a plain dark stone shelf inside a shallow unadorned niche. The vellum pages carry a compact English Gothic hand in two columns and one plain rubricated red initial; worn undecorated brown leather binding is visible.
+Composition/framing: close frontal three-quarter museum study, codex centered and filling most of the portrait frame, shallow depth, no extra objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: restrained amber raking light from outside the frame; deep shadow, fine dust, near-black warm grade.
+Materials/textures: cockled vellum, iron-gall ink, restrained red pigment, scuffed leather, plain charcoal stone.
+Constraints: culturally and materially accurate medieval English devotional manuscript; sober and minimally decorated, not an illuminated luxury Bible. No visible light source. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, glyphs, pyramids, columns, statuary, people, labels, modern objects, UI, or watermark.
+```
+
+### `library-10.webp` and `library-10.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the preamble’s subject and set dressing: continuity with the reference comes ONLY from palette, warm off-frame light, intimate still-life camera, fine dust, deep shadow, dark surface, shallow unadorned niche, and near-black warm grade. Do not borrow Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or props.
+Authentic historical writing intrinsic to the manuscript is required and is the sole exception to “no text or lettering”; do not add any caption, label, title, modern type, logo, UI, or watermark. The illumination comes from outside the frame: absolutely no visible flame, candle, lamp, brazier, bowl, pot, or light fixture.
+
+Use case: historical-scene
+Asset type: Living Library artefact card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only; it is not a source of cultural motifs.
+Primary request: Ibn Arabi’s Works — one medieval Arabic manuscript open on a plain dark stone shelf inside a shallow unadorned niche. Elegant compact naskh script runs in orderly black-ink lines within restrained gold-rule margins; the aged page is slightly cockled and irregular, with a simple worn leather binding visible.
+Composition/framing: close frontal three-quarter museum study, manuscript centered and filling most of the portrait frame, shallow depth, no extra objects, lower edge slightly darker for adjoining card copy.
+Lighting/mood: restrained amber raking light from outside the frame; deep shadow, fine dust, near-black warm grade.
+Materials/textures: cockled handmade paper, carbon ink, fine worn gold rule, scuffed leather, plain charcoal stone.
+Constraints: culturally and materially accurate medieval Arabic naskh manuscript; no Persian miniature, no pseudo-Kufic display decoration. No visible light source. Absolutely no Egyptian or Maya motifs, architecture, hieroglyphs, pyramids, columns, statuary, people, labels, modern objects, UI, or watermark.
+```
+
+### `library-12.webp` and `library-12.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the preamble’s subject and set dressing: continuity with the reference comes ONLY from palette, warm off-frame light, intimate still-life camera, fine dust, deep shadow, dark surface, shallow unadorned niche, and near-black warm grade. Do not borrow Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or props.
+The specified nineteenth-century writing tools are the required exception to “no modern objects.” No lettering at all: no legible journal prose, no title, no author name, no label, no logo, no UI, no watermark.
+
+Use case: product-mockup
+Asset type: Living Library object card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only.
+Primary request: Ralph Waldo Emerson — the corner of a modest nineteenth-century American writing desk inside a shallow dark alcove: an open handwritten journal with writing rendered soft and illegible, a plain steel dip pen, and a small period glass inkwell. This is an anonymous working desk, not a facsimile edition or published book.
+Composition/framing: intimate close three-quarter still life, journal dominant and centered, tools subordinate, all contained within the portrait frame, lower edge darker for adjoining card copy.
+Lighting/mood: candle-warm amber light originating outside the frame; deep shadow, fine dust, near-black warm grade; no visible candle or lamp.
+Materials/textures: worn blank leather journal, cream rag paper, dark wood, patinated steel, plain glass.
+Constraints: no printed cover, no book jacket, no readable words, no title, no author name, no recognizable published cover art, no visible light source, no Egyptian or Maya motifs, no architecture, symbols, people, extra props, UI, or watermark.
+```
+
+### `library-13.webp` and `library-13.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the preamble’s subject and set dressing: continuity with the reference comes ONLY from palette, warm off-frame light, intimate still-life camera, fine dust, deep shadow, dark surface, shallow unadorned niche, and near-black warm grade. Do not borrow Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or props.
+The specified nineteenth-century book, oil lamp, reeds, and plank table are required exceptions to “no modern objects.” The book is deliberately generic and blank: no lettering, no title, no author name, no label, no logo, no recognizable cover art, no UI, no watermark.
+
+Use case: product-mockup
+Asset type: Living Library object card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only.
+Primary request: Henry David Thoreau — a worn closed nineteenth-century cloth-bound book lying on a rough plank table inside a shallow dark alcove, beside a small bundle of natural pond reeds and a simple period oil lamp. The front cover and spine are plain, unmarked cloth with no embossing.
+Composition/framing: intimate close three-quarter still life, blank book dominant and centered, reeds and lamp clearly present but subordinate, all contained in the portrait frame, lower edge darker for adjoining card copy.
+Lighting/mood: restrained amber off-frame raking light plus a very dim warm glow from the small oil lamp; deep shadow, fine dust, near-black warm grade.
+Materials/textures: faded moss-brown book cloth, scuffed board edges, weathered wood, dry reeds, aged glass and brass.
+Constraints: no printed cover, no book jacket, no readable words, no title, no author name, no recognizable published cover art, no Egyptian or Maya motifs, architecture, symbols, people, extra props, UI, or watermark.
+```
+
+### `library-14.webp` and `library-14.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the preamble’s subject and set dressing: continuity with the reference comes ONLY from palette, warm off-frame light, intimate still-life camera, fine dust, deep shadow, dark surface, shallow unadorned niche, and near-black warm grade. The specified modern objects are required exceptions to “no modern objects.” Do not borrow Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or props. This must depict the kind of object the work lives in, never a facsimile of a real published edition. No lettering at all: no readable text, no title, no author name, no label, no logo, no recognizable cover art, no UI, no watermark.
+
+Use case: product-mockup
+Asset type: Living Library object card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only.
+Primary request: Aldous Huxley — a restrained mid-century writing desk inside a shallow dark alcove: one plain closed charcoal cloth hardback with completely blank cover and spine, simple period reading glasses folded beside it, and a clear glass of water. No jacket, embossing, decoration, or printed marks.
+Composition/framing: intimate close three-quarter still life, blank hardback dominant and centered, glasses and water clearly visible but subordinate, all contained within the portrait frame, lower edge darker for adjoining card copy.
+Lighting/mood: low amber lamplight originating outside the frame; deep shadow, fine dust, near-black warm grade; no visible lamp.
+Materials/textures: austere mid-century book cloth, worn dark wood, thin metal eyeglass frames, clear water and glass.
+Constraints: convincing generic mid-century objects, never a fake edition. No readable words, title, author, spine marks, cover art, visible light source, Egyptian or Maya motifs, architecture, symbols, people, extra books, UI, or watermark.
+```
+
+### `library-15.webp` and `library-15.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the preamble’s subject and set dressing: continuity with the reference comes ONLY from palette, warm off-frame light, intimate still-life camera, fine dust, deep shadow, dark surface, shallow unadorned niche, and near-black warm grade. The specified modern objects are required exceptions to “no modern objects.” Do not borrow Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or props. This must depict the kind of object the work lives in, never a facsimile of a real published edition. No lettering at all: no readable text, no title, no author name, no label, no logo, no recognizable cover art, no UI, no watermark.
+
+Use case: product-mockup
+Asset type: Living Library object card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only.
+Primary request: Ram Dass — one square soft-bound book resting closed on a dark handwoven mat inside a shallow unadorned niche, with a small simple candle and a loose offering of fresh orange and gold marigold blossoms nearby. The book’s cover and spine are completely blank, matte, softly worn, and undecorated.
+Composition/framing: intimate close three-quarter still life, square blank book dominant and centered, candle and marigolds clearly present but subordinate, all contained in the portrait frame, lower edge darker for adjoining card copy.
+Lighting/mood: restrained amber off-frame light plus a small candle glow; deep shadow, fine dust, near-black warm grade; contemplative, not commercial.
+Materials/textures: plain faded saffron cloth-paper cover, woven natural fiber mat, beeswax, fresh marigold petals.
+Constraints: generic spiritual practice object, never a fake edition. No readable words, title, author, spine marks, cover art, religious symbol, Egyptian or Maya motifs, architecture, figures, people, extra props, UI, or watermark.
+```
+
+### `library-16.webp` and `library-16.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the preamble’s subject and set dressing: continuity with the reference comes ONLY from palette, warm off-frame light, intimate still-life camera, fine dust, deep shadow, dark surface, shallow unadorned niche, and near-black warm grade. The specified modern objects are required exceptions to “no modern objects.” Do not borrow Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or props. This must depict the kind of object the work lives in, never a facsimile of a real published edition. No lettering at all: no readable text, no title, no author name, no label, no logo, no recognizable cover art, no UI, no watermark.
+
+Use case: product-mockup
+Asset type: Living Library object card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only.
+Primary request: Eckhart Tolle — one plain modern paperback resting closed on a perfectly still dark stone surface inside a shallow unadorned niche, beside a single small candle. The paperback cover and spine are completely blank, matte, neutral charcoal, and undecorated.
+Composition/framing: minimal intimate close three-quarter still life, blank paperback centered and filling most of the portrait frame, single candle subordinate at one side, extremely shallow depth of field, generous deep shadow, lower edge darker for adjoining card copy.
+Lighting/mood: restrained warm off-frame light plus a tiny candle glow; profound stillness, deep shadow, fine dust, near-black warm grade.
+Materials/textures: plain uncoated paper cover, cream page edges, smooth charcoal stone, beeswax.
+Constraints: minimal generic contemporary object, never a fake edition. No readable words, title, author, spine marks, cover art, decoration, symbols, Egyptian or Maya motifs, architecture, figures, people, extra props, UI, or watermark.
+```
+
+### `library-17.webp` and `library-17.jpg`
+
+```text
+For this Living Library plate, section 6.2 overrides the preamble’s subject and set dressing: continuity with the reference comes ONLY from palette, warm off-frame light, intimate still-life camera, fine dust, deep shadow, dark surface, shallow unadorned niche, and near-black warm grade. The specified reel-to-reel recorder and notebook are required exceptions to “no modern objects.” Do not borrow Egyptian or Maya architecture, reliefs, hieroglyphs, glyphs, borders, ornaments, figures, symbols, or props. This depicts the kind of object the work lives in, never a facsimile of a real published edition. No lettering at all: no readable notebook text, no brand, no model name, no label, no logo, no UI, no watermark.
+
+Use case: product-mockup
+Asset type: Living Library object card plate, portrait 4:5
+Input image: the supplied master mockup is the binding production style reference for palette, lighting, camera, depth, and grade only.
+Primary request: Alan Watts — a generic 1960s reel-to-reel tape recorder in warm low lamplight inside a shallow dark alcove, its two unbranded metal reels visibly captured mid-turn, with one plain open notebook resting beside it and handwriting rendered soft, abstract, and illegible.
+Composition/framing: intimate close frontal three-quarter still life, tape deck dominant and centered, both reels fully inside the portrait frame, notebook clearly visible but subordinate, lower edge darker for adjoining card copy.
+Lighting/mood: restrained low amber lamplight originating outside the frame; deep shadow, fine dust, near-black warm grade; no visible lamp.
+Materials/textures: brushed dark metal, aged rubber, translucent magnetic tape, worn dark wood, cream notebook paper.
+Constraints: historically plausible generic audio recorder, not a branded or recognizable exact product. No readable words, titles, author names, device markings, brand, cover art, visible light source, Egyptian or Maya motifs, architecture, symbols, people, extra books, UI, or watermark.
+```
+
 ### `web-face-left.webp` and `web-face-left.jpg`
 
 ```text
@@ -280,6 +443,6 @@ Constraints: one internally consistent imaginary Egyptian-Maya civilisation, no 
 
 ## Derived QA artifact
 
-`contact-sheet.jpg` (1520 × 1550, 323,553 B) is a derived side-by-side review sheet assembled from the final WebP plates. It was not generated by `image_gen` and therefore has no generation prompt.
+`contact-sheet.jpg` (1520 × 2480, 466,510 B) is a derived side-by-side review sheet assembled from all 29 final WebP plates. It was not generated by `image_gen` and therefore has no generation prompt.
 
 The hand-drawn vector seal is stored at `../seal.svg`; it is intentionally not a generated raster.

@@ -11,7 +11,24 @@ import {
 
 const libraryRoot = document.querySelector("[data-library-index]");
 const textRoot = document.querySelector("[data-library-text]");
-const featuredPlateIds = ["upanishads", "taoTeChing", "dhammapada", "marcusAurelius", "rumi", "blake"];
+const plateByTextId = new Map([
+  ["upanishads", "01"],
+  ["taoTeChing", "02"],
+  ["dhammapada", "03"],
+  ["marcusAurelius", "04"],
+  ["rumi", "05"],
+  ["blake", "06"],
+  ["bhagavadGita", "07"],
+  ["platoCave", "08"],
+  ["cloudUnknowing", "09"],
+  ["ibnArabi", "10"],
+  ["emerson", "12"],
+  ["thoreau", "13"],
+  ["huxley", "14"],
+  ["ramDass", "15"],
+  ["tolle", "16"],
+  ["watts", "17"],
+]);
 const timelineMin = -1200;
 const timelineMax = 2000;
 
@@ -20,13 +37,12 @@ function textHref(text) {
 }
 
 function createArtifactPlate(text, className, eager = false) {
-  const index = featuredPlateIds.indexOf(text.id);
+  const number = plateByTextId.get(text.id);
   const plate = document.createElement("div");
-  plate.className = `${className} ${index >= 0 ? "is-artifact" : "is-abstract"}`;
+  plate.className = `${className} ${number ? "is-artifact" : "is-abstract"}`;
   plate.setAttribute("aria-hidden", "true");
 
-  if (index >= 0) {
-    const number = String(index + 1).padStart(2, "0");
+  if (number) {
     const picture = document.createElement("picture");
     picture.innerHTML = `
       <source srcset="${siteHref(`assets/art/library-${number}.webp`)}" type="image/webp">
