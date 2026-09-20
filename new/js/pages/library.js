@@ -230,8 +230,11 @@ function wireBrowsePanel(panel, texts, themes) {
   const track = panel.querySelector("[data-era-track]");
   const count = panel.querySelector("[data-library-count]");
   const grid = panel.querySelector("[data-library-grid]");
-  const query = new URLSearchParams(window.location.search).get("q") || "";
+  const parameters = new URLSearchParams(window.location.search);
+  const query = parameters.get("q") || "";
+  const requestedTheme = parameters.get("theme");
   search.value = query;
+  if (requestedTheme && themes.some((item) => item.id === requestedTheme)) theme.value = requestedTheme;
 
   function render() {
     const minimum = Number(minInput.value);
