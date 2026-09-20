@@ -358,7 +358,7 @@ body.nav-open .site-header {
 .hero__vignette {
   z-index: -2;
   background:
-    radial-gradient(ellipse 50% 48% at 50% 47%, rgba(11, 10, 8, 0.54), rgba(11, 10, 8, 0.08) 72%),
+    radial-gradient(ellipse 58% 54% at 50% 50%, rgba(11, 10, 8, 0.66), rgba(11, 10, 8, 0.1) 74%),
     linear-gradient(90deg, rgba(11, 10, 8, 0.82) 0%, rgba(11, 10, 8, 0.2) 28%, rgba(11, 10, 8, 0.18) 72%, rgba(11, 10, 8, 0.82) 100%),
     linear-gradient(180deg, rgba(11, 10, 8, 0.32) 0%, rgba(11, 10, 8, 0.08) 42%, rgba(11, 10, 8, 0.9) 100%);
 }
@@ -433,6 +433,9 @@ body.nav-open .site-header {
   top: 51%;
   width: 11rem;
   transform: translateY(-50%);
+  /* the gutters fall across the lit colossi, so the labels carry their own
+     shadow rather than relying on the plate being dark where they land */
+  text-shadow: 0 1px 6px rgba(11, 10, 8, 0.95), 0 0 18px rgba(11, 10, 8, 0.8);
 }
 
 .hero__micro-label--left {
