@@ -1,7 +1,7 @@
 # Handoff — Breaking Your Genetic Code
 
 **Last session:** 2026-09-19 → 2026-09-20
-**State:** Site is **LIVE** at https://breakthecode.meatball-labs.com
+**State:** Site is **LIVE and complete** at https://breakthecode.meatball-labs.com (`main` @ `cd9ccf9`)
 **Next session:** pick up at "Where to start" below.
 
 ---
@@ -19,31 +19,19 @@ The 2.0 redesign is built, verified and deployed. `main` is live at commit `41ce
 | `/practices/`, `/about/` | live |
 | Content preserved | 6 chapters, 16 texts, 28 quotes, 19 connections, 4 paths |
 | Quote sourcing | 23 of 28 verified to a named edition |
-| Art | 16 of 26 plates wired; 10 new ones generated, **wiring in progress** |
+| Art | all 26 plates generated and wired; every text has a real artefact plate |
 | Old site | preserved at `/legacy/index.html` + backed up to Drive |
 
 ---
 
 ## Where to start next session
 
-**1. Finish the library plates (small, in flight).**
-Ten artefact plates for the remaining texts were generated and are sitting on branch `redesign/temple`, uncommitted or freshly committed depending on how the last run landed. Check:
+**1. Nothing is half-finished.** `main` is live and complete; `redesign/temple` is merged into it. Both branches are pushed. The verifier passes with "Approved quote corrections applied: 7".
 
-```bash
-git -C <repo> status --short
-git -C <repo> log --oneline -3 redesign/temple
-```
-
-They need to be committed on `redesign/temple`, then merged forward to `main`. **Merge carefully** — `redesign/temple` is behind `main` and does not contain the quote corrections (`41ce0b9`). Merging `redesign/temple` → `main` is the safe direction; the branch has no changes to `data/texts.json` or `scripts/verify-content.mjs` since the merge base, so `main`'s versions win. Verify after merging:
-
-```bash
-node scripts/verify-content.mjs      # must print "Approved quote corrections applied: 7"
-```
-
-**2. One known visual defect.**
+**1. One known visual defect (cosmetic, optional).**
 `assets/art/library-09` (The Cloud of Unknowing) and `library-10` (Ibn Arabi) are near-duplicate compositions — both open codices, same angle, same light. Correct up close, but they read as the same object twice in the library grid. Regenerate `library-09` as a *closed* leather binding so it contrasts. One `image_gen` call with the master mockup as reference.
 
-**3. Five quotes still carry the paraphrase mark, by design.**
+**2. Five quotes still carry the paraphrase mark, by design.**
 No honest same-meaning replacement exists for these, so they were deliberately left alone:
 
 | Text | Why |
@@ -55,7 +43,7 @@ No honest same-meaning replacement exists for these, so they were deliberately l
 
 Options for each: keep with the honest mark (current), re-attribute to the real author, or drop. **This is an owner decision, not a builder one.** Full evidence in `docs/redesign/RESEARCH-REPORT.md`.
 
-**4. Nice-to-haves, none urgent.**
+**3. Nice-to-haves, none urgent.**
 - Mobile QA pass at 390px on the real device
 - Lighthouse run (packet 08's checklist is in `NOTES.md`)
 - Open Graph image for link sharing
