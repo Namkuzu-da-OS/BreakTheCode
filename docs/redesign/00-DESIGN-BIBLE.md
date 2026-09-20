@@ -1,96 +1,174 @@
-# Breaking Your Genetic Code — Redesign Bible
+# Breaking Your Genetic Code — Design Bible
 
-Status: APPROVED DIRECTION 2026-09-19. This document is the source of truth for the rebuild. Packets 01–08 in this folder are the build order. Read this fully before touching any packet.
+Status: **RESET 2026-09-19.** This replaces the earlier "temple complex / Court map" direction entirely. That direction is dead — its mockup is kept only at `archive/court-figure-SUPERSEDED.html` as a record. Do not resurrect it.
 
-## 1. Why
+## 0. The one instruction
 
-The current site (`index.html`, ~4,800 lines) is a six-chapter cyber-themed scrolling book with a Living Library (28 texts), a Wisdom Web (relationship graph), study paths, a timeline, and bookmarks. The content is the owner's work and is **preserved in full**. The container is being rebuilt from first principles.
+**`reference/MASTER-mockup.png` IS the site.** Build what that image shows.
 
-Mission, in the owner's words: people die never knowing themselves. Some don't break their code until they're old. Get this to people while they're young. Keep it ancient. When you come in there should be a presence — rooted in real knowledge, not fluff. "I don't know what these hieroglyphs say but I feel them."
+The task is not "take the old site and make it more like this image." The task is **"build the site in this image, then populate it with real material from the old project."** Think of the old site as a database sitting behind an entirely new front end. The old site's appearance has **no authority** over this design.
 
-## 2. The one idea
+Look at the master image before every packet. Someone comparing the finished site side by side with it should say *"yes, that's the site in that picture"* — not *"that's the old site with some inspiration from the picture."*
 
-**The site is a place, not a page.** A temple complex you move through. Every piece of existing content gets its own building. Navigation is spatial: one map, tap a room, you are in it. No top nav bar. No infinite scroll. No chapter list.
+`reference/secondary-editorial-mockup.png` is a **secondary** reference, used only for two things the master doesn't show in detail: the Living Library browse controls (search + filter pills + era timeline slider) and the "Read the Source" scholarship table. Its art direction is compatible; where the two disagree, **the master wins.**
 
-Rejected on the way here (do not resurrect): one continuous scroll-walk; a "Weighing of the Heart" quiz; starfield, DNA helix, mouse-trail particles, Orbitron/Rajdhani fonts, emoji icons, the consciousness progress bar.
+## 1. Identity — the name is not negotiable
 
-## 3. The complex (spatial model)
+**The title is "Breaking Your Genetic Code."** That is the name of the book, and this site is the book's world: a digital experience, a conceptual companion, and a living archive that expands beyond the book while staying rooted in it.
 
-Egyptian temple plan for the whole; the Maya own the Observatory.
+- Both mockups render the wordmark as "BREAK THE CODE." **That is wrong. Replace it everywhere** — header, hero, footer, `<title>`, Open Graph tags, share text — with **Breaking Your Genetic Code**.
+- "Break the code" survives only as occasional supporting copy or a CTA line. It is never the wordmark, the page title, or the site's name.
+- Approved supporting lines: *Break the code. See the pattern. Understand what shaped you. Wake up to your conditioning. Learn to see clearly.*
+- The repo, folder and domain (`breakthecode.meatball-labs.com`) keep their short names. A URL is an address, not an identity.
 
-| Room | Holds | Old site equivalent |
+**Wordmark lockup** (header + footer): the circular gold seal glyph at left, then two stacked lines of Cinzel caps — `BREAKING YOUR` / `GENETIC CODE` — tightly leaded, letter-spaced `.14em`. In the hero the same words are set as the monumental display type.
+
+## 2. Content rule — new skin, real substance
+
+The visible front end is replaced. The substance is the owner's and is preserved.
+
+**Reuse from the old project:** all written chapter content, the 28 wisdom texts and their metadata (title, period, tradition, key teaching, every quote and its context), the Wisdom Web relationships and connection types, the 4 study paths, era/theme taxonomy, bookmarks, reflection functionality, search and filter behaviour, and any useful data model or routing logic.
+
+**Replace outright:** all CSS, every visual component, page layout, header and nav presentation, hero, cards, section shells, the type system, spacing system, backgrounds, colour system, imagery, decorative elements, visual hierarchy, mobile layout, interaction presentation. Do not keep a component merely because rewriting it is work.
+
+**Where the mockup's placeholder words conflict with real content, the real content wins and the composition stays.** Specifically:
+- The master's journey cards read `THE CONDITIONING / THE DESCENT / REMEMBRANCE / THE HEART / THE ASCENT / INTEGRATION`. The real chapters are **Introduction, The Awakening, Breaking Patterns, Ancient Wisdom, Expanding Consciousness, Full Potential**. Ship the **real** titles in the mockup's card design. (The mockup's names are stronger copy; renaming the chapters is the owner's call, not the builder's. Note it in NOTES.md, don't do it.)
+- The master's library cards show six Egyptian/Maya texts. Ship **six real texts chosen from the 28**, with the full 28 on the Library page.
+
+Every ancient quote carries `source: { translator_or_edition, note, verified }`. Unverified quotes render with a quiet "paraphrase / attribution uncertain" mark. Nothing is silently presented as verbatim scripture. The Kybalion (1908) and the Emerald Tablet are never presented as ancient Egyptian.
+
+## 3. Architecture
+
+A **single monumental home page** that scrolls through the bands below, plus real sub-pages for the depth. This reverses the old "no scrolling page, no nav bar" rule — the master image shows a scrolling page with a nav bar, and the image governs.
+
+Home page bands, in order:
+1. Header (fixed, transparent over the hero, gains a dark backing on scroll)
+2. Hero — monumental threshold
+3. The Journey Within — six chapters
+4. The Living Library — six featured texts
+5. The Wisdom Web — radial constellation
+6. The Weighing of Your Heart — reflection
+7. The Journey Continues — panoramic close
+8. Footer
+
+Sub-pages (real routes, real URLs, shareable): `/journey/` and `/journey/{chapter}`, `/library/` and `/library/{text-id}`, `/web/`, `/practices/` (study paths + saved reflections + bookmarks), `/about/`.
+
+Still a static site on GitHub Pages: no build step, no framework, no dependencies. `index.html` + `css/` + `js/` (ES modules) + `data/*.json` + `assets/`. Google Fonts is the only external request. `CNAME` untouched.
+
+## 4. Visual system
+
+Read the master image for the feel; these are the tokens that produce it.
+
+**Colour** (`css/tokens.css`):
+| Token | Value | Use |
 |---|---|---|
-| **The Gate** (pylon) | One screen. Title, one line of intent, "Enter". | Hero |
-| **The Court** | The map of the whole complex. THE navigation. | Nav bar + consciousness meter |
-| **Hall I — Recognition** | Chapter: Introduction | `#intro` |
-| **Hall II — The Awakening** | Chapter: The Awakening | `#awakening` |
-| **Hall III — Breaking Patterns** | Chapter: Breaking Patterns | `#patterns` |
-| **Hall IV — Ancient Wisdom** | Chapter: Ancient Wisdom | `#ancient` |
-| **Hall V — Expanding Consciousness** | Chapter: Expanding Consciousness | `#consciousness` |
-| **Hall VI — Full Potential** (the sanctuary) | Chapter: Full Potential + the Exit | `#potential` |
-| **The House of Life** (per-ankh — real name of Egyptian temple scriptoria) | Living Library: all 28 texts, era rooms, search, study paths | `#library` grid, filters, search, study paths, text modal |
-| **The Observatory** (El Caracol, Chichen Itza — a real Maya observatory) | Wisdom Web as a star map, plus a Time lens | `#relationships-web` + the timeline |
-| **Your Cartouche** | Bookmarks. A cartouche is a name ring: you are inscribing yourself. | Bookmarks panel, bookmark-all |
+| `--ink` | `#0B0A08` | page base, near-black warm |
+| `--panel` | `#12100C` | section panels |
+| `--panel-2` | `#16130E` | raised cards |
+| `--night` | `#0E1524` | Wisdom Web starfield base |
+| `--gold` | `#C9A227` | primary accent, rules, borders |
+| `--gold-lit` | `#F0CE7A` | lit gold, glow, hover |
+| `--ember` | `#C9702F` | firelight warmth |
+| `--cream` | `#EFE7D8` | primary text |
+| `--stone` | `#9C8F7A` | secondary text, micro-labels |
 
-### Sources are voices, not a costume (owner's principle, 2026-09-19)
-This is not an Egyptian site, a Maya site, or an adaptation of any one system. It pulls on all known human knowledge and makes something new for this time. Egypt, the Maya, the Vedas, the Stoics, the mystics all speak in it; none of them dresses it. Nothing on the site claims to *be* Luxor, a chakra system, or anyone's diagram. Where a source inspired a choice, credit it as inspiration on the spot.
+Everything is dark, warm and lit from within. Light sources in the art (braziers, the beam from the pyramid, sunrise) are the only bright areas; UI gold is never neon.
 
-### The Court (map) — the decision everything hangs on
-- **The map is a standing human figure**, drawn in thin limestone line, and the rooms are placed along the body. A teenager reads it in one second: *this is a map of me.* Inspiration (credited on the map in one line): Schwaller de Lubicz's reading of Luxor as "the temple in man" — but this is our own figure and our own placement, not his plan, and no claim is made that it is anatomically or historically "the" mapping. The walk goes through a body and a life, feet first.
-- Placement, feet → head, following the chapter order: Gate = the threshold beneath the feet; Hall I Recognition = the feet (the first step); Hall II The Awakening = the navel (where you were written); Hall III Breaking Patterns = the lungs (breath, rhythm, pattern); Hall IV Ancient Wisdom = the heart; Hall V Expanding Consciousness = the throat (your word); Hall VI Full Potential = the head. The Observatory = what the eyes look out at (a circle off the head, joined by a sightline). The House of Life = the left hand (what you read). Your Cartouche = the right hand (what you keep — a name-ring shape).
-- Rendering: gold rooms on dark stone, a dashed axis through the spine, small-caps labels, a short plate crediting the inspiration. Survey-drawing restraint; not a medical diagram, not a game map.
-- Rooms you have visited are **lit** (warm interior glow inside the outline). Unvisited rooms are outline only. Current room pulses very gently. This is the entire progress system.
-- Tap/click a room → travel. Keyboard: Tab between rooms, Enter to go. Phone: the plan fits one portrait screen with no scrolling; halls are large enough to tap (≥44px).
-- One line of guidance under the plan for first-time visitors: "Walk the halls in order, or go where you're drawn."
+**Type**: display **Cinzel** (400/600/700), body **Cormorant Garamond** (400/500 + italic), `display=swap`.
+- Section display: Cinzel caps, `clamp(1.6rem, 3.4vw, 2.6rem)`, letter-spacing `.22em`, cream.
+- Hero display: Cinzel caps, `clamp(2.4rem, 7vw, 5.2rem)`, letter-spacing `.06em`, two lines.
+- Eyebrow / subline under a section title: Cinzel caps, `.78rem`, letter-spacing `.3em`, `--stone`.
+- **Micro-labels** (the small stacked text pinned in the left and right gutters of most bands — a signature of this design): Cinzel caps, `.62rem`, letter-spacing `.28em`, `--stone` at 70% opacity, 2–4 short stacked lines, with a 24px gold hairline beneath. They are decorative framing; they must be `aria-hidden="true"` and must hide below 1100px.
+- Body: Cormorant Garamond, 18–19px, line-height 1.6, measure ≤ 68ch.
 
-### Travel (room transitions)
-- ≤400ms. Darkness closes, the new room's glyph wall fades in, then content. It should feel like passing through a doorway, not a page load. Respect `prefers-reduced-motion` (instant swap).
-- Hash router: `#/gate` `#/court` `#/hall/1`…`#/hall/6` `#/house` `#/house/text/{id}` `#/house/path/{id}` `#/observatory` `#/observatory/time` `#/cartouche`. Back button works. Deep links work. Still a static site.
+**Surface and framing**: 1px gold hairlines at `.35` opacity frame cards and bands; card images sit inside a 1px gold frame with a 6px dark inset, like a mounted plate. Faint carved-stone grain over dark panels (inline SVG `feTurbulence`, ≤ 6% opacity). Vignette on every full-bleed image so text always sits on the dark part. No glassmorphism, no rounded-corner "app" cards — corners are 2px or square.
 
-### Halls (six)
-- Anatomy, top to bottom: carved lintel (hall number as Roman numeral, hall name); the chapter prose; the pull quote as a carved inscription; the chapter's wisdom text as a **stela** (a standing stone panel: text title, date, quote, context, citation); the doorway strip: `← Court` and `Next hall →` (Hall VI's doorway is the Exit).
-- Depth: at most ~2 phone screens. Tighten prose where it rambles (see Copy pass in packet 03) — never add claims, never lose the owner's meaning.
-- **Lighting progression carries the temple**: Hall I is the brightest (open court light, limestone/gold); each hall inward is darker and warmer; Hall VI is torchlit, near-black with gold. Set per-hall CSS tokens; this replaces the old scroll-darkening idea.
-- The Exit (end of Hall VI): "One thing to do today" — one concrete practice, in the owner's voice — and one primary action: **Send this to someone younger than you** (Web Share API, fallback copy link). Then `← Court`.
+**Motion**: restrained and slow. Bands fade and rise 16px on first entry (IntersectionObserver, once). Card hover lifts the gold frame to `--gold-lit` and brightens the image 6%. The hero's light beam and brazier glow may breathe on a 6–8s cycle. Everything honours `prefers-reduced-motion`.
 
-### The House of Life
-- Four era rooms (Ancient / Medieval / Renaissance / Contemporary) = the four existing filters. Texts shown as tablets on shelves (cards), not a generic grid. Search stays (title, tradition, teaching).
-- Text detail = a full room, not a modal: title, date, tradition, key teaching, all quotes with context, citation line, "Add to Cartouche", and **"Where this speaks in the halls"** (lists the hall(s) that quote it and links there — this replaces the stubbed "coming soon" button).
-- Study paths = "the reading the scribe assigns you": the 4 existing paths, progress preserved (localStorage), each shown as a sequence of tablets with a marker for read/unread.
+**No emojis anywhere.** Icons are monoline SVG glyphs drawn in gold.
 
-### The Observatory
-- The Wisdom Web reborn as a night sky: texts are stars (size = number of connections), connections are drawn lines. Existing connection types and their filter toggles preserved. Hover/tap a star → its name and connections; tap again → its House of Life room. Canvas 2D, throttled, must hold 60fps on a mid phone with all connections on.
-- **Time lens** toggle: same stars re-laid along a horizontal time axis (800 BCE → present), era bands as faint horizons. Pan sideways. This replaces the old timeline section. One small plate of real Maya grounding beside the toggle: they had zero and the Long Count; the Dresden Codex Venus table tracks Venus's cycle to within hours across centuries. Cited.
+## 5. Band specifications
 
-### Your Cartouche
-- Saved quotes shown inside a cartouche outline. Add/remove, "bookmark all quotes from a text", clear-all with confirm. localStorage as now. Empty state: an empty cartouche and one line inviting the first inscription.
+Measurements are desktop at 1440px. Every band is full-bleed; inner content is a 1200px max-width centred column with a 24px gutter.
 
-## 4. The glyph layer (the presence)
-- `data/glyphs.json`: ~20 real signs. Egyptian: ankh, djed, was-sceptre, wedjat (Eye of Horus), ba-bird, ka (raised arms), ib (heart), feather of Ma'at, shen ring, sa (protection). Maya: k'in (sun), the ceiba/world tree, day signs Imix, Ik', Ak'bal, K'an, Ajaw, and the Long Count zero shell. Each: `id, culture, name, meaning (1–2 sentences), source (one line), svg`.
-- Every room has a **glyph wall**: a low-contrast tiled SVG pattern behind the content, seeded per room so no two rooms tile identically, glyphs chosen by the room's theme (Halls: Egyptian; Observatory: Maya; House: both). Dense — this is a wall, not a row of icons. Contrast low enough never to fight the text.
-- ~1 in 8 wall glyphs is *live*: a touch brighter. Tap/click → a small card: name, meaning, source. Feel it first, then it tells you. Cards are keyboard-reachable (live glyphs are buttons with aria-labels).
-- Glyph drawings: clean monoline SVG. Recognisable as the actual sign. Not cartoonish, not photoreal.
+### 5.1 Header
+Fixed. Transparent over the hero; after 80px of scroll it gains `rgba(11,10,8,.92)` with a bottom gold hairline. Left: seal + two-line wordmark. Centre: `Journey · Library · Wisdom Web · Practices · About` — Cinzel caps `.72rem`, letter-spacing `.18em`, `--stone`, gold on hover with a 1px gold underline that wipes in. Right: a search glyph that expands into an inline field, then a bordered gold button **"Awaken Within"** (`.72rem`, letter-spacing `.2em`, 1px gold border, transparent fill, gold-lit fill on hover). Below 900px the centre links collapse into a full-screen overlay menu behind a 3-line gold glyph; the CTA stays visible.
 
-## 5. Grounding rule (credibility is the wow)
-- Every ancient quote in `data/texts.json` carries `source: { translator_or_edition, note, verified: true|false }`. Unverified quotes render with a subtle "paraphrase / attribution uncertain" mark. Nothing is silently presented as verbatim scripture.
-- Known suspects to check first (Research desk, packet R): Tao Te Ching "When I let go of what I am, I become what I might be" (widely circulated, not in the Tao Te Ching — likely a modern paraphrase); any Rumi in English (most viral Rumi is Coleman Barks' free renderings); any Buddha quote not traceable to the Pali canon; "Be Here Now" and Tolle lines (copyright — keep to short quotation with attribution).
-- The Emerald Tablet is an Arabic-era text, the Kybalion is 1908 Chicago: neither may be presented as ancient Egyptian. Fine to mention if labelled honestly.
-- Dates shown as ranges with "c." where scholarship is uncertain.
+### 5.2 Hero — the threshold
+Full-viewport (`min-height: 100vh`, capped at 900px). Background: the hero plate — a colonnade of two colossal seated pharaonic figures flanking a stepped pyramid that throws a vertical light beam into a clouded sky, fire braziers burning at the base, one small human figure walking in from the foreground. Dark vignette left, right and bottom.
 
-## 6. Visual system
-- **Palette tokens** (`css/tokens.css`): limestone `#E8DCC4`, sandstone `#C9B48A`, gold leaf `#D4AF37`, lapis `#1B3A6B`, carnelian `#B03A2E`, Maya blue `#73A9C2`, jade `#3E8A6E`, obsidian `#0B0A0A`, night `#101425`. Egyptian rooms: obsidian/night/lapis with gold and limestone ink. Observatory: night with Maya blue and jade. House of Life: sandstone-lit, warmer.
-- **Type**: Cinzel (display, carved), Cormorant Garamond (body). Google Fonts, `display=swap`. Small caps for labels. Generous measure (≤68ch). Body ≥17px on phone.
-- **Surface**: stone via CSS — SVG `feTurbulence` grain at low opacity, faint horizontal course lines in the halls. No raster images.
-- **Light**: a soft radial torchlight that follows the pointer on desktop and drifts slowly on touch devices; intensity per room token. Never distracting; reduced-motion → static.
-- **Motion**: restrained. Nothing loops visibly except the torch drift and the Court's current-room pulse.
-- No emojis anywhere in the UI. Icons are glyphs or monoline SVG.
+Centred stack: eyebrow **"ANCIENT WISDOM. MODERN AWAKENING."**; display **BREAKING YOUR / GENETIC CODE**; subline in Cormorant italic ~1.4rem, **"Remember who you are."**; then two buttons side by side — solid gold **"BEGIN THE JOURNEY →"** (dark ink text) and bordered **"EXPLORE THE LIBRARY"**. Micro-labels in the gutters: left `CONSCIOUSNESS / HERITAGE / SELF-KNOWLEDGE / A BRIGHTER TOMORROW`, right `SAME WISDOM / A HIGHER HUMANITY`.
 
-## 7. Technical architecture
-- Static site, GitHub Pages, **no build step**. `index.html` + `css/` + `js/` (ES modules) + `data/*.json` + `assets/glyphs/`. Zero dependencies. Google Fonts is the only external request.
-- Files: `js/app.js` (boot, router), `js/rooms/*.js` (one module per room), `js/glyphwall.js`, `js/store.js` (localStorage: visited rooms, bookmarks, path progress; namespaced keys `btc.*`; migrate the old site's existing bookmark/progress keys if present), `js/data.js` (fetch + cache JSON).
-- Performance budget: first paint < 1.5s on 4G; 60fps on a mid-range phone; total JS < 120KB unminified; no layout thrash on travel.
-- Accessibility: full keyboard navigation, visible focus, ARIA landmarks and labels, colour contrast ≥ 4.5:1 for body text in every room's lighting, `prefers-reduced-motion` honoured everywhere.
-- Deployment stays exactly as today: push to `main`, GitHub Pages serves root, `CNAME` untouched.
+On phones the plate switches to a portrait crop that keeps the pyramid and beam centred; the display type drops to three lines if needed; buttons stack full-width.
 
-## 8. What "done" means
-All six halls, House, Observatory, Cartouche, Court, Gate, Exit live; all 28 texts, every quote, every connection, all 4 study paths present (counts asserted by a script in packet 01); glyph layer active in every room; research desk verdicts merged; runs from `file://` and from Pages; passes packet 08's QA checklist on phone and desktop; docs rewritten (README, CHANGELOG, ROADMAP — the old ROADMAP's VR/AR/AI/community bloat is deleted, not carried).
+### 5.3 The Journey Within
+Panel band. Centred title **THE JOURNEY WITHIN** with subline **A RETURN TO WHAT HAS ALWAYS BEEN**; right micro-label `DIFFERENT PEOPLES / ONE TRUTH / ALWAYS`.
+
+Six portrait cards in a row (aspect ~3:4), separated by small gold chevron glyphs between them. Each card: full-bleed art inside a gold hairline frame, and over the lower third a dark gradient carrying the number (`01`, Cinzel, gold, `.8rem`), the chapter title (Cinzel caps, cream, `.95rem`) and two short lines of Cormorant (`.9rem`, `--stone`) — max six words per line, drawn from the chapter content. Whole card is one link to `/journey/{chapter}`.
+
+Responsive: 6 across ≥1280px → 3 × 2 at 900–1279px → a horizontal snap-scroll rail below 900px (cards ~72vw, chevrons hidden).
+
+### 5.4 The Living Library
+Panel band, slightly darker. Left micro-label `TIMELESS TEACHINGS / FOR A NEW HUMANITY`; centred title **THE LIVING LIBRARY** with subline **ANCIENT TEXTS. LIVING WISDOM. MODERN INSIGHTS.**; right a text link **EXPLORE ALL TEXTS →** with a gold underline.
+
+Six cards in a row, squarer than the journey cards (~4:5): a framed plate of the text's artefact art, then below it on the panel the text title (Cinzel caps, cream, `.9rem`) and two short lines (`--stone`) — a compressed form of the key teaching. Links to `/library/{id}`.
+
+The full `/library/` page carries the controls from the **secondary** reference: search field, `All Traditions / All Eras / All Themes` filter pills, and a horizontal era timeline slider (1200 BCE → 2000 CE) with two handles, above a grid of all 28 texts. Search behaviour matches the old site (title, tradition, key teaching) and shows a count line ("28 texts · 12 shown").
+
+### 5.5 The Wisdom Web
+Full-bleed band on the `--night` starfield, with weathered carved stone faces bleeding in at the far left and far right edges. Centred title **THE WISDOM WEB**, subline **IDEAS. TEXTS. PEOPLE. PATTERNS. ALL CONNECTED.**, and a bordered **EXPLORE THE WEB →** button top-right.
+
+Centre: a radial constellation. A gold ring at the centre holds a knotwork glyph and the word **CONSCIOUSNESS**. Ten satellite nodes sit on a circle around it, each a small gold-ringed circle containing a monoline glyph, labelled with a Cinzel caps name and a Cormorant sub-line: `GENETICS / Lineage`, `ANCIENT TEXTS / Wisdom`, `SHADOW / Integration`, `MEMORY / The Past`, `LIBERATION / The Future`, `SELF / Identity`, `NATURE / Cycles`, `RITUAL / Practice`, `LANGUAGE / Symbol`, plus one more drawn from the real theme taxonomy. Thin gold lines connect centre to satellites and satellites to each other, with small glowing points along them.
+
+**Built in SVG, not a raster** — it must stay crisp, be keyboard-reachable (each node a link into `/web/?theme=…`), and animate only as a slow opacity shimmer on the connecting lines. Gutter micro-labels: left `"A SINGLE THREAD / CONNECTS / ALL THINGS."`, right `DIFFERENT PATHS / ONE SOURCE`.
+
+The full `/web/` page is the real interactive graph: the existing connection types with their filter toggles, the theme sidebar, and a detail panel per the secondary reference (description, "shared idea in N of 28 texts", sources include, historical distance). Canvas 2D there, 60fps on a mid phone.
+
+### 5.6 The Weighing of Your Heart
+Two-column band. **This reinstates a feature previously cut** — the master image includes it, so it ships, but strictly as a reflection prompt, never a quiz and never a score.
+
+Left: the scales plate — a golden balance with a feather in one pan and a heart in the other, lit against a dark temple interior — with the title **THE WEIGHING OF YOUR HEART** in Cinzel caps over/beside it and the micro-label `A MODERN REFLECTION / AN ANCIENT PRACTICE` beneath.
+
+Right: a dark panel with a gold hairline. Heading **PAUSE. REFLECT. REALIGN.**, subline *"Ask. Feel. Be honest. This is a journey back to you."*, then four accordion rows, each a bordered bar with the question in Cormorant and a gold `+` at the right: *What patterns am I ready to release? / Where am I out of alignment? / What does a more conscious me look like? / How can I serve something greater?* Opening a row reveals a textarea and a **Save reflection** action; reflections persist in localStorage and surface on `/practices/`. Accordions are real `<button aria-expanded>` elements.
+
+Far right gutter: the pull quote **"A LIGHT HEART TRAVELS FAR."** with the attribution line **— ANCIENT EGYPTIAN PROVERB**. *Grounding check: this exact wording is a modern rendering of a sentiment from the Book of the Dead / Ma'at tradition, not a verbatim translated line. It must carry the same honesty mark as every other quote — attribute it as "after the Book of the Dead tradition" unless the research desk verifies a specific line and edition.*
+
+### 5.7 The Journey Continues
+Full-bleed panoramic band: sunrise over a river valley of stepped temples and mountains, warm light, low mist. Centred: title **THE JOURNEY CONTINUES**, subline **AN AWAKENED YOU. A BRIGHTER TOMORROW.**, and the solid gold **BEGIN THE JOURNEY →** button. Gutter micro-labels: left `HIGHER PEOPLE / BRIGHTER TOMORROWS`, right `KNOW YOURSELF / CHANGE EVERYTHING`.
+
+### 5.8 Footer
+Dark, short. Left: seal + wordmark. Centre: `Journey · Library · Wisdom Web · Practices · About`. Right: monoline social glyphs (YouTube, Instagram, X) and the line **A MORE CONSCIOUS WORLD IS POSSIBLE.** A gold hairline runs along the top edge.
+
+## 6. Art direction — the plates
+
+Every plate is generated with Codex's built-in `image_gen` tool (system skill `imagegen`; no API key needed), **always passing `reference/MASTER-mockup.png` as a reference image** so everything comes out of one production. Do not let it invent a new art direction; ask it for a component that belongs inside that same world.
+
+**Shared style preamble, prepended to every prompt:**
+> Cinematic ancient-world concept art in the exact style of the supplied reference image. Dark warm near-black palette, deep shadow, gold and amber firelight as the only bright sources, weathered carved limestone and sandstone, Egyptian and Mayan architectural influence blended into one civilisation that never existed. Volumetric god-rays, fine dust in the air, photoreal render with painterly depth, high detail, no text, no lettering, no watermark, no people unless specified, no modern objects.
+
+Plates required (`assets/art/`, WebP + JPG fallback, sRGB):
+
+| File | Ratio / size | Subject |
+|---|---|---|
+| `hero-threshold` | 21:9, 2880w (+ 4:5 1400w phone crop) | Two colossal seated pharaonic guardians flanking a stepped pyramid throwing a vertical light beam into a clouded sky; fire braziers; one small robed figure walking in |
+| `journey-01`…`journey-06` | 3:4, 900w | One per chapter, matched to its meaning — conditioning/pattern, descent into a lit corridor, radiant sunburst of remembrance, luminous lotus, ascent up a temple stair to light, the whole earth from orbit |
+| `library-01`…`library-06` | 4:5, 800w | The artefact of each featured text: painted tomb relief, inscribed clay tablet, papyrus vignette, carved feather of Ma'at, Maya codex page, an astronomical codex wheel |
+| `web-face-left`, `web-face-right` | 2:3, 700w | Weathered carved stone heads in deep shadow, one Egyptian, one Maya, edge-lit, for the band's left and right bleeds |
+| `web-starfield` | 21:9, 2560w | Deep night sky, dust lanes, faint nebula in cool blue over near-black — background only, no structures |
+| `weighing-scales` | 4:3, 1400w | A golden balance, white feather in one pan, a golden heart in the other, on a dark temple floor lit by a single warm source |
+| `closing-panorama` | 21:9, 2880w | Sunrise over a wide river valley of stepped temples and mountains, low mist, golden light |
+| `seal` | 1:1 SVG, hand-drawn | The circular wordmark seal — a gold ring with an eye-and-rays glyph. **Vector, not generated raster.** |
+
+Budget: hero and panorama ≤ 400KB each as WebP, cards ≤ 120KB each; every `<img>` carries `width`, `height`, `loading="lazy"` (except the hero, which is eager and preloaded), and a real `alt`.
+
+## 7. Technical requirements
+
+- Static, no build step, zero dependencies, ES modules, works from `file://` and from Pages.
+- Performance: LCP < 2.5s on 4G, total JS < 140KB unminified, no CLS from the plates (always reserve dimensions), 60fps scrolling on a mid phone.
+- Accessibility: full keyboard navigation, visible gold focus rings, ARIA landmarks, contrast ≥ 4.5:1 for body text over every plate (darken the vignette until it passes — do not lighten the type), `prefers-reduced-motion` honoured everywhere, all decorative micro-labels and plates hidden from screen readers.
+- Data lives in `data/*.json`; the UI never hard-codes content.
+- Deployment unchanged: push to `main`, Pages serves root, `CNAME` untouched.
+
+## 8. Done means
+
+The home page reproduces the master image band for band at 1440px and degrades cleanly to 390px; all 28 texts, every quote, every connection, all 4 study paths and all 6 chapters are present and asserted by a script; every plate is generated from the master reference and shares one look; the wordmark reads Breaking Your Genetic Code everywhere; research verdicts merged; QA checklist in packet 08 passes on phone and desktop.

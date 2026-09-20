@@ -59,6 +59,8 @@ a{ color:var(--room-accent); }
 .plan .wallfill{ fill:#0e1120; }
 .plan .lbl{ font-family:Cinzel,serif; font-size:8.6px; letter-spacing:.14em; fill:var(--limestone); text-anchor:middle; text-transform:uppercase; }
 .plan .num{ font-family:Cinzel,serif; font-size:7px; fill:var(--gold); text-anchor:middle; letter-spacing:.2em; }
+.plan .side.l{ text-anchor:end; }
+.plan .side.r{ text-anchor:start; }
 .plan .note{ font-family:"Cormorant Garamond",serif; font-size:8px; fill:var(--room-dim); font-style:italic; }
 .plan .axis{ stroke:var(--gold); stroke-opacity:.35; stroke-dasharray:3 4; stroke-width:.8; }
 .plan .lit{ fill:url(#glow); }
@@ -182,41 +184,51 @@ addEventListener("pointermove",e=>{ document.documentElement.style.setProperty("
 /* ---------- court plan ---------- */
 function plan(cur){
   const vis=new Set(store.visited);
-  const room=(id,href,shape,label,lx,ly,num)=>{
+  const room=(id,href,shape,label,lx,ly,num,side)=>{
     const lit=vis.has(id)?'class="lit"':'fill="none"';
-    return `<a href="${href}" class="room${cur===id?' cur':''}" role="link" tabindex="0" aria-label="${label}${vis.has(id)?' (visited)':''}">
-      ${shape.replaceAll('%F%',lit)}${num?`<text class="num" x="${lx}" y="${ly-9}">${num}</text>`:''}<text class="lbl" x="${lx}" y="${ly}">${label}</text></a>`;
+    const s2 = side ? `side ${lx>200?"r":"l"}` : "";
+    // labels may carry "|" to break onto a second line — long room names must never run past the frame
+    const lines = label.split("|");
+    const lbl = `<text class="lbl ${s2}" x="${lx}" y="${ly}">${lines.map((l,i)=>`<tspan x="${lx}" dy="${i?11:0}">${l}</tspan>`).join("")}</text>`;
+    const txt = side
+      ? `<line x1="${lx>200?lx-8:lx+8}" y1="${ly-4}" x2="${side}" y2="${ly-4}" class="axis"/><text class="num ${s2}" x="${lx}" y="${ly-9}">${num}</text>${lbl}`
+      : `${num?`<text class="num" x="${lx}" y="${ly-9}">${num}</text>`:''}${lbl}`;
+    return `<a href="${href}" class="room${cur===id?' cur':''}" role="link" tabindex="0" aria-label="${label}${vis.has(id)?' (visited)':''}">${shape.replaceAll('%F%',lit)}${txt}</a>`;
   };
   const rect=(x,y,w,h,rx=3,extra="")=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" %F%/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" class="stroke thick"/>${extra}`;
-  let s=`<svg class="plan" viewBox="0 0 400 640" role="group" aria-label="Plan of the walk: a standing figure with the rooms placed along the body">
+  let s=`<svg class="plan" viewBox="-120 0 640 648" role="group" aria-label="Plan of the walk: a standing figure with the rooms placed along the body">
    <defs><radialGradient id="glow"><stop offset="0" stop-color="#ffcf6a" stop-opacity=".55"/><stop offset="1" stop-color="#d4af37" stop-opacity=".12"/></radialGradient></defs>
-   <rect x="6" y="6" width="388" height="628" class="stroke" stroke-opacity=".3"/>
+   <rect x="-114" y="6" width="628" height="628" class="stroke" stroke-opacity=".3"/>
    <!-- the figure -->
-   <g fill="none" stroke="#E8DCC4" stroke-opacity=".38" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+   <g fill="none" stroke="#E8DCC4" stroke-opacity=".4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
      <circle cx="200" cy="78" r="42"/>
-     <path d="M188 120v22M212 120v22"/>
-     <path d="M122 146h156l-18 186h-120z"/>
-     <path d="M122 146l-52 70-28 78M278 146l52 70 28 78"/>
-     <path d="M158 332l-8 210M198 332l-4 210M202 332l4 210M242 332l8 210"/>
-     <path d="M140 542h64M196 542h64"/>
+     <path d="M182 116v26M218 116v26"/>
+     <path d="M182 142C168 144 142 146 130 158C124 202 142 232 148 262C154 296 142 312 144 334L256 334C258 312 246 296 252 262C258 232 276 202 270 158C258 146 232 144 218 142"/>
+     <path d="M131 161C97 197 69 249 59 301C55 327 56 343 56 355"/>
+     <path d="M269 161C303 197 331 249 341 301C345 327 344 343 344 355"/>
+     <path d="M144 334C148 392 152 470 150 544"/>
+     <path d="M196 340C192 398 186 470 184 544"/>
+     <path d="M204 340C208 398 214 470 216 544"/>
+     <path d="M256 334C252 392 248 470 250 544"/>
+     <path d="M196 340L200 350L204 340"/>
    </g>
    <line x1="200" y1="36" x2="200" y2="600" class="axis"/>
-   <text class="note" x="392" y="626" text-anchor="end">Plan of the walk · the rooms are placed along a body</text>
-   <text class="note" x="14" y="626">Lit rooms are where you have been</text>`;
+   <text class="note" x="506" y="628" text-anchor="end">After Schwaller de Lubicz's reading of Luxor — our own figure, our own placement</text>
+   <text class="note" x="-106" y="628">Lit rooms are where you have been</text>`;
   // the gate: the threshold beneath the feet
-  s+=room("gate","#/gate",rect(120,586,160,10,1),"The Gate",200,612);
+  s+=room("gate","#/gate",rect(120,586,160,10,1),"The Gate",420,596,"the threshold",280);
   // halls, feet → head
-  s+=room("hall1","#/hall/1",rect(148,546,48,26,4)+rect(204,546,48,26,4),"Recognition",200,600,"Hall I · the feet");
-  s+=room("hall2","#/hall/2",rect(166,286,68,40,6),"The Awakening",200,347,"Hall II · the navel");
-  s+=room("hall3","#/hall/3",rect(150,160,100,56,8,`<line x1="200" y1="160" x2="200" y2="216" class="stroke"/>`),"Breaking Patterns",200,238,"Hall III · the lungs");
-  s+=room("hall4","#/hall/4",rect(172,224,56,44,22),"Ancient Wisdom",200,280,"Hall IV · the heart");
-  s+=room("hall5","#/hall/5",rect(180,118,40,22,4),"Expanding Consciousness",200,152,"Hall V · the throat");
-  s+=room("hall6","#/hall/6",rect(170,52,60,50,25),"Full Potential",200,42,"Hall VI · the head");
+  s+=room("hall1","#/hall/1",rect(148,546,48,26,4)+rect(204,546,48,26,4),"Recognition",-20,566,"I · the feet",148);
+  s+=room("hall2","#/hall/2",rect(166,286,68,40,6),"The|Awakening",-20,308,"II · the navel",166);
+  s+=room("hall3","#/hall/3",rect(150,160,100,56,8,`<line x1="200" y1="160" x2="200" y2="216" class="stroke"/>`),"Breaking|Patterns",-20,190,"III · the lungs",150);
+  s+=room("hall4","#/hall/4",rect(172,224,56,44,22),"Ancient|Wisdom",420,248,"IV · the heart",228);
+  s+=room("hall5","#/hall/5",rect(180,118,40,22,4),"Expanding|Consciousness",420,131,"V · the throat",220);
+  s+=room("hall6","#/hall/6",rect(170,52,60,50,25),"Full|Potential",-20,78,"VI · the head",170);
   // the eyes look out: observatory
   s+=room("obs","#/observatory",`<line x1="228" y1="70" x2="292" y2="58" class="axis"/><circle cx="330" cy="52" r="32" %F%/><circle cx="330" cy="52" r="32" class="stroke thick"/><circle cx="330" cy="52" r="14" class="stroke"/>`,"Observatory",330,100,"the eyes");
   // the hands: what you read, what you keep
-  s+=room("house","#/house",rect(28,300,64,50,4,`<line x1="28" y1="317" x2="92" y2="317" class="stroke"/><line x1="28" y1="334" x2="92" y2="334" class="stroke"/>`),"House of Life",60,368,"the left hand");
-  s+=room("cart","#/cartouche",`<rect x="308" y="306" width="56" height="30" rx="15" %F%/><rect x="308" y="306" width="56" height="30" rx="15" class="stroke thick"/><line x1="370" y1="306" x2="370" y2="336" class="stroke thick"/>`,"Your Cartouche",340,368,"the right hand");
+  s+=room("house","#/house",rect(24,356,64,50,4,`<line x1="24" y1="373" x2="88" y2="373" class="stroke"/><line x1="24" y1="390" x2="88" y2="390" class="stroke"/>`),"House of Life",56,424,"the left hand");
+  s+=room("cart","#/cartouche",`<rect x="312" y="366" width="56" height="30" rx="15" %F%/><rect x="312" y="366" width="56" height="30" rx="15" class="stroke thick"/><line x1="374" y1="366" x2="374" y2="396" class="stroke thick"/>`,"Your Cartouche",344,424,"the right hand");
   return s+"</svg>";
 }
 
@@ -225,10 +237,11 @@ function setLight(bg,ink,dim,torch){ const r=document.documentElement.style; r.s
 const R = {
  gate(){ setLight("#101425","#E8DCC4","#a89f8a",.5); return `<section class="gate"><div>
    <svg class="ankh" viewBox="0 0 64 64"><use href="#ankh"/></svg>
-   <div class="caps" style="margin-bottom:14px">A place, not a page</div>
+   <div class="caps" style="margin-bottom:14px">The world of the book</div>
    <h1>Breaking Your<br>Genetic Code</h1>
    <p>You were programmed before you could consent — by genes, by family, by culture. Walk the halls and see it for yourself.</p>
-   <a class="enter" href="#/court">Enter</a></div></section>`; },
+   <a class="enter" href="#/court">Enter</a>
+   <div class="caps" style="margin-top:30px;opacity:.65;letter-spacing:.2em">Break the code · See the pattern · Understand what shaped you</div></div></section>`; },
  court(){ setLight("#141a2e","#E8DCC4","#a89f8a",.3); return `<section class="court"><header><div class="caps">The Court</div><h2>Plan of the Walk</h2></header>
    ${plan("court")}<footer>Walk the halls in order, or go where you're drawn. Lit rooms are where you've been.</footer></section>`; },
  hall(n){ const h=HALLS[n-1]; setLight(h.bg,h.ink,h.dim,h.torch);

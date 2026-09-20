@@ -1,8 +1,10 @@
 # Build Packets
 
-Read `00-DESIGN-BIBLE.md` first. Packets run in order; each ends with its acceptance checks passing and a commit on branch `redesign/temple`. Do not start the next packet with the previous one's checks failing. Do not widen scope: if something is not in the bible or the packet, leave it out and note it in `docs/redesign/NOTES.md`.
+**Reset 2026-09-19.** These replace the previous packets entirely (that build order served the dead "temple complex" direction).
 
-Work in the repo root. Old `index.html` stays untouched until packet 08 replaces it; build the new site at `new/` during packets 02–07, then packet 08 promotes it to root.
+Read `00-DESIGN-BIBLE.md` in full and **open `reference/MASTER-mockup.png`** before starting any packet. The image is the specification. Packets run in order; each ends with its acceptance checks passing and a commit on branch `redesign/temple`. Do not start the next packet with the previous one's checks failing. Do not widen scope — if it isn't in the bible or the packet, leave it out and note it in `NOTES.md`.
+
+Build the new site at `new/` during packets 01–07. Old `index.html` stays untouched until packet 08 promotes the new one to root.
 
 ---
 
@@ -10,101 +12,106 @@ Work in the repo root. Old `index.html` stays untouched until packet 08 replaces
 
 Source of truth: the current `index.html`. Produce:
 
-- `data/chapters.json` — 6 chapters, in order: `{ id, hall (1–6), title, prose: [paragraphs…], pullQuote, wisdomCard: { textId, quote, context } }`. Extract `<section class="content">` blocks `#intro #awakening #patterns #ancient #consciousness #potential`. Preserve paragraph order and wording exactly (tightening happens in packet 03, from this file, as a diff).
-- `data/texts.json` — flatten the `wisdomTexts` object (line ~2814): 28 texts, `{ id, era (ancient|medieval|renaissance|contemporary), eraName, title, period, tradition, keyTeaching, quotes: [{ text, context, source: { translator_or_edition: "", note: "", verified: false } }] }`. Drop the emoji `icon` field.
-- `data/connections.json` — from the Wisdom Web data (search `webConnections`, `connectionColors`, and wherever the connection list is built ~line 4199–4260): `{ types: [{ id, label, color }], connections: [{ from, to, type, note? }] }`.
-- `data/paths.json` — the `studyPaths` array (line ~3950), drop `icon`.
-- `data/glyphs.json` — starts empty `[]` here; filled in packet 04.
-- `scripts/verify-content.mjs` — Node script, no deps: asserts 6 chapters, 28 texts, quote count equals the count in the old file (compute it from the old file at run time), 4 paths, connection count equals old. Prints a table. Exit non-zero on mismatch.
+- `data/chapters.json` — 6 chapters in order: `{ id, n (1–6), title, cardLines: [line1, line2], prose: [paragraphs…], pullQuote, keyThemes: […], wisdomCard: { textId, quote, context } }`. Extract the `<section class="content">` blocks `#intro #awakening #patterns #ancient #consciousness #potential`, preserving paragraph order and wording exactly. `cardLines` are new: two lines, **max six words each**, written from that chapter's own content for the journey card (bible §5.3).
+- `data/texts.json` — flatten the `wisdomTexts` object (~line 2814): 28 texts, `{ id, era, eraName, title, period, tradition, keyTeaching, cardLines: [line1, line2], quotes: [{ text, context, source: { translator_or_edition: "", note: "", verified: false } }] }`. Drop the emoji `icon` field. `cardLines` are a two-line compression of `keyTeaching` for the library card.
+- `data/connections.json` — from the Wisdom Web data (`webConnections`, `connectionColors`, ~4199–4260): `{ types: [{ id, label, color }], connections: [{ from, to, type, note? }] }`.
+- `data/paths.json` — the `studyPaths` array (~3950), drop `icon`.
+- `data/themes.json` — the theme taxonomy, with the ten used by the home constellation flagged `featured: true` (bible §5.5).
+- `scripts/verify-content.mjs` — Node, no deps: asserts 6 chapters, 28 texts, quote count equal to the old file (computed from it at run time), 4 paths, connection count equal to old. Prints a table, exits non-zero on mismatch.
 
-Acceptance: `node scripts/verify-content.mjs` passes. Commit: `content: extract chapters, texts, connections, paths to data/`.
-
----
-
-## Packet 02 — Shell, router, Gate, Court
-
-- `new/index.html`, `css/tokens.css`, `css/base.css`, `css/rooms.css`, `js/app.js`, `js/router.js`, `js/store.js`, `js/data.js`, `js/rooms/gate.js`, `js/rooms/court.js`.
-- Router per bible §3 (hash routes, back button, deep links, unknown route → court).
-- Gate: one screen, no scroll, per bible. "Enter" → `#/court`. Returning visitors (any visited room in store) land on the Court directly.
-- Court: the standing figure with rooms along the body, per bible §3. Rooms are `<a>` elements inside the SVG with proper focus/aria. Lit state from `store.visited`. Layout must fit a 390×740 portrait viewport with no scroll, and scale up cleanly to 1400px. Reference mockup: `docs/redesign/mockups/court-figure.html` — match its placement; improve its drawing (the figure line should feel drawn by a hand, not a CAD tool).
-- Travel transition per bible.
-- Placeholder room modules for everything else that render the room's lintel and "under construction" glyph wall — so the whole map is navigable end-to-end from this packet on.
-
-Acceptance: open `new/index.html` from `file://`; every room reachable by click and by keyboard; lit-state persists across reload; no console errors; Lighthouse a11y ≥ 95 on the Court. Commit: `shell: router, gate, court map`.
-
-Reasoning: this is the hardest design packet. Spend the effort on the figure drawing. If a stranger can't tell in one second that the map is a person, it isn't done.
+Acceptance: `node scripts/verify-content.mjs` passes. Commit: `content: extract chapters, texts, connections, paths, themes to data/`.
 
 ---
 
-## Packet 03 — The six Halls + Exit + copy pass
+## Packet 02 — The plates (art generation)
 
-- `js/rooms/hall.js` renders hall N from `data/chapters.json` per bible §3 anatomy. Stela component (`js/components/stela.js`) reused by the House in packet 05.
-- Per-hall lighting tokens (`--room-bg`, `--room-ink`, `--room-accent`, `--torch-intensity`) — Hall I brightest → Hall VI torchlit. Body contrast ≥ 4.5:1 in every hall; verify with a script or DevTools.
-- Exit at the end of Hall VI per bible: "one thing to do today" (write one, plainly, in the owner's voice — e.g. notice one automatic reaction today and name where it came from) + Share (Web Share API → clipboard fallback with a visible "copied" state).
-- Copy pass: produce `data/chapters.json` edits as a reviewable diff — tighten sentences, cut repetition, no new claims, keep every idea and the pull quotes. Target ≤30% shorter per chapter. Record before/after word counts in NOTES.md. (This pass may be delegated to a cheaper model; the diff must be reviewed before commit.)
-- Marks each hall visited in the store on arrival.
+Generate every image in bible §6 with the built-in `image_gen` tool (system skill `imagegen` — built-in mode, no `OPENAI_API_KEY` needed).
 
-Acceptance: all six halls render from data; each ≤ ~2 phone screens; stela shows citation line (or the "paraphrase" mark when `verified:false`); `verify-content.mjs` still passes (it must compare ideas/quotes, not raw prose, after the copy pass — adjust the script to compare quote text and paragraph count only). Commit: `halls: six halls, lighting progression, exit`.
+**Every single call passes `docs/redesign/reference/MASTER-mockup.png` as a reference image, and every prompt begins with the shared style preamble in bible §6.** The tool is being asked for *a component that belongs inside the world of that reference*, never a new art direction. If a plate comes back in a different palette, light logic or material language than the master, regenerate it — visual continuity across the set matters more than any single image.
 
----
+- Output to `new/assets/art/`, as WebP plus a JPG fallback, sRGB, at the sizes in the table.
+- The hero needs both the 21:9 desktop plate and a 4:5 phone crop that keeps the pyramid and beam centred.
+- `seal` is **not** generated — draw it as a monoline SVG by hand (gold ring, eye-and-rays glyph) and save to `new/assets/seal.svg`.
+- Write `new/assets/art/MANIFEST.md`: for each file, the exact prompt used, the dimensions, and the byte size.
 
-## Packet 04 — Glyph layer
+Acceptance: every file in the §6 table exists at the right ratio and under its byte budget; laid out side by side in a contact sheet they read as one production; MANIFEST.md complete. Commit: `art: generate plates from master reference`.
 
-- Fill `data/glyphs.json` per bible §4 (~20 signs). Draw each as a monoline SVG `path`/`g` in a 64×64 viewBox, stroke-based, `currentColor`. Accurate enough that someone who knows the sign recognises it. Cite the meaning source in one line (e.g. Gardiner sign list number for Egyptian; Thompson/Kettunen & Helmke for Maya).
-- `js/glyphwall.js`: builds a tiled `<svg>` wall behind a room's content; seeded PRNG per room id; picks from the room's culture set; density tuned so the wall reads as carved stone at 8–12% ink opacity; ~1 in 8 glyphs rendered as live buttons at a slightly higher opacity with `aria-label="{name}: glyph"`.
-- Glyph card: small, anchored near the glyph on desktop, bottom sheet on phone; name, culture, meaning, source; Esc/tap-outside closes; focus returns to the glyph.
-- Wall must not repaint on scroll; fixed-position layer with `will-change` only where needed; no jank on a mid phone.
-
-Acceptance: every room shows a wall; at least 6 live glyphs per room; cards open by click and keyboard; wall never reduces body contrast below 4.5:1; 60fps scroll in a hall on a throttled (4× CPU) DevTools profile. Commit: `glyphs: data, walls, cards`.
+Reasoning: the art carries this design. A correct layout with wrong-feeling plates is a failed build.
 
 ---
 
-## Packet 05 — The House of Life
+## Packet 03 — Shell: tokens, header, hero, footer
 
-- `js/rooms/house.js`: four era rooms as tabs/sub-rooms (`#/house?era=…`), tablets on shelves layout (cards with a carved top edge, era-coloured), search (title, tradition, keyTeaching — same behaviour as the old site), count line ("28 texts · 12 shown").
-- Text room `#/house/text/{id}`: per bible. "Where this speaks in the halls" computed from `chapters.json` wisdomCard.textId. "Add all quotes to Cartouche".
-- Study paths `#/house/path/{id}`: per bible; progress key migrated from the old site's localStorage if present.
+- `new/index.html`, `css/tokens.css`, `css/base.css`, `css/bands.css`, `js/app.js`, `js/data.js`, `js/store.js`.
+- Tokens exactly per bible §4 — colour, type scale, micro-label style, hairline framing, grain.
+- Header per §5.1: transparent over hero → dark backing after 80px, wordmark lockup (seal + two stacked Cinzel lines), centre nav, expanding search, "Awaken Within" button, sub-900px overlay menu.
+- Hero per §5.2: full-viewport plate, vignette, eyebrow / display / subline / two CTAs, gutter micro-labels, phone crop swap via `<picture>`.
+- Footer per §5.8.
+- The band-reveal IntersectionObserver utility (fade + 16px rise, once, reduced-motion aware) that later packets reuse.
 
-Acceptance: all 28 texts reachable; search parity with old site; path progress persists; deep links work; keyboard complete. Commit: `house: library, text rooms, study paths`.
-
----
-
-## Packet 06 — The Observatory
-
-- `js/rooms/observatory.js`: star map per bible. Force-directed or precomputed layout (precomputed and stored in `data/layout.json` is fine and faster). Star size ∝ degree. Connection type toggles preserved (all on by default). Hover/tap → tooltip; second tap → text room. DPR-aware canvas; render loop pauses when the room is not visible; ≤ 4ms per frame with all connections on at 1400px, tested with `performance.now()` sampling logged to NOTES.md.
-- Time lens `#/observatory/time`: same nodes on a horizontal time axis; era bands; horizontal pan by drag/wheel/touch; keyboard left/right pans.
-- Maya grounding plate per bible, cited.
-
-Acceptance: node and connection counts equal `connections.json`; both lenses work on phone; frame budget met. Commit: `observatory: star map and time lens`.
+Acceptance: header and hero match the master at 1440px and at 390px; hero LCP plate preloaded; contrast ≥ 4.5:1 on all hero text; keyboard reaches every header control; no console errors. Commit: `shell: tokens, header, hero, footer`.
 
 ---
 
-## Packet 07 — Your Cartouche
+## Packet 04 — Journey and Living Library bands
 
-- `js/rooms/cartouche.js` per bible. Migrate old bookmark storage. Remove single, clear-all with confirm (inline confirm, not `window.confirm`). Each saved quote links back to its text room.
+- `js/bands/journey.js`, `js/bands/library.js`, rendered from `data/chapters.json` and `data/texts.json`.
+- Journey per §5.3: six framed portrait cards with gold chevrons between, number + real chapter title + two `cardLines` over a bottom gradient; 6 → 3×2 → snap-scroll rail. **Real chapter titles, not the mockup's placeholder names** (bible §2).
+- Library per §5.4: six featured cards, framed plate + title + two lines, and the `EXPLORE ALL TEXTS →` link.
+- Cards are single links with real `href`s to `/journey/{chapter}` and `/library/{id}` (those pages land in packet 06; until then they may 404 — note it).
 
-Acceptance: add from a stela, from a text room, and bookmark-all; persists; empty state renders. Commit: `cartouche: bookmarks`.
-
----
-
-## Packet 08 — Promote, polish, docs
-
-- Move `new/` to root: root `index.html` becomes the new site; keep the old file as `legacy/index.html` (reachable at `/legacy/`) for one release, then delete in a later commit.
-- QA checklist (record results in NOTES.md): every route on iPhone-size and 1400px; Lighthouse performance ≥ 90, a11y ≥ 95 on Court, a hall, the House, the Observatory; `prefers-reduced-motion` walkthrough; no console errors; fonts load with swap; works from `file://` and from Pages.
-- Docs: rewrite `README.md` (what it is, the room model, how to run, how content is edited — the JSON files); rewrite `docs/ROADMAP.md` to a short honest list (delete the VR/AR/AI-guide/community/PWA bloat); update `docs/CHANGELOG.md` with a `[2.0.0]` entry; move `CONTENT_EXPANSION.md` and `docs/WISDOM_TEXTS_IMPLEMENTATION.md` into `docs/archive/`.
-- Merge research desk verdicts (packet R) into `data/texts.json` before release.
-
-Acceptance: `verify-content.mjs` passes against the new data; checklist complete; PR opened from `redesign/temple` → `main` with the checklist in the body. Commit: `release: 2.0.0 temple redesign`.
+Acceptance: both bands render from data with zero hard-coded content; all three breakpoints correct; cards keyboard-focusable with a visible gold focus ring; no CLS (dimensions reserved). Commit: `bands: journey and living library`.
 
 ---
 
-## Packet R — Research desk (runs in parallel from packet 01 onward; any model with web access)
+## Packet 05 — Wisdom Web, Weighing, Closing
 
-Input: `data/texts.json` and `data/glyphs.json`. For every quote and every glyph meaning:
-1. Find the primary text and a named translation/edition. Confirm the line exists there (quote the located passage and its location — chapter/verse/section).
+- `js/bands/web.js` per §5.5: the radial constellation in **SVG** — centre gold ring with knotwork glyph and CONSCIOUSNESS, ten satellite nodes from `data/themes.json` (`featured: true`), each a gold-ringed monoline glyph with caps name and Cormorant sub-line, thin connecting lines with glow points, slow opacity shimmer only. Stone faces bleeding in at both edges, starfield plate behind. Each node is a link to `/web/?theme=…`.
+- `js/bands/weighing.js` per §5.6: scales plate left, dark panel right, four accordion rows as `<button aria-expanded>` with textarea + Save reflection, persisted to localStorage (`btc.reflections`). The pull quote carries the honesty mark described in §5.6 — do not present it as a verbatim translated line.
+- Closing band per §5.7.
+
+Acceptance: constellation is crisp at 200% zoom and keyboard-navigable; accordions correct for ARIA and survive reload; reduced-motion kills the shimmer; all three bands match the master. Commit: `bands: wisdom web, weighing, closing`.
+
+---
+
+## Packet 06 — Journey and Library sub-pages
+
+- `/journey/` index and `/journey/{chapter}`: the full chapter — prose, pull quote as a carved inscription, key themes, the chapter's wisdom text with citation, prev/next. Static HTML shells hydrated from `data/`, real URLs, deep-linkable.
+- `/library/` per §5.4: search (title, tradition, key teaching — parity with the old site), `All Traditions / All Eras / All Themes` pills, the era timeline slider from the **secondary** reference, count line, grid of all 28.
+- `/library/{id}`: full text page — title, period, tradition, key teaching, every quote with its context and citation line, "Add to bookmarks", and **"Where this speaks"** linking to the chapters that quote it (this replaces the old site's stubbed "coming soon" button at `index.html:3797`).
+
+Acceptance: all 28 texts reachable; search parity with the old site; deep links work; keyboard complete; `verify-content.mjs` still passes. Commit: `pages: journey chapters and library`.
+
+---
+
+## Packet 07 — Web page, Practices, About
+
+- `/web/`: the real interactive graph — existing connection types with filter toggles (all on by default), theme sidebar, detail panel (description, "shared idea in N of 28 texts", sources include, historical distance, explore link) per the secondary reference. Canvas 2D, DPR-aware, render loop pauses when off-screen, ≤4ms/frame at 1400px with all connections on.
+- `/practices/`: the 4 study paths as sequences with read/unread markers (migrate old localStorage progress if present), saved reflections from §5.6, and bookmarks (migrate old bookmark storage; remove single, clear-all with an inline confirm — never `window.confirm`).
+- `/about/`: the approach and the grounding rule, stated plainly in the owner's voice, including how quotes are sourced and marked.
+
+Acceptance: node and connection counts equal `connections.json`; path progress and bookmarks persist and migrate; frame budget met and logged in NOTES.md. Commit: `pages: wisdom web, practices, about`.
+
+---
+
+## Packet 08 — Promote, QA, docs
+
+- Move `new/` to root; keep the old file as `legacy/index.html` for one release.
+- QA checklist recorded in NOTES.md: every route at 390px and 1440px; Lighthouse performance ≥ 90 and a11y ≥ 95 on home, a chapter, the library and the web page; `prefers-reduced-motion` walkthrough; no console errors; fonts swap; works from `file://` and from Pages; **side-by-side screenshot of the finished home page against `MASTER-mockup.png`**.
+- Docs: rewrite `README.md` (what it is, the band model, how to run, how content is edited); rewrite `docs/ROADMAP.md` to a short honest list — the old VR/AR/AI-guide/community/PWA bloat is deleted, not carried; `docs/CHANGELOG.md` gets a `[2.0.0]` entry; archive `CONTENT_EXPANSION.md` and `docs/WISDOM_TEXTS_IMPLEMENTATION.md` into `docs/archive/`.
+- Merge packet R verdicts into `data/texts.json` before release.
+
+Acceptance: `verify-content.mjs` passes; checklist complete; PR opened `redesign/temple` → `main` with the checklist and the side-by-side in the body. Commit: `release: 2.0.0 redesign`.
+
+---
+
+## Packet R — Research desk (parallel from packet 01; any model with web access)
+
+Input: `data/texts.json`. For every quote:
+1. Find the primary text and a named translation/edition; confirm the line exists there, quoting the located passage and its location.
 2. Set `source.translator_or_edition`, `source.note`, `source.verified`.
-3. If not found: mark `verified:false`, and in `note` say what it actually is (modern paraphrase, misattribution, Barks rendering, etc.) and, where possible, offer a verified replacement line from the same text that carries the same meaning.
-4. Check every `period` date against current scholarship; correct with "c." where needed.
-5. Output: a PR against `redesign/temple` touching only `data/texts.json` and `data/glyphs.json`, plus `docs/redesign/RESEARCH-REPORT.md` listing every verdict with links. Do not edit prose or code.
+3. If not found, mark `verified: false`, say in `note` what it actually is (modern paraphrase, misattribution, Barks rendering…), and where possible offer a verified replacement line from the same text carrying the same meaning.
+4. Check every `period` date against current scholarship; correct with "c." where uncertain.
+5. Output a PR touching only `data/texts.json` plus `docs/redesign/RESEARCH-REPORT.md` with every verdict and links. Do not edit prose or code.
 
-Start with the known suspects in bible §5.
+Known suspects first: Tao Te Ching "When I let go of what I am, I become what I might be" (widely circulated, not in the text); any English Rumi (most viral Rumi is Coleman Barks' free rendering); any Buddha quote not traceable to the Pali canon; "A light heart travels far" (bible §5.6); the Kybalion (1908) and the Emerald Tablet, which are never ancient Egyptian.
