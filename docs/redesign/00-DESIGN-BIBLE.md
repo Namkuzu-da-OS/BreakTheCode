@@ -27,13 +27,13 @@ Look at the master image before every packet. Someone comparing the finished sit
 
 The visible front end is replaced. The substance is the owner's and is preserved.
 
-**Reuse from the old project:** all written chapter content, the 28 wisdom texts and their metadata (title, period, tradition, key teaching, every quote and its context), the Wisdom Web relationships and connection types, the 4 study paths, era/theme taxonomy, bookmarks, reflection functionality, search and filter behaviour, and any useful data model or routing logic.
+**Reuse from the old project:** all written chapter content, the 16 wisdom texts and their metadata (title, period, tradition, key teaching, every quote and its context), the Wisdom Web relationships and connection types, the 4 study paths, era/theme taxonomy, bookmarks, reflection functionality, search and filter behaviour, and any useful data model or routing logic.
 
 **Replace outright:** all CSS, every visual component, page layout, header and nav presentation, hero, cards, section shells, the type system, spacing system, backgrounds, colour system, imagery, decorative elements, visual hierarchy, mobile layout, interaction presentation. Do not keep a component merely because rewriting it is work.
 
 **Where the mockup's placeholder words conflict with real content, the real content wins and the composition stays.** Specifically:
 - The master's journey cards read `THE CONDITIONING / THE DESCENT / REMEMBRANCE / THE HEART / THE ASCENT / INTEGRATION`. The real chapters are **Introduction, The Awakening, Breaking Patterns, Ancient Wisdom, Expanding Consciousness, Full Potential**. Ship the **real** titles in the mockup's card design. (The mockup's names are stronger copy; renaming the chapters is the owner's call, not the builder's. Note it in NOTES.md, don't do it.)
-- The master's library cards show six Egyptian/Maya texts. Ship **six real texts chosen from the 28**, with the full 28 on the Library page.
+- The master's library cards show six Egyptian/Maya texts. Ship **six real texts chosen from the 16**, with all 16 on the Library page.
 
 Every ancient quote carries `source: { translator_or_edition, note, verified }`. Unverified quotes render with a quiet "paraphrase / attribution uncertain" mark. Nothing is silently presented as verbatim scripture. The Kybalion (1908) and the Emerald Tablet are never presented as ancient Egyptian.
 
@@ -113,7 +113,7 @@ Panel band, slightly darker. Left micro-label `TIMELESS TEACHINGS / FOR A NEW HU
 
 Six cards in a row, squarer than the journey cards (~4:5): a framed plate of the text's artefact art, then below it on the panel the text title (Cinzel caps, cream, `.9rem`) and two short lines (`--stone`) — a compressed form of the key teaching. Links to `/library/{id}`.
 
-The full `/library/` page carries the controls from the **secondary** reference: search field, `All Traditions / All Eras / All Themes` filter pills, and a horizontal era timeline slider (1200 BCE → 2000 CE) with two handles, above a grid of all 28 texts. Search behaviour matches the old site (title, tradition, key teaching) and shows a count line ("28 texts · 12 shown").
+The full `/library/` page carries the controls from the **secondary** reference: search field, `All Traditions / All Eras / All Themes` filter pills, and a horizontal era timeline slider (1200 BCE → 2000 CE) with two handles, above a grid of all 16 texts. Search behaviour matches the old site (title, tradition, key teaching) and shows a count line ("16 texts · 9 shown").
 
 ### 5.5 The Wisdom Web
 Full-bleed band on the `--night` starfield, with weathered carved stone faces bleeding in at the far left and far right edges. Centred title **THE WISDOM WEB**, subline **IDEAS. TEXTS. PEOPLE. PATTERNS. ALL CONNECTED.**, and a bordered **EXPLORE THE WEB →** button top-right.
@@ -122,7 +122,7 @@ Centre: a radial constellation. A gold ring at the centre holds a knotwork glyph
 
 **Built in SVG, not a raster** — it must stay crisp, be keyboard-reachable (each node a link into `/web/?theme=…`), and animate only as a slow opacity shimmer on the connecting lines. Gutter micro-labels: left `"A SINGLE THREAD / CONNECTS / ALL THINGS."`, right `DIFFERENT PATHS / ONE SOURCE`.
 
-The full `/web/` page is the real interactive graph: the existing connection types with their filter toggles, the theme sidebar, and a detail panel per the secondary reference (description, "shared idea in N of 28 texts", sources include, historical distance). Canvas 2D there, 60fps on a mid phone.
+The full `/web/` page is the real interactive graph: the existing connection types with their filter toggles, the theme sidebar, and a detail panel per the secondary reference (description, "shared idea in N of 16 texts", sources include, historical distance). Canvas 2D there, 60fps on a mid phone.
 
 ### 5.6 The Weighing of Your Heart
 Two-column band. **This reinstates a feature previously cut** — the master image includes it, so it ships, but strictly as a reflection prompt, never a quiz and never a score.
@@ -171,4 +171,4 @@ Budget: hero and panorama ≤ 400KB each as WebP, cards ≤ 120KB each; every `<
 
 ## 8. Done means
 
-The home page reproduces the master image band for band at 1440px and degrades cleanly to 390px; all 28 texts, every quote, every connection, all 4 study paths and all 6 chapters are present and asserted by a script; every plate is generated from the master reference and shares one look; the wordmark reads Breaking Your Genetic Code everywhere; research verdicts merged; QA checklist in packet 08 passes on phone and desktop.
+The home page reproduces the master image band for band at 1440px and degrades cleanly to 390px; all 16 texts, all 28 quotes, every connection, all 4 study paths and all 6 chapters are present and asserted by a script; every plate is generated from the master reference and shares one look; the wordmark reads Breaking Your Genetic Code everywhere; research verdicts merged; QA checklist in packet 08 passes on phone and desktop.

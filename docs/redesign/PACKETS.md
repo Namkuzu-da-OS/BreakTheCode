@@ -13,11 +13,11 @@ Build the new site at `new/` during packets 01–07. Old `index.html` stays unto
 Source of truth: the current `index.html`. Produce:
 
 - `data/chapters.json` — 6 chapters in order: `{ id, n (1–6), title, cardLines: [line1, line2], prose: [paragraphs…], pullQuote, keyThemes: […], wisdomCard: { textId, quote, context } }`. Extract the `<section class="content">` blocks `#intro #awakening #patterns #ancient #consciousness #potential`, preserving paragraph order and wording exactly. `cardLines` are new: two lines, **max six words each**, written from that chapter's own content for the journey card (bible §5.3).
-- `data/texts.json` — flatten the `wisdomTexts` object (~line 2814): 28 texts, `{ id, era, eraName, title, period, tradition, keyTeaching, cardLines: [line1, line2], quotes: [{ text, context, source: { translator_or_edition: "", note: "", verified: false } }] }`. Drop the emoji `icon` field. `cardLines` are a two-line compression of `keyTeaching` for the library card.
+- `data/texts.json` — flatten the `wisdomTexts` object (~line 2814): 16 texts, `{ id, era, eraName, title, period, tradition, keyTeaching, cardLines: [line1, line2], quotes: [{ text, context, source: { translator_or_edition: "", note: "", verified: false } }] }`. Drop the emoji `icon` field. `cardLines` are a two-line compression of `keyTeaching` for the library card.
 - `data/connections.json` — from the Wisdom Web data (`webConnections`, `connectionColors`, ~4199–4260): `{ types: [{ id, label, color }], connections: [{ from, to, type, note? }] }`.
 - `data/paths.json` — the `studyPaths` array (~3950), drop `icon`.
 - `data/themes.json` — the theme taxonomy, with the ten used by the home constellation flagged `featured: true` (bible §5.5).
-- `scripts/verify-content.mjs` — Node, no deps: asserts 6 chapters, 28 texts, quote count equal to the old file (computed from it at run time), 4 paths, connection count equal to old. Prints a table, exits non-zero on mismatch.
+- `scripts/verify-content.mjs` — Node, no deps: asserts 6 chapters, 16 texts, quote count (28) equal to the old file (computed from it at run time), 4 paths, connection count equal to old. Prints a table, exits non-zero on mismatch.
 
 Acceptance: `node scripts/verify-content.mjs` passes. Commit: `content: extract chapters, texts, connections, paths, themes to data/`.
 
@@ -77,16 +77,16 @@ Acceptance: constellation is crisp at 200% zoom and keyboard-navigable; accordio
 ## Packet 06 — Journey and Library sub-pages
 
 - `/journey/` index and `/journey/{chapter}`: the full chapter — prose, pull quote as a carved inscription, key themes, the chapter's wisdom text with citation, prev/next. Static HTML shells hydrated from `data/`, real URLs, deep-linkable.
-- `/library/` per §5.4: search (title, tradition, key teaching — parity with the old site), `All Traditions / All Eras / All Themes` pills, the era timeline slider from the **secondary** reference, count line, grid of all 28.
+- `/library/` per §5.4: search (title, tradition, key teaching — parity with the old site), `All Traditions / All Eras / All Themes` pills, the era timeline slider from the **secondary** reference, count line, grid of all 16.
 - `/library/{id}`: full text page — title, period, tradition, key teaching, every quote with its context and citation line, "Add to bookmarks", and **"Where this speaks"** linking to the chapters that quote it (this replaces the old site's stubbed "coming soon" button at `index.html:3797`).
 
-Acceptance: all 28 texts reachable; search parity with the old site; deep links work; keyboard complete; `verify-content.mjs` still passes. Commit: `pages: journey chapters and library`.
+Acceptance: all 16 texts reachable; search parity with the old site; deep links work; keyboard complete; `verify-content.mjs` still passes. Commit: `pages: journey chapters and library`.
 
 ---
 
 ## Packet 07 — Web page, Practices, About
 
-- `/web/`: the real interactive graph — existing connection types with filter toggles (all on by default), theme sidebar, detail panel (description, "shared idea in N of 28 texts", sources include, historical distance, explore link) per the secondary reference. Canvas 2D, DPR-aware, render loop pauses when off-screen, ≤4ms/frame at 1400px with all connections on.
+- `/web/`: the real interactive graph — existing connection types with filter toggles (all on by default), theme sidebar, detail panel (description, "shared idea in N of 16 texts", sources include, historical distance, explore link) per the secondary reference. Canvas 2D, DPR-aware, render loop pauses when off-screen, ≤4ms/frame at 1400px with all connections on.
 - `/practices/`: the 4 study paths as sequences with read/unread markers (migrate old localStorage progress if present), saved reflections from §5.6, and bookmarks (migrate old bookmark storage; remove single, clear-all with an inline confirm — never `window.confirm`).
 - `/about/`: the approach and the grounding rule, stated plainly in the owner's voice, including how quotes are sourced and marked.
 
