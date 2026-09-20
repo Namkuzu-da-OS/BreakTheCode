@@ -43,7 +43,19 @@ No honest same-meaning replacement exists for these, so they were deliberately l
 
 Options for each: keep with the honest mark (current), re-attribute to the real author, or drop. **This is an owner decision, not a builder one.** Full evidence in `docs/redesign/RESEARCH-REPORT.md`.
 
-**3. Nice-to-haves, none urgent.**
+**3. Mobile is broken at phone width — deferred by the owner, desktop is fine.**
+
+Confirmed 2026-09-20 in Chromium device emulation at 400px: the hero display type overflows its container and is clipped mid-word ("BREA… / YOUR G…"), and the eyebrow truncates to "ANCIENT WISDOM." with "MODERN AWAKENING." cut off. Reproducible across a reload, so it is not a stale-render artifact.
+
+Ruled out already:
+- `<meta name="viewport" content="width=device-width, initial-scale=1">` is present and correct
+- A `@media (max-width: 419px)` block exists for `.hero__title` — it reflows the title into a two-column grid but **does not reduce font-size**, and the rendered type is far larger than the `clamp(2rem, 9vw, 3.25rem)` set in the wider phone block would produce
+
+So the likely cause is a cascade problem: either the narrow block is not winning, or a later rule re-raises the size. Start by inspecting the computed `font-size` on `.hero__title` at 390px in DevTools and finding which rule wins.
+
+Owner's call 2026-09-20: **desktop-only is acceptable for now.** Do not treat this as a release blocker. Worth fixing before the site is promoted to people on phones, which is the stated audience.
+
+**4. Nice-to-haves, none urgent.**
 - Mobile QA pass at 390px on the real device
 - Lighthouse run (packet 08's checklist is in `NOTES.md`)
 - Open Graph image for link sharing
