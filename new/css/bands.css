@@ -70,12 +70,15 @@ body.nav-open .site-header {
 .primary-nav a,
 .footer-nav a {
   position: relative;
-  color: var(--cream);
+  color: var(--stone);
   font-family: var(--font-display);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: color 180ms ease;
+}
+
+.primary-nav a {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
 }
 
 .primary-nav a::after,
@@ -188,14 +191,14 @@ body.nav-open .site-header {
   min-height: 2.6rem;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.1rem;
   border: 1px solid var(--gold);
   border-radius: 2px;
   color: var(--cream);
   font-family: var(--font-display);
-  font-size: 0.64rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   transition:
     color 180ms ease,
@@ -476,6 +479,7 @@ body.nav-open .site-header {
 .footer-nav a {
   color: var(--stone);
   font-size: 0.6rem;
+  letter-spacing: 0.12em;
 }
 
 .site-footer__end {
@@ -501,17 +505,12 @@ body.nav-open .site-header {
   gap: 0.65rem;
 }
 
-.social-links a {
+.social-links > span {
   display: grid;
   width: 2.15rem;
   height: 2.15rem;
   place-items: center;
   color: var(--cream);
-  transition: color 180ms ease;
-}
-
-.social-links a:hover {
-  color: var(--gold-lit);
 }
 
 .social-links svg {
@@ -625,8 +624,8 @@ body.nav-open .site-header {
   }
 
   .hero__title {
-    font-size: clamp(2.25rem, 11vw, 3.25rem);
-    letter-spacing: 0.045em;
+    font-size: clamp(2rem, 9vw, 3.25rem);
+    letter-spacing: 0.04em;
     line-height: 1.02;
   }
 
@@ -669,8 +668,20 @@ body.nav-open .site-header {
 }
 
 @media (max-width: 419px) {
-  .hero__title-line:first-child > span {
-    display: block;
+  .hero__title {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 0.22em;
+    justify-content: center;
+  }
+
+  .hero__title-line {
+    display: contents;
+  }
+
+  .hero__title-line:first-child span:first-child,
+  .hero__title-line:last-child span:last-child {
+    grid-column: 1 / -1;
   }
 }
 

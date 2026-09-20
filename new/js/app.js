@@ -16,6 +16,7 @@ function setSearchOpen(open) {
   search.classList.toggle("is-open", open);
   searchToggle.setAttribute("aria-expanded", String(open));
   searchToggle.setAttribute("aria-label", open ? "Close search" : "Open search");
+  searchInput.tabIndex = open ? 0 : -1;
 
   if (open) {
     searchInput.focus();
@@ -99,7 +100,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 window.addEventListener("resize", () => {
-  if (window.innerWidth >= 1100) setMenuOpen(false);
+  if (window.innerWidth >= 900) setMenuOpen(false);
 });
 
 initializeRevealObserver();

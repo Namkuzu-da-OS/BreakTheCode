@@ -75,6 +75,7 @@
               type="search"
               placeholder="Search the library"
               autocomplete="off"
+              tabindex="-1"
               data-search-input
             >
             <button
@@ -178,7 +179,10 @@
               <span>Breaking</span>
               <span>Your</span>
             </span>
-            <span class="hero__title-line">Genetic Code</span>
+            <span class="hero__title-line">
+              <span>Genetic</span>
+              <span>Code</span>
+            </span>
           </h1>
           <p class="hero__subline">Remember who you are.</p>
           <div class="hero__actions">
@@ -208,25 +212,25 @@
         </nav>
 
         <div class="site-footer__end">
-          <div class="social-links" aria-label="Social media">
-            <a href="https://www.youtube.com/" aria-label="YouTube">
+          <div class="social-links" aria-hidden="true">
+            <span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="3" y="6.5" width="18" height="11" rx="3"></rect>
                 <path d="m10 9.2 5 2.8-5 2.8Z"></path>
               </svg>
-            </a>
-            <a href="https://www.instagram.com/" aria-label="Instagram">
+            </span>
+            <span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="4" y="4" width="16" height="16" rx="4"></rect>
                 <circle cx="12" cy="12" r="3.6"></circle>
                 <circle cx="17.4" cy="6.7" r=".7" class="social-links__fill"></circle>
               </svg>
-            </a>
-            <a href="https://x.com/" aria-label="X">
+            </span>
+            <span>
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M5 4.5 19 19.5M19 4.5 5 19.5"></path>
               </svg>
-            </a>
+            </span>
           </div>
           <p>A more conscious world<br>is possible.</p>
         </div>
