@@ -155,6 +155,43 @@ assert.equal(texts.length, legacyTexts.length, 'text extraction does not match l
 assert.equal(extractedQuoteCount, legacyQuoteCount, 'quote extraction does not match legacy/index.html');
 assertCardLines(texts, 'text');
 
+
+// Quote replacements approved by the owner (2026-09-20) after the research desk
+// found the originals could not be located in their attributed source. Each entry
+// names the exact line being replaced, so a quote can only change in the one way
+// that was signed off - any other drift still fails the build.
+const APPROVED_QUOTE_CORRECTIONS = {
+  'taoTeChing:0': {
+    from: 'The Tao that can be named is not the eternal Tao.',
+    to: 'The way that can be spoken of is not the constant way.'
+  },
+  'taoTeChing:2': {
+    from: 'Nature does not hurry, yet everything is accomplished.',
+    to: 'The Tao in its regular course does nothing, and so there is nothing which it does not do.'
+  },
+  'marcusAurelius:0': {
+    from: 'You have power over your mind - not outside events. Realize this, and you will find strength.',
+    to: 'If thou art pained by any external thing, it is not this thing that disturbs thee, but thy own judgment about it.'
+  },
+  'marcusAurelius:1': {
+    from: 'Everything we hear is an opinion, not a fact. Everything we see is perspective, not truth.',
+    to: 'Everything is opinion.'
+  },
+  'ibnArabi:0': {
+    from: 'The self is an ocean without a shore. Gazing upon it has no beginning or end.',
+    to: 'The self is an ocean without shore. Gazing upon it has no end in this world and the next.'
+  },
+  'emerson:1': {
+    from: 'To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.',
+    to: 'Whoso would be a man must be a nonconformist.'
+  },
+  'tolle:0': {
+    from: 'Realize deeply that the present moment is all you have. Make the NOW the primary focus of your life.',
+    to: 'Realize deeply that the present moment is all you ever have. Make the NOW the primary focus of your life.'
+  }
+};
+const appliedCorrections = [];
+
 const correctedPeriods = [];
 for (const [index, text] of texts.entries()) {
   const legacy = legacyTexts[index];
@@ -183,11 +220,35 @@ for (const [index, text] of texts.entries()) {
   );
   assert.ok(String(text.period || '').trim(), `text ${text.id} lost its period`);
   if (text.period !== legacy.period) correctedPeriods.push([text.id, legacy.period, text.period]);
-  assert.deepEqual(
-    text.quotes.map(({ text: quote, context }) => ({ text: quote, context })),
-    legacy.quotes,
-    `quote wording or order changed for ${text.id}`
+  assert.equal(
+    text.quotes.length,
+    legacy.quotes.length,
+    `quote count changed for ${text.id}`
   );
+  text.quotes.forEach((quote, qi) => {
+    const legacyQuote = legacy.quotes[qi];
+    const approved = APPROVED_QUOTE_CORRECTIONS[`${text.id}:${qi}`];
+    if (approved && legacyQuote.text === approved.from && quote.text === approved.to) {
+      appliedCorrections.push([text.id, qi]);
+      assert.equal(
+        quote.context,
+        legacyQuote.context,
+        `corrected quote must keep its original context for ${text.id}`
+      );
+      assert.equal(
+        quote.source.verified,
+        true,
+        `a corrected quote must be verified for ${text.id}`
+      );
+      return;
+    }
+    assert.equal(
+      quote.text,
+      legacyQuote.text,
+      `quote wording changed for ${text.id} (quote ${qi + 1}) without an approved correction`
+    );
+    assert.equal(quote.context, legacyQuote.context, `quote context changed for ${text.id}`);
+  });
   for (const quote of text.quotes) {
     assert.equal(typeof quote.source, 'object', `quote source missing for ${text.id}`);
     assert.equal(
@@ -263,6 +324,13 @@ console.log(
   `
 Quote sourcing: ${verifiedQuotes} verified, ${extractedQuoteCount - verifiedQuotes} carrying the paraphrase mark, ${extractedQuoteCount} total.`
 );
+
+assert.equal(
+  appliedCorrections.length,
+  Object.keys(APPROVED_QUOTE_CORRECTIONS).length,
+  'an approved quote correction is no longer being applied'
+);
+console.log(`Approved quote corrections applied: ${appliedCorrections.length}`);
 
 console.log('');
 console.log('Content verification passed.');

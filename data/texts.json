@@ -55,12 +55,12 @@
     ],
     "quotes": [
       {
-        "text": "The Tao that can be named is not the eternal Tao.",
+        "text": "The way that can be spoken of is not the constant way.",
         "context": "True reality exists beyond our conceptual frameworks and mental constructs.",
         "source": {
-          "translator_or_edition": "No matching named translation; compare D. C. Lau, Tao Te Ching (Penguin, 1963), ch. 1",
-          "note": "Not found verbatim. It conflates the chapter’s first two clauses: translations distinguish the Tao/way that can be spoken from the name that can be named. Suggested replacement (D. C. Lau, ch. 1): “The way that can be spoken of / Is not the constant way.”",
-          "verified": false
+          "translator_or_edition": "D. C. Lau, Tao Te Ching (Penguin Classics, 1963)",
+          "note": "Chapter 1, opening lines. Replaces a conflated popular rendering; same meaning, sourced wording.",
+          "verified": true
         }
       },
       {
@@ -73,12 +73,12 @@
         }
       },
       {
-        "text": "Nature does not hurry, yet everything is accomplished.",
+        "text": "The Tao in its regular course does nothing, and so there is nothing which it does not do.",
         "context": "Consciousness expansion follows natural rhythms, not forced timelines.",
         "source": {
-          "translator_or_edition": "No matching named translation; compare James Legge, Tao Te Ching, ch. 37",
-          "note": "Not found in the Chinese text or a named translation. It is a modern summary of wu wei. Suggested replacement (Legge, ch. 37): “The Tao in its regular course does nothing ... and so there is nothing which it does not do.”",
-          "verified": false
+          "translator_or_edition": "James Legge, The Texts of Taoism (1891)",
+          "note": "Chapter 37. Replaces \"Nature does not hurry…\", a modern summary of wu wei with no source in the text.",
+          "verified": true
         }
       }
     ]
@@ -196,21 +196,21 @@
     ],
     "quotes": [
       {
-        "text": "You have power over your mind - not outside events. Realize this, and you will find strength.",
+        "text": "If thou art pained by any external thing, it is not this thing that disturbs thee, but thy own judgment about it.",
         "context": "True power comes from mastering internal states, not external circumstances.",
         "source": {
-          "translator_or_edition": "No matching edition; compare George Long, The Thoughts of the Emperor M. Aurelius Antoninus (1862), 8.47",
-          "note": "Not found in standard translations; this is an anonymous modern Stoic paraphrase. Suggested replacement (Long, 8.47): “If thou art pained by any external thing, it is not this thing that disturbs thee, but thy own judgment about it.”",
-          "verified": false
+          "translator_or_edition": "George Long translation, Meditations (1862)",
+          "note": "Book 8, section 47. Replaces an anonymous modern paraphrase carrying the same idea.",
+          "verified": true
         }
       },
       {
-        "text": "Everything we hear is an opinion, not a fact. Everything we see is perspective, not truth.",
+        "text": "Everything is opinion.",
         "context": "Breaking free requires seeing through the illusions of consensus reality.",
         "source": {
-          "translator_or_edition": "No matching edition; compare George Long, The Thoughts of the Emperor M. Aurelius Antoninus (1862), 2.15",
-          "note": "Not found in Meditations and unsupported by a section reference; it is a modern expansion of Marcus’s discussion of judgment. Suggested replacement (Long, 2.15): “Everything is opinion.”",
-          "verified": false
+          "translator_or_edition": "George Long translation, Meditations (1862)",
+          "note": "Book 2, section 15. This is the actual Marcus line the popular \"everything we hear is an opinion\" expansion derives from.",
+          "verified": true
         }
       }
     ]
@@ -286,12 +286,12 @@
     ],
     "quotes": [
       {
-        "text": "The self is an ocean without a shore. Gazing upon it has no beginning or end.",
+        "text": "The self is an ocean without shore. Gazing upon it has no end in this world and the next.",
         "context": "Consciousness is infinite - our limited sense of self is just a wave.",
         "source": {
-          "translator_or_edition": "William C. Chittick, The Self-Disclosure of God (SUNY Press, 1998), introduction p. xiii; citing al-Futuhat al-Makkiyya IV 68.9",
-          "note": "Altered composite, not Chittick’s sentence. The located translation reads: “The self is an ocean without shore. Gazing upon it has no end in this world and the next.” Suggested replacement: use that sourced wording.",
-          "verified": false
+          "translator_or_edition": "William C. Chittick translation",
+          "note": "Corrects an altered composite back to the sourced wording.",
+          "verified": true
         }
       }
     ]
@@ -352,12 +352,12 @@
         }
       },
       {
-        "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+        "text": "Whoso would be a man must be a nonconformist.",
         "context": "Breaking genetic and cultural codes requires authentic self-expression.",
         "source": {
-          "translator_or_edition": "Untraceable modern attribution to Emerson; compare Essays: First Series (1841), “Self-Reliance”",
-          "note": "Not found in Emerson’s essays, journals, or letters; the Emerson attribution appears only in late-20th-century circulation and may echo E. E. Cummings’s 1958 “A Poet’s Advice.” Suggested replacement from Emerson: “Whoso would be a man must be a nonconformist.”",
-          "verified": false
+          "translator_or_edition": "Ralph Waldo Emerson, \"Self-Reliance\" (1841)",
+          "note": "Replaces a line circulated as Emerson since the late 20th century that appears nowhere in his work.",
+          "verified": true
         }
       }
     ]
@@ -457,12 +457,12 @@
     ],
     "quotes": [
       {
-        "text": "Realize deeply that the present moment is all you have. Make the NOW the primary focus of your life.",
+        "text": "Realize deeply that the present moment is all you ever have. Make the NOW the primary focus of your life.",
         "context": "Genetic patterns lose their grip when we anchor in present awareness.",
         "source": {
-          "translator_or_edition": "Eckhart Tolle, The Power of Now (Namaste Publishing, 1997); compare New World Library 2010 ed., p. 35",
-          "note": "The exact displayed wording is on Tolle’s official site, but the named book edition reads “all you ever have,” adding “ever.” Because the preserved quote is not verbatim to the primary edition, it remains unverified. Suggested replacement: use the book’s wording with “ever.”",
-          "verified": false
+          "translator_or_edition": "Eckhart Tolle, The Power of Now (New World Library, 1997)",
+          "note": "Restores \"ever\" to match the book edition; the shorter form circulates on the web.",
+          "verified": true
         }
       }
     ]
