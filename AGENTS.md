@@ -22,4 +22,4 @@ Rules that override anything else:
 
 Superseded, do not resurrect: the "temple complex / Court map / standing figure" direction and everything in `docs/redesign/archive/`.
 
-Local preview: open `new/index.html` directly, or `python -m http.server 8000`.
+Local preview: `python -m http.server 8000` from the repo root, then open `http://localhost:8000/new/index.html`. Opening the file directly will NOT work - the data JSON is fetched at runtime and browsers block that on `file://`.

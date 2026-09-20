@@ -97,7 +97,7 @@ Acceptance: node and connection counts equal `connections.json`; path progress a
 ## Packet 08 — Promote, QA, docs
 
 - Move `new/` to root; keep the old file as `legacy/index.html` for one release.
-- QA checklist recorded in NOTES.md: every route at 390px and 1440px; Lighthouse performance ≥ 90 and a11y ≥ 95 on home, a chapter, the library and the web page; `prefers-reduced-motion` walkthrough; no console errors; fonts swap; works from `file://` and from Pages; **side-by-side screenshot of the finished home page against `MASTER-mockup.png`**.
+- QA checklist recorded in NOTES.md: every route at 390px and 1440px; Lighthouse performance ≥ 90 and a11y ≥ 95 on home, a chapter, the library and the web page; `prefers-reduced-motion` walkthrough; no console errors; fonts swap; served over HTTP (see bible §7 — `file://` is not supported and is not a goal); **side-by-side screenshot of the finished home page against `MASTER-mockup.png`**.
 - Docs: rewrite `README.md` (what it is, the band model, how to run, how content is edited); rewrite `docs/ROADMAP.md` to a short honest list — the old VR/AR/AI-guide/community/PWA bloat is deleted, not carried; `docs/CHANGELOG.md` gets a `[2.0.0]` entry; archive `CONTENT_EXPANSION.md` and `docs/WISDOM_TEXTS_IMPLEMENTATION.md` into `docs/archive/`.
 - Merge packet R verdicts into `data/texts.json` before release.
 
