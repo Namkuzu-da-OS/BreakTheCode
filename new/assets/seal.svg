@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="seal-title seal-desc">
+  <title id="seal-title">Breaking Your Genetic Code seal</title>
+  <desc id="seal-desc">A circular gold seal with a watchful eye and radiating lines.</desc>
+  <g fill="none" stroke="#C9A227" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="48" cy="48" r="43" stroke-width="2"/>
+    <circle cx="48" cy="48" r="35" stroke-width="1" opacity=".72"/>
+    <path d="M23 48c6.8-8.2 15.1-12.3 25-12.3S66.2 39.8 73 48c-6.8 8.2-15.1 12.3-25 12.3S29.8 56.2 23 48Z" stroke-width="2"/>
+    <circle cx="48" cy="48" r="8.5" stroke-width="2"/>
+    <circle cx="48" cy="48" r="2.5" fill="#C9A227" stroke="none"/>
+    <path d="M48 9v17M48 70v17M9 48h17M70 48h17M20.4 20.4l12 12M63.6 63.6l12 12M75.6 20.4l-12 12M32.4 63.6l-12 12" stroke-width="1.7"/>
+    <path d="M34.2 11.6l5.2 13.6M56.6 70.8l5.2 13.6M11.6 61.8l13.6-5.2M70.8 39.4l13.6-5.2M11.6 34.2l13.6 5.2M70.8 56.6l13.6 5.2M34.2 84.4l5.2-13.6M56.6 25.2l5.2-13.6" stroke-width="1.2" opacity=".82"/>
+  </g>
+</svg>
