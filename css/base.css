@@ -1,0 +1,213 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ink);
+  scroll-behavior: smooth;
+  scrollbar-color: var(--gold) var(--ink);
+}
+
+body {
+  min-width: 20rem;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+body::before {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-image: var(--grain-image);
+  content: "";
+  opacity: 0.035;
+  pointer-events: none;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+img,
+svg {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  border-radius: 1px;
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 2000;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.55rem 0.8rem;
+  transform: translateY(-150%);
+  border: 1px solid var(--gold);
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.button {
+  display: inline-flex;
+  min-height: 3.15rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.82rem 1.7rem;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button--solid {
+  border-color: var(--gold-lit);
+  background: linear-gradient(135deg, var(--gold-lit), var(--gold));
+  box-shadow: 0 8px 30px rgba(201, 112, 47, 0.18);
+  color: var(--ink);
+}
+
+.button--solid:hover {
+  background: var(--gold-lit);
+  box-shadow: 0 10px 34px rgba(240, 206, 122, 0.24);
+}
+
+.button--outline {
+  background: rgba(11, 10, 8, 0.52);
+  color: var(--cream);
+}
+
+.button--outline:hover {
+  border-color: var(--gold-lit);
+  background: var(--gold-lit);
+  color: var(--ink);
+}
+
+.micro-label {
+  color: rgba(239, 231, 216, 0.68);
+  font-family: var(--font-display);
+  font-size: var(--text-micro);
+  letter-spacing: 0.28em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.micro-label span {
+  display: block;
+}
+
+.micro-label::after {
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  margin-top: 0.7rem;
+  background: var(--gold);
+  content: "";
+  opacity: 0.8;
+}
+
+.reveal-band {
+  opacity: 1;
+  transform: none;
+}
+
+body.reveal-ready .reveal-band:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+body.reveal-ready .reveal-band {
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  body.reveal-ready .reveal-band:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+  }
+}

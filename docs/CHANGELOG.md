@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-09-19
+
+### Added
+- A monumental, responsive home page matching the approved ancient-world master composition.
+- Dedicated Journey, Living Library, Wisdom Web, Practices, and About routes.
+- A data-driven library of 16 texts and 28 quotations with visible source-verification status.
+- A keyboard-accessible SVG home constellation and an interactive Canvas 2D Wisdom Web.
+- Local bookmarks, study-path progress, and private reflection storage with migration from the previous keys.
+- Reduced-motion support, visible focus states, responsive layouts, and semantic page structure.
+
+### Changed
+- Replaced the former single-file cosmic interface with a dependency-free HTML, CSS, JSON, and ES-module architecture.
+- Promoted the redesigned site to the repository root for GitHub Pages deployment.
+- Reframed the product around the book title, **Breaking Your Genetic Code**, throughout the interface and metadata.
+- Rewrote project documentation and reduced the roadmap to evidence, maintenance, and release follow-through.
+
+### Deprecated
+- Moved the 1.x site to `/legacy/`; it will remain for one release cycle.
+
 ### Changed
 - Removed 2 wisdom cards from Introduction section: Plato's Republic (380 BCE) and The Emerald Tablet (200 CE)
 - Removed 2 wisdom cards from The Awakening section: Rumi's Poetry (13th century) and Socrates via Plato (5th century BCE)

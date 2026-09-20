@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breaking Your Genetic Code — The Complex</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --limestone:#E8DCC4; --sandstone:#C9B48A; --gold:#D4AF37; --lapis:#1B3A6B;
+  --carnelian:#B03A2E; --obsidian:#0B0A0A; --night:#101425;
+  --room-bg:#141a2e; --room-ink:#E8DCC4; --room-dim:#a89f8a; --room-accent:#D4AF37;
+  --torch:.55; --tx:50%; --ty:40%;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{
+  background:var(--room-bg); color:var(--room-ink);
+  font-family:"Cormorant Garamond",Georgia,serif; font-size:19px; line-height:1.55;
+  transition:background .6s ease,color .6s ease; overflow-x:hidden;
+}
+body::before{ /* stone grain */
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.16; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#torch{ position:fixed; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(520px circle at var(--tx) var(--ty), rgba(255,196,90,calc(var(--torch)*.22)), rgba(255,160,60,calc(var(--torch)*.06)) 40%, transparent 70%);
+  transition:background .4s;
+}
+#wall{ position:fixed; inset:0; z-index:0; pointer-events:none; }
+#wall svg{ position:absolute; inset:0; width:100%; height:100%; }
+#wall .g{ color:var(--room-ink); opacity:.055; }
+#wall .g.live{ opacity:.16; pointer-events:auto; cursor:pointer; }
+#wall .g.live:hover,#wall .g.live:focus{ opacity:.6; outline:none; }
+#stage{ position:relative; z-index:2; min-height:100vh; }
+#veil{ position:fixed; inset:0; background:#000; z-index:50; opacity:0; pointer-events:none; transition:opacity .22s ease; }
+#veil.on{ opacity:1; pointer-events:auto; }
+h1,h2,h3,.caps{ font-family:Cinzel,serif; letter-spacing:.06em; }
+.caps{ font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:var(--room-dim); }
+a{ color:var(--room-accent); }
+
+/* GATE */
+.gate{ min-height:100vh; display:grid; place-items:center; text-align:center; padding:24px 20px; }
+.gate .ankh{ width:34px; color:var(--gold); margin:0 auto 18px; }
+.gate h1{ font-size:clamp(2rem,6vw,3.6rem); font-weight:600; margin:0 0 14px; color:var(--limestone); line-height:1.1; }
+.gate p{ max-width:34ch; margin:0 auto 28px; font-style:italic; font-size:1.15rem; }
+.enter{ display:inline-block; font-family:Cinzel,serif; letter-spacing:.3em; text-transform:uppercase; font-size:.8rem;
+  color:var(--gold); border:1px solid rgba(212,175,55,.5); padding:14px 26px; text-decoration:none; }
+.enter:hover{ background:rgba(212,175,55,.08); }
+
+/* COURT */
+.court{ min-height:100vh; display:grid; grid-template-rows:auto 1fr auto; padding:18px 16px 20px; max-width:560px; margin:0 auto; }
+.court header{ text-align:center; }
+.court header h2{ font-size:.95rem; margin:0; font-weight:600; color:var(--limestone); }
+.plan{ width:100%; height:auto; max-height:calc(100vh - 150px); display:block; margin:6px auto; }
+.plan .stroke{ fill:none; stroke:var(--gold); stroke-width:1.1; stroke-opacity:.85; }
+.plan .thick{ stroke-width:2.6; stroke-opacity:.9; }
+.plan .wallfill{ fill:#0e1120; }
+.plan .lbl{ font-family:Cinzel,serif; font-size:8.6px; letter-spacing:.14em; fill:var(--limestone); text-anchor:middle; text-transform:uppercase; }
+.plan .num{ font-family:Cinzel,serif; font-size:7px; fill:var(--gold); text-anchor:middle; letter-spacing:.2em; }
+.plan .side.l{ text-anchor:end; }
+.plan .side.r{ text-anchor:start; }
+.plan .note{ font-family:"Cormorant Garamond",serif; font-size:8px; fill:var(--room-dim); font-style:italic; }
+.plan .axis{ stroke:var(--gold); stroke-opacity:.35; stroke-dasharray:3 4; stroke-width:.8; }
+.plan .lit{ fill:url(#glow); }
+.plan .room{ cursor:pointer; outline:none; }
+.plan .room:hover .stroke,.plan .room:focus .stroke{ stroke-opacity:1; stroke:#fff1c2; }
+.plan .room:focus .hit{ stroke:#fff1c2; stroke-width:1; stroke-dasharray:2 2; }
+.plan .hit{ fill:transparent; stroke:none; }
+.plan .cur{ animation:pulse 2.6s ease-in-out infinite; }
+@keyframes pulse{ 0%,100%{opacity:.35} 50%{opacity:.85} }
+.court footer{ text-align:center; font-style:italic; color:var(--room-dim); font-size:1rem; }
+
+/* HALL */
+.hall{ max-width:66ch; margin:0 auto; padding:34px 20px 60px; }
+.lintel{ text-align:center; border-top:1px solid rgba(212,175,55,.45); border-bottom:1px solid rgba(212,175,55,.45); padding:16px 0; margin-bottom:34px; }
+.lintel .num{ font-family:Cinzel,serif; letter-spacing:.4em; color:var(--gold); font-size:.8rem; }
+.lintel h2{ margin:6px 0 0; font-size:clamp(1.4rem,4vw,2rem); font-weight:600; color:var(--limestone); }
+.hall p{ margin:0 0 1.2em; }
+.inscription{ font-family:Cinzel,serif; text-align:center; font-size:1.05rem; letter-spacing:.08em; line-height:1.7; color:var(--limestone);
+  margin:34px 0; padding:22px 14px; border-left:2px solid var(--gold); border-right:2px solid var(--gold); }
+.stela{ margin:34px auto; max-width:52ch; background:linear-gradient(180deg,rgba(232,220,196,.06),rgba(232,220,196,.02));
+  border:1px solid rgba(212,175,55,.35); border-top-width:3px; border-radius:14px 14px 3px 3px; padding:22px 22px 18px; position:relative; }
+.stela::before{ content:""; position:absolute; left:50%; top:-10px; width:16px; height:16px; transform:translateX(-50%) rotate(45deg);
+  background:var(--room-bg); border-left:1px solid rgba(212,175,55,.35); border-top:1px solid rgba(212,175,55,.35); }
+.stela .caps{ text-align:center; margin-bottom:12px; color:var(--gold); }
+.stela .q{ font-style:italic; font-size:1.15rem; text-align:center; margin:0 0 10px; color:var(--limestone); }
+.stela .ctx{ font-size:1rem; margin:0 0 12px; color:var(--room-dim); }
+.stela .cite{ font-size:.85rem; color:var(--room-dim); border-top:1px dashed rgba(212,175,55,.3); padding-top:8px; }
+.stela .cite b{ font-weight:500; color:var(--limestone); }
+.doorway{ display:flex; justify-content:space-between; gap:12px; margin-top:44px; padding-top:18px; border-top:1px solid rgba(212,175,55,.35); }
+.doorway a{ font-family:Cinzel,serif; font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; color:var(--gold); padding:10px 4px; }
+.uncarved{ text-align:center; font-style:italic; color:var(--room-dim); padding:40px 0; }
+
+/* GLYPH CARD */
+#card{ position:fixed; z-index:60; left:50%; bottom:18px; transform:translateX(-50%); width:min(92vw,380px);
+  background:#0d0f19; color:var(--limestone); border:1px solid rgba(212,175,55,.5); padding:16px 18px; display:none; }
+#card.on{ display:block; }
+#card .g{ width:34px; color:var(--gold); float:left; margin:0 14px 6px 0; }
+#card h3{ margin:0 0 4px; font-size:.95rem; color:var(--gold); }
+#card p{ margin:0 0 6px; font-size:1rem; line-height:1.4; }
+#card .src{ font-size:.8rem; color:var(--room-dim); }
+#card button{ position:absolute; top:6px; right:8px; background:none; border:0; color:var(--room-dim); font-size:1.1rem; cursor:pointer; }
+@media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important } }
+</style>
+</head>
+<body>
+<div id="wall"></div>
+<div id="torch"></div>
+<div id="veil"></div>
+<main id="stage"></main>
+<aside id="card" role="dialog" aria-live="polite"><button aria-label="close" onclick="closeCard()">×</button><div id="cardBody"></div></aside>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="ankh" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><ellipse cx="32" cy="17" rx="9" ry="11"/><path d="M32 28v30M17 33h30"/></g></symbol>
+  <symbol id="djed" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M27 12v48M37 12v48M24 60h16"/><path d="M17 16h30M17 24h30M17 32h30M17 40h30"/></g></symbol>
+  <symbol id="feather" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M32 60C18 44 20 16 36 5c10 12 8 40-4 55z"/><path d="M32 60L35 9"/></g></symbol>
+  <symbol id="shen" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><circle cx="32" cy="27" r="14"/><path d="M14 52h36M18 52v-6M46 52v-6"/></g></symbol>
+  <symbol id="ib" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M32 12c8 0 14 6 14 14 0 14-12 24-14 30-2-6-14-16-14-30 0-8 6-14 14-14z"/><path d="M18 24l-8-3M46 24l8-3M26 12h12"/></g></symbol>
+  <symbol id="ka" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 52V22h36v30M8 52h48"/></g></symbol>
+ </defs>
+</svg>
+
+<script>
+/* ---------- content (Hall I = your Introduction, verbatim) ---------- */
+const HALLS = [
+ {n:"I",  name:"Recognition", bg:"#1a2140", ink:"#E8DCC4", dim:"#b3a992", torch:.35},
+ {n:"II", name:"The Awakening", bg:"#171c37", ink:"#E8DCC4", dim:"#ada38c", torch:.42},
+ {n:"III",name:"Breaking Patterns", bg:"#14172c", ink:"#E6d9c0", dim:"#a59b85", torch:.5},
+ {n:"IV", name:"Ancient Wisdom", bg:"#111323", ink:"#E4d6bb", dim:"#9f957f", torch:.6},
+ {n:"V",  name:"Expanding Consciousness", bg:"#0e0f1a", ink:"#E2d3b6", dim:"#998f79", torch:.72},
+ {n:"VI", name:"Full Potential", bg:"#0b0a0a", ink:"#E0cfae", dim:"#948a72", torch:.9},
+];
+const INTRO = {
+ prose:[
+  "You are more than your biology. More than the cultural programming that shapes your daily existence. This experience is a guide to breaking free from the unconscious patterns that keep you asleep, trapped in cycles of behavior dictated by hormones, social conditioning, and tribal instincts.",
+  "Throughout human history, there have been those who awakened early—individuals who saw through the veil of everyday consciousness and glimpsed the deeper truths of existence. They understood that most of humanity moves through life in a state of unconscious reaction, driven by forces they neither understand nor control.",
+  "This journey begins with a simple recognition: you have been programmed. Your genes carry ancient instructions. Your culture has installed software in your mind. But you also have something else—the capacity to wake up, to become conscious, to rewrite your own code."
+ ],
+ pull:"The first step to freedom is recognizing that you are not free.",
+ stela:{ title:"The Upanishads", period:"c. 800–200 BCE",
+  quote:"As a person acts, so he becomes in life. Those who do good become good; those who do harm become bad.",
+  context:"The ancient Vedic texts understood that our patterns shape our reality — a truth modern neuroscience confirms.",
+  cite:"Bṛhadāraṇyaka Upaniṣad 4.4.5 · wording after Olivelle (1996); rendered, not verbatim" }
+};
+const GLYPHS = {
+ ankh:{name:"ꜥnḫ — Ankh", meaning:"Life. Gods hold it to the king's nostrils: the breath of life itself.", src:"Gardiner sign list S34"},
+ djed:{name:"ḏd — Djed pillar", meaning:"Stability, endurance. The backbone of Osiris, raised upright each year so the world would stand.", src:"Gardiner R11"},
+ feather:{name:"Feather of Ma'at", meaning:"Truth, order, balance. Weighed against the heart of the dead in the Book of the Dead, spell 125.", src:"Gardiner H6 · Faulkner 1972"},
+ shen:{name:"šn — Shen ring", meaning:"The ring without end: eternity, protection. Stretched out, it becomes the cartouche that guards a name.", src:"Gardiner V9"},
+ ib:{name:"ib — The heart", meaning:"Seat of mind and conscience. The one part of you that testifies at the judgement.", src:"Gardiner F34"},
+ ka:{name:"kꜣ — Ka", meaning:"The life-force, the double born with you that must be fed after death.", src:"Gardiner D28"},
+};
+const ROOMS = ["gate","court","hall1","hall2","hall3","hall4","hall5","hall6","house","obs","cart"];
+const store = { get visited(){ try{return JSON.parse(localStorage.getItem("btc.mock.visited")||"[]")}catch{return[]} },
+  visit(id){ const v=new Set(this.visited); v.add(id); try{localStorage.setItem("btc.mock.visited",JSON.stringify([...v]))}catch{} } };
+
+/* ---------- glyph wall ---------- */
+function rng(seed){ let s=seed>>>0||1; return ()=> (s=(s*1664525+1013904223)>>>0)/4294967296; }
+function buildWall(seedKey){
+  const wall=document.getElementById("wall"); const r=rng([...seedKey].reduce((a,c)=>a*31+c.charCodeAt(0),7));
+  const W=innerWidth,H=innerHeight; const ids=Object.keys(GLYPHS); const cell=92;
+  let out=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`;
+  let i=0;
+  for(let y=cell*.3;y<H;y+=cell) for(let x=cell*.3;x<W;x+=cell){
+    const id=ids[Math.floor(r()*ids.length)]; const jx=(r()-.5)*44, jy=(r()-.5)*44; const s=26+r()*30; if(r()<.22) continue;
+    const live = (i++%8)===3;
+    out+=`<use href="#${id}" x="${(x+jx).toFixed(0)}" y="${(y+jy).toFixed(0)}" width="${s.toFixed(0)}" height="${s.toFixed(0)}" class="g${live?' live':''}" ${live?`role="button" tabindex="0" aria-label="${GLYPHS[id].name} glyph" data-g="${id}"`:''}/>`;
+  }
+  wall.innerHTML=out+"</svg>";
+  wall.querySelectorAll(".live").forEach(el=>{ el.addEventListener("click",()=>openCard(el.dataset.g)); el.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();openCard(el.dataset.g)} }); });
+}
+function openCard(id){ const g=GLYPHS[id]; document.getElementById("cardBody").innerHTML=
+  `<svg class="g"><use href="#${id}"/></svg><h3>${g.name}</h3><p>${g.meaning}</p><div class="src">${g.src}</div>`;
+  document.getElementById("card").classList.add("on"); }
+function closeCard(){ document.getElementById("card").classList.remove("on"); }
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeCard(); });
+
+/* ---------- torch ---------- */
+addEventListener("pointermove",e=>{ document.documentElement.style.setProperty("--tx",e.clientX+"px"); document.documentElement.style.setProperty("--ty",e.clientY+"px"); },{passive:true});
+
+/* ---------- court plan ---------- */
+function plan(cur){
+  const vis=new Set(store.visited);
+  const room=(id,href,shape,label,lx,ly,num,side)=>{
+    const lit=vis.has(id)?'class="lit"':'fill="none"';
+    const s2 = side ? `side ${lx>200?"r":"l"}` : "";
+    // labels may carry "|" to break onto a second line — long room names must never run past the frame
+    const lines = label.split("|");
+    const lbl = `<text class="lbl ${s2}" x="${lx}" y="${ly}">${lines.map((l,i)=>`<tspan x="${lx}" dy="${i?11:0}">${l}</tspan>`).join("")}</text>`;
+    const txt = side
+      ? `<line x1="${lx>200?lx-8:lx+8}" y1="${ly-4}" x2="${side}" y2="${ly-4}" class="axis"/><text class="num ${s2}" x="${lx}" y="${ly-9}">${num}</text>${lbl}`
+      : `${num?`<text class="num" x="${lx}" y="${ly-9}">${num}</text>`:''}${lbl}`;
+    return `<a href="${href}" class="room${cur===id?' cur':''}" role="link" tabindex="0" aria-label="${label}${vis.has(id)?' (visited)':''}">${shape.replaceAll('%F%',lit)}${txt}</a>`;
+  };
+  const rect=(x,y,w,h,rx=3,extra="")=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" %F%/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" class="stroke thick"/>${extra}`;
+  let s=`<svg class="plan" viewBox="-120 0 640 648" role="group" aria-label="Plan of the walk: a standing figure with the rooms placed along the body">
+   <defs><radialGradient id="glow"><stop offset="0" stop-color="#ffcf6a" stop-opacity=".55"/><stop offset="1" stop-color="#d4af37" stop-opacity=".12"/></radialGradient></defs>
+   <rect x="-114" y="6" width="628" height="628" class="stroke" stroke-opacity=".3"/>
+   <!-- the figure -->
+   <g fill="none" stroke="#E8DCC4" stroke-opacity=".4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+     <circle cx="200" cy="78" r="42"/>
+     <path d="M182 116v26M218 116v26"/>
+     <path d="M182 142C168 144 142 146 130 158C124 202 142 232 148 262C154 296 142 312 144 334L256 334C258 312 246 296 252 262C258 232 276 202 270 158C258 146 232 144 218 142"/>
+     <path d="M131 161C97 197 69 249 59 301C55 327 56 343 56 355"/>
+     <path d="M269 161C303 197 331 249 341 301C345 327 344 343 344 355"/>
+     <path d="M144 334C148 392 152 470 150 544"/>
+     <path d="M196 340C192 398 186 470 184 544"/>
+     <path d="M204 340C208 398 214 470 216 544"/>
+     <path d="M256 334C252 392 248 470 250 544"/>
+     <path d="M196 340L200 350L204 340"/>
+   </g>
+   <line x1="200" y1="36" x2="200" y2="600" class="axis"/>
+   <text class="note" x="506" y="628" text-anchor="end">After Schwaller de Lubicz's reading of Luxor — our own figure, our own placement</text>
+   <text class="note" x="-106" y="628">Lit rooms are where you have been</text>`;
+  // the gate: the threshold beneath the feet
+  s+=room("gate","#/gate",rect(120,586,160,10,1),"The Gate",420,596,"the threshold",280);
+  // halls, feet → head
+  s+=room("hall1","#/hall/1",rect(148,546,48,26,4)+rect(204,546,48,26,4),"Recognition",-20,566,"I · the feet",148);
+  s+=room("hall2","#/hall/2",rect(166,286,68,40,6),"The|Awakening",-20,308,"II · the navel",166);
+  s+=room("hall3","#/hall/3",rect(150,160,100,56,8,`<line x1="200" y1="160" x2="200" y2="216" class="stroke"/>`),"Breaking|Patterns",-20,190,"III · the lungs",150);
+  s+=room("hall4","#/hall/4",rect(172,224,56,44,22),"Ancient|Wisdom",420,248,"IV · the heart",228);
+  s+=room("hall5","#/hall/5",rect(180,118,40,22,4),"Expanding|Consciousness",420,131,"V · the throat",220);
+  s+=room("hall6","#/hall/6",rect(170,52,60,50,25),"Full|Potential",-20,78,"VI · the head",170);
+  // the eyes look out: observatory
+  s+=room("obs","#/observatory",`<line x1="228" y1="70" x2="292" y2="58" class="axis"/><circle cx="330" cy="52" r="32" %F%/><circle cx="330" cy="52" r="32" class="stroke thick"/><circle cx="330" cy="52" r="14" class="stroke"/>`,"Observatory",330,100,"the eyes");
+  // the hands: what you read, what you keep
+  s+=room("house","#/house",rect(24,356,64,50,4,`<line x1="24" y1="373" x2="88" y2="373" class="stroke"/><line x1="24" y1="390" x2="88" y2="390" class="stroke"/>`),"House of Life",56,424,"the left hand");
+  s+=room("cart","#/cartouche",`<rect x="312" y="366" width="56" height="30" rx="15" %F%/><rect x="312" y="366" width="56" height="30" rx="15" class="stroke thick"/><line x1="374" y1="366" x2="374" y2="396" class="stroke thick"/>`,"Your Cartouche",344,424,"the right hand");
+  return s+"</svg>";
+}
+
+/* ---------- rooms ---------- */
+function setLight(bg,ink,dim,torch){ const r=document.documentElement.style; r.setProperty("--room-bg",bg); r.setProperty("--room-ink",ink); r.setProperty("--room-dim",dim); r.setProperty("--torch",torch); }
+const R = {
+ gate(){ setLight("#101425","#E8DCC4","#a89f8a",.5); return `<section class="gate"><div>
+   <svg class="ankh" viewBox="0 0 64 64"><use href="#ankh"/></svg>
+   <div class="caps" style="margin-bottom:14px">The world of the book</div>
+   <h1>Breaking Your<br>Genetic Code</h1>
+   <p>You were programmed before you could consent — by genes, by family, by culture. Walk the halls and see it for yourself.</p>
+   <a class="enter" href="#/court">Enter</a>
+   <div class="caps" style="margin-top:30px;opacity:.65;letter-spacing:.2em">Break the code · See the pattern · Understand what shaped you</div></div></section>`; },
+ court(){ setLight("#141a2e","#E8DCC4","#a89f8a",.3); return `<section class="court"><header><div class="caps">The Court</div><h2>Plan of the Walk</h2></header>
+   ${plan("court")}<footer>Walk the halls in order, or go where you're drawn. Lit rooms are where you've been.</footer></section>`; },
+ hall(n){ const h=HALLS[n-1]; setLight(h.bg,h.ink,h.dim,h.torch);
+   const body = n===1 ? `${INTRO.prose.slice(0,1).map(p=>`<p>${p}</p>`).join("")}
+     <div class="inscription">“${INTRO.pull}”</div>
+     ${INTRO.prose.slice(1).map(p=>`<p>${p}</p>`).join("")}
+     <div class="stela"><div class="caps">Stela · ${INTRO.stela.title} · ${INTRO.stela.period}</div><p class="q">“${INTRO.stela.quote}”</p><p class="ctx">${INTRO.stela.context}</p><div class="cite"><b>Source</b> — ${INTRO.stela.cite}</div></div>`
+     : `<p class="uncarved">This hall is not yet carved. In the build it holds your “${h.name}” chapter, its inscription, and its stela — with the light ${n>3?"lower and warmer":"a little dimmer"} than the hall before.</p>`;
+   return `<section class="hall"><div class="lintel"><div class="num">HALL ${h.n} OF VI</div><h2>${h.name}</h2></div>${body}
+     <div class="doorway"><a href="#/court">← The Court</a>${n<6?`<a href="#/hall/${n+1}">Hall ${HALLS[n].n} →</a>`:`<a href="#/court">The Exit →</a>`}</div></section>`; },
+ stub(title,text,torch){ setLight("#12162a","#E8DCC4","#a89f8a",torch); return `<section class="hall"><div class="lintel"><div class="num">&nbsp;</div><h2>${title}</h2></div><p class="uncarved">${text}</p><div class="doorway"><a href="#/court">← The Court</a><span></span></div></section>`; }
+};
+function route(){
+  const h=location.hash.replace(/^#\/?/,"")||"gate"; const [a,b]=h.split("/"); let id, html;
+  if(a==="hall"&&b>=1&&b<=6){ id="hall"+b; html=R.hall(+b); }
+  else if(a==="court"){ id="court"; html=R.court(); }
+  else if(a==="house"){ id="house"; html=R.stub("The House of Life","Your Living Library lives here: all 28 texts as tablets in four era rooms, search, and the study paths the scribe assigns you.",.4); }
+  else if(a==="observatory"){ id="obs"; html=R.stub("The Observatory","Your Wisdom Web as a night sky — texts are stars, connections are the lines between them — with a Time lens that lays the same stars along 3,000 years.",.25); }
+  else if(a==="cartouche"){ id="cart"; html=R.stub("Your Cartouche","Your bookmarked quotes, inscribed inside a name-ring.",.4); }
+  else { id="gate"; html=R.gate(); }
+  const veil=document.getElementById("veil"); veil.classList.add("on"); closeCard();
+  setTimeout(()=>{ document.getElementById("stage").innerHTML=html; buildWall(id); if(id!=="gate") store.visit(id); scrollTo(0,0); veil.classList.remove("on"); }, matchMedia("(prefers-reduced-motion:reduce)").matches?0:230);
+}
+addEventListener("hashchange",route); addEventListener("resize",()=>buildWall(location.hash||"gate"));
+route();
+</script>
+</body>
+</html>
