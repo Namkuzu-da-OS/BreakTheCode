@@ -155,15 +155,19 @@ assert.equal(texts.length, legacyTexts.length, 'text extraction does not match l
 assert.equal(extractedQuoteCount, legacyQuoteCount, 'quote extraction does not match legacy/index.html');
 assertCardLines(texts, 'text');
 
+const correctedPeriods = [];
 for (const [index, text] of texts.entries()) {
   const legacy = legacyTexts[index];
+  // `period` is deliberately NOT frozen to the legacy value. Packet R corrects
+  // dates against current scholarship, so a corrected date is the research desk
+  // doing its job, not content loss. Everything that identifies the text is
+  // still locked, and quote wording below is locked absolutely.
   assert.deepEqual(
     {
       id: text.id,
       era: text.era,
       eraName: text.eraName,
       title: text.title,
-      period: text.period,
       tradition: text.tradition,
       keyTeaching: text.keyTeaching
     },
@@ -172,12 +176,13 @@ for (const [index, text] of texts.entries()) {
       era: legacy.era,
       eraName: legacy.eraName,
       title: legacy.title,
-      period: legacy.period,
       tradition: legacy.tradition,
       keyTeaching: legacy.keyTeaching
     },
     `text metadata changed for ${text.id}`
   );
+  assert.ok(String(text.period || '').trim(), `text ${text.id} lost its period`);
+  if (text.period !== legacy.period) correctedPeriods.push([text.id, legacy.period, text.period]);
   assert.deepEqual(
     text.quotes.map(({ text: quote, context }) => ({ text: quote, context })),
     legacy.quotes,
@@ -244,4 +249,20 @@ console.table([
   { dataset: 'connections', expected: legacyRelationships.length, actual: connections.connections.length, status: 'pass' },
   { dataset: 'featured themes', expected: 10, actual: themes.filter(({ featured }) => featured).length, status: 'pass' }
 ]);
+if (correctedPeriods.length) {
+  console.log(`
+Dates corrected against scholarship (${correctedPeriods.length}):`);
+  for (const [id, was, now] of correctedPeriods) console.log(`  ${id}: ${was}  ->  ${now}`);
+}
+
+const verifiedQuotes = texts.reduce(
+  (sum, text) => sum + text.quotes.filter((quote) => quote.source.verified).length,
+  0
+);
+console.log(
+  `
+Quote sourcing: ${verifiedQuotes} verified, ${extractedQuoteCount - verifiedQuotes} carrying the paraphrase mark, ${extractedQuoteCount} total.`
+);
+
+console.log('');
 console.log('Content verification passed.');

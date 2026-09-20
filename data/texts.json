@@ -4,7 +4,7 @@
     "era": "ancient",
     "eraName": "Ancient Foundations (Pre-500 CE)",
     "title": "The Upanishads",
-    "period": "800-200 BCE",
+    "period": "c. 700–300 BCE",
     "tradition": "Vedic/Hindu",
     "keyTeaching": "Tat Tvam Asi - Thou Art That",
     "cardLines": [
@@ -16,27 +16,27 @@
         "text": "As a person acts, so he becomes in life. Those who do good become good; those who do harm become bad.",
         "context": "The ancient Vedic texts understood that our patterns shape our reality - a truth modern neuroscience confirms.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Eknath Easwaran, The Upanishads, 2nd ed. (Nilgiri Press, 2007)",
+          "note": "Brihadaranyaka Upanishad 4.4.5. Exact wording located in Easwaran: “As a person acts, so he becomes in life. Those who do good become good; those who do harm become bad.”",
+          "verified": true
         }
       },
       {
         "text": "From the unreal lead me to the real, from darkness to light, from death to immortality.",
         "context": "The journey of awakening is universal - moving from illusion to truth.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Eduard Röer, trans., The Brihad Aranyaka Upanishad (Bibliotheca Indica, 1856)",
+          "note": "Brihadaranyaka Upanishad 1.3.28 (First Chapter, Third Brahmana, p. 59). Röer prints the exact words: “From the unreal lead me to the real, from darkness lead me to light, from death lead me to immortality.”",
+          "verified": true
         }
       },
       {
         "text": "You are what your deep, driving desire is. As your desire is, so is your will.",
         "context": "Our deepest intentions create our reality - breaking the code starts with conscious desire.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Eknath Easwaran, The Upanishads, 2nd ed. (Nilgiri Press, 2007)",
+          "note": "Brihadaranyaka Upanishad 4.4.5. Exact opening located in Easwaran: “You are what your deep, driving desire is. As your desire is, so is your will.”",
+          "verified": true
         }
       }
     ]
@@ -46,7 +46,7 @@
     "era": "ancient",
     "eraName": "Ancient Foundations (Pre-500 CE)",
     "title": "Tao Te Ching",
-    "period": "6th century BCE",
+    "period": "c. 4th–3rd century BCE",
     "tradition": "Taoist",
     "keyTeaching": "Wu Wei - Effortless Action",
     "cardLines": [
@@ -58,8 +58,8 @@
         "text": "The Tao that can be named is not the eternal Tao.",
         "context": "True reality exists beyond our conceptual frameworks and mental constructs.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "No matching named translation; compare D. C. Lau, Tao Te Ching (Penguin, 1963), ch. 1",
+          "note": "Not found verbatim. It conflates the chapter’s first two clauses: translations distinguish the Tao/way that can be spoken from the name that can be named. Suggested replacement (D. C. Lau, ch. 1): “The way that can be spoken of / Is not the constant way.”",
           "verified": false
         }
       },
@@ -67,8 +67,8 @@
         "text": "When I let go of what I am, I become what I might be.",
         "context": "Breaking your genetic code requires releasing fixed identity.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "John Heider, The Tao of Leadership (Humanics, 1985), section 22, p. 43",
+          "note": "Not a Tao Te Ching line. The exact English sentence is John Heider’s modern leadership adaptation, “The Paradox of Letting Go.” Suggested replacement: James Legge, Tao Te Ching 22, “The partial becomes complete; the crooked, straight.”",
           "verified": false
         }
       },
@@ -76,8 +76,8 @@
         "text": "Nature does not hurry, yet everything is accomplished.",
         "context": "Consciousness expansion follows natural rhythms, not forced timelines.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "No matching named translation; compare James Legge, Tao Te Ching, ch. 37",
+          "note": "Not found in the Chinese text or a named translation. It is a modern summary of wu wei. Suggested replacement (Legge, ch. 37): “The Tao in its regular course does nothing ... and so there is nothing which it does not do.”",
           "verified": false
         }
       }
@@ -88,7 +88,7 @@
     "era": "ancient",
     "eraName": "Ancient Foundations (Pre-500 CE)",
     "title": "Bhagavad Gita",
-    "period": "400 BCE",
+    "period": "c. 2nd century BCE–2nd century CE",
     "tradition": "Hindu",
     "keyTeaching": "Karma Yoga - Action without attachment",
     "cardLines": [
@@ -100,18 +100,18 @@
         "text": "You have a right to perform your prescribed duty, but you are not entitled to the fruits of action.",
         "context": "True freedom comes from acting without being enslaved by outcomes.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "A. C. Bhaktivedanta Swami Prabhupada, Bhagavad-gita As It Is, 2nd ed. (Bhaktivedanta Book Trust, 1983)",
+          "note": "Bhagavad Gita 2.47. Exact opening located: “You have a right to perform your prescribed duty, but you are not entitled to the fruits of action.”",
+          "verified": true
         }
       },
       {
         "text": "The wise see that there is action in the midst of inaction and inaction in the midst of action.",
         "context": "Consciousness operates beyond our ordinary understanding of doing and being.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Eknath Easwaran, The Bhagavad Gita, 2nd ed. (Nilgiri Press, 2007)",
+          "note": "Bhagavad Gita 4.18. Exact sentence located in Easwaran: “The wise see that there is action in the midst of inaction and inaction in the midst of action.”",
+          "verified": true
         }
       }
     ]
@@ -121,7 +121,7 @@
     "era": "ancient",
     "eraName": "Ancient Foundations (Pre-500 CE)",
     "title": "The Dhammapada",
-    "period": "3rd century BCE",
+    "period": "c. 3rd century BCE",
     "tradition": "Buddhist",
     "keyTeaching": "The Middle Way",
     "cardLines": [
@@ -133,18 +133,18 @@
         "text": "All things arise and pass away. But the awakened awake forever.",
         "context": "Consciousness itself is the constant witness to all change.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Thomas Byrom, The Dhammapada: The Sayings of the Buddha (Wildwood House, 1976)",
+          "note": "Chapter 18, “Impurity,” Byrom’s rendering around Dhammapada 254–255. Exact wording located, but it is a very free recasting: closer Pali translations say that conditioned things are not eternal and that the awakened do not waver.",
+          "verified": true
         }
       },
       {
         "text": "We are what we think. All that we are arises with our thoughts.",
         "context": "Mental patterns create our reality - changing thoughts changes everything.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Thomas Byrom, The Dhammapada: The Sayings of the Buddha (Wildwood House, 1976)",
+          "note": "Chapter 1, “Choices,” verses 1–2. Exact wording located in Byrom. This is a free rendering of manopubbaṅgamā dhammā; Acharya Buddharakkhita translates the opening more literally as “Mind precedes all mental states.”",
+          "verified": true
         }
       }
     ]
@@ -154,7 +154,7 @@
     "era": "ancient",
     "eraName": "Ancient Foundations (Pre-500 CE)",
     "title": "Plato's Republic",
-    "period": "380 BCE",
+    "period": "c. 380 BCE",
     "tradition": "Greek Philosophy",
     "keyTeaching": "The Allegory of the Cave",
     "cardLines": [
@@ -166,18 +166,18 @@
         "text": "The prison-house is the world of sight, the light of the fire is the sun.",
         "context": "Most people mistake shadows for reality - awakening means turning toward the light.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Benjamin Jowett, The Republic of Plato, 3rd ed. (Oxford University Press, 1892)",
+          "note": "Republic 7.517b. Exact clause located: “the prison-house is the world of sight, the light of the fire is the sun.”",
+          "verified": true
         }
       },
       {
         "text": "The unexamined life is not worth living.",
         "context": "Self-inquiry is the foundation of breaking free from unconscious patterns.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Benjamin Jowett, The Dialogues of Plato, 3rd ed. (Oxford University Press, 1892)",
+          "note": "Apology 38a, not Republic. Exact clause located in Socrates’ defence: “the unexamined life is not worth living.” The quote is genuine Plato but catalogued under the wrong work title.",
+          "verified": true
         }
       }
     ]
@@ -187,7 +187,7 @@
     "era": "ancient",
     "eraName": "Ancient Foundations (Pre-500 CE)",
     "title": "Meditations",
-    "period": "170 CE",
+    "period": "c. 170–180 CE",
     "tradition": "Stoic Philosophy",
     "keyTeaching": "Amor Fati - Love of fate",
     "cardLines": [
@@ -199,8 +199,8 @@
         "text": "You have power over your mind - not outside events. Realize this, and you will find strength.",
         "context": "True power comes from mastering internal states, not external circumstances.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "No matching edition; compare George Long, The Thoughts of the Emperor M. Aurelius Antoninus (1862), 8.47",
+          "note": "Not found in standard translations; this is an anonymous modern Stoic paraphrase. Suggested replacement (Long, 8.47): “If thou art pained by any external thing, it is not this thing that disturbs thee, but thy own judgment about it.”",
           "verified": false
         }
       },
@@ -208,8 +208,8 @@
         "text": "Everything we hear is an opinion, not a fact. Everything we see is perspective, not truth.",
         "context": "Breaking free requires seeing through the illusions of consensus reality.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "No matching edition; compare George Long, The Thoughts of the Emperor M. Aurelius Antoninus (1862), 2.15",
+          "note": "Not found in Meditations and unsupported by a section reference; it is a modern expansion of Marcus’s discussion of judgment. Suggested replacement (Long, 2.15): “Everything is opinion.”",
           "verified": false
         }
       }
@@ -220,7 +220,7 @@
     "era": "medieval",
     "eraName": "Medieval Mystics (500-1500 CE)",
     "title": "The Cloud of Unknowing",
-    "period": "14th century",
+    "period": "c. 1370–1395",
     "tradition": "Christian Mysticism",
     "keyTeaching": "Apophatic theology",
     "cardLines": [
@@ -232,9 +232,9 @@
         "text": "By love he can be grasped and held, but by thought, neither grasped nor held.",
         "context": "Ultimate reality transcends mental understanding - it must be experienced.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "A. C. Spearing, trans., The Cloud of Unknowing and Other Works (Penguin Classics, 2001)",
+          "note": "Chapter 6. Exact sentence located in Spearing: “By love he can be grasped and held, but by thought, neither grasped nor held.”",
+          "verified": true
         }
       }
     ]
@@ -244,7 +244,7 @@
     "era": "medieval",
     "eraName": "Medieval Mystics (500-1500 CE)",
     "title": "Rumi's Poetry",
-    "period": "13th century",
+    "period": "c. 1244–1273",
     "tradition": "Sufi",
     "keyTeaching": "Divine Love",
     "cardLines": [
@@ -256,8 +256,8 @@
         "text": "You were born with wings, why prefer to crawl through life?",
         "context": "We have capacities far beyond our genetic programming - awakening activates them.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "Untraceable modern attribution; earliest located print citation is Larry Chang, Wisdom for the Soul (2006), p. 26",
+          "note": "No Persian original, poem number, or named translation was located; this is not verified Rumi. Suggested replacement from R. A. Nicholson’s Masnavi III.1540–1541: “the bird, your soul, will be distressed in its cage” and seeks escape.",
           "verified": false
         }
       },
@@ -265,8 +265,8 @@
         "text": "Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.",
         "context": "Personal transformation is the key to collective evolution.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "Untraceable modern attribution; no Persian source or named translation located",
+          "note": "Not found in Rumi’s Persian corpus or major named English editions, including Coleman Barks anthologies. Online Persian versions are back-translations of the English. No same-text replacement is offered because none could be securely matched to this wording.",
           "verified": false
         }
       }
@@ -277,7 +277,7 @@
     "era": "medieval",
     "eraName": "Medieval Mystics (500-1500 CE)",
     "title": "Ibn Arabi's Works",
-    "period": "12th-13th century",
+    "period": "c. 1202–1238 CE",
     "tradition": "Sufi",
     "keyTeaching": "Unity of Being",
     "cardLines": [
@@ -289,8 +289,8 @@
         "text": "The self is an ocean without a shore. Gazing upon it has no beginning or end.",
         "context": "Consciousness is infinite - our limited sense of self is just a wave.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "William C. Chittick, The Self-Disclosure of God (SUNY Press, 1998), introduction p. xiii; citing al-Futuhat al-Makkiyya IV 68.9",
+          "note": "Altered composite, not Chittick’s sentence. The located translation reads: “The self is an ocean without shore. Gazing upon it has no end in this world and the next.” Suggested replacement: use that sourced wording.",
           "verified": false
         }
       }
@@ -301,7 +301,7 @@
     "era": "renaissance",
     "eraName": "Renaissance & Modern (1500-1900)",
     "title": "William Blake",
-    "period": "18th-19th century",
+    "period": "1790–c. 1811",
     "tradition": "Visionary Poetry",
     "keyTeaching": "Imagination as divine",
     "cardLines": [
@@ -313,18 +313,18 @@
         "text": "If the doors of perception were cleansed every thing would appear to man as it is, Infinite.",
         "context": "Our conditioned perception limits reality - cleansing it reveals the infinite.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "William Blake Archive, The Marriage of Heaven and Hell, copy A (1790), object 14, diplomatic transcription",
+          "note": "Plate 14. Exact wording located, with Blake’s capitalization and punctuation: “If the doors of perception were cleansed every thing would appear to man as it is: infinite.”",
+          "verified": true
         }
       },
       {
         "text": "The imagination is not a state: it is the human existence itself.",
         "context": "We are not passive receivers of reality but active creators through consciousness.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "David V. Erdman, ed., The Complete Poetry and Prose of William Blake, rev. ed. (University of California Press, 1982)",
+          "note": "Milton a Poem, plate 32, line 32 (Erdman p. 132). Exact line located: “The Imagination is not a State: it is the Human Existence itself.”",
+          "verified": true
         }
       }
     ]
@@ -334,7 +334,7 @@
     "era": "renaissance",
     "eraName": "Renaissance & Modern (1500-1900)",
     "title": "Ralph Waldo Emerson",
-    "period": "19th century",
+    "period": "1836–1876",
     "tradition": "Transcendentalism",
     "keyTeaching": "Self-reliance",
     "cardLines": [
@@ -346,8 +346,8 @@
         "text": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
         "context": "The power to break free exists within - not in external circumstances.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "Henry Stanley Haskins, Meditations in Wall Street (William Morrow, 1940), originally anonymous",
+          "note": "Not Emerson. The sentence is documented in Haskins’s 1940 book and was later attached to Emerson. It postdates Emerson’s death by 58 years.",
           "verified": false
         }
       },
@@ -355,8 +355,8 @@
         "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
         "context": "Breaking genetic and cultural codes requires authentic self-expression.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "Untraceable modern attribution to Emerson; compare Essays: First Series (1841), “Self-Reliance”",
+          "note": "Not found in Emerson’s essays, journals, or letters; the Emerson attribution appears only in late-20th-century circulation and may echo E. E. Cummings’s 1958 “A Poet’s Advice.” Suggested replacement from Emerson: “Whoso would be a man must be a nonconformist.”",
           "verified": false
         }
       }
@@ -367,7 +367,7 @@
     "era": "renaissance",
     "eraName": "Renaissance & Modern (1500-1900)",
     "title": "Henry David Thoreau",
-    "period": "19th century",
+    "period": "1854",
     "tradition": "Transcendentalism",
     "keyTeaching": "Simple living, high thinking",
     "cardLines": [
@@ -379,9 +379,9 @@
         "text": "I went to the woods because I wished to live deliberately.",
         "context": "Conscious living requires stepping out of automatic patterns.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Henry David Thoreau, Walden; or, Life in the Woods, 1st ed. (Ticknor and Fields, 1854)",
+          "note": "Chapter 2, “Where I Lived, and What I Lived For.” Exact opening located: “I went to the woods because I wished to live deliberately.”",
+          "verified": true
         }
       }
     ]
@@ -391,7 +391,7 @@
     "era": "modern",
     "eraName": "Contemporary Awakening (1900-Present)",
     "title": "Aldous Huxley",
-    "period": "20th century",
+    "period": "1954",
     "tradition": "Perennial Philosophy",
     "keyTeaching": "Consciousness exploration",
     "cardLines": [
@@ -403,8 +403,8 @@
         "text": "There are things known and there are things unknown, and in between are the doors of perception.",
         "context": "Expanding consciousness opens doors to realities beyond ordinary perception.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "No matching Huxley edition; compare Aldous Huxley, The Doors of Perception (Chatto & Windus, 1954)",
+          "note": "Not found in Huxley. The wording developed from Ray Manzarek’s 1967 explanation of the band name: known and unknown things, with “the doors” between. Suggested replacement: Blake’s genuine plate 14 line already catalogued in this library.",
           "verified": false
         }
       }
@@ -415,7 +415,7 @@
     "era": "modern",
     "eraName": "Contemporary Awakening (1900-Present)",
     "title": "Ram Dass",
-    "period": "20th-21st century",
+    "period": "c. 1970–2019",
     "tradition": "Eastern-Western Synthesis",
     "keyTeaching": "Be Here Now",
     "cardLines": [
@@ -427,18 +427,18 @@
         "text": "We're all just walking each other home.",
         "context": "The journey of awakening is both individual and collective.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "David Crumm, “The Ram Dass interview: Smiling as he teaches about Polishing the Mirror” (ReadTheSpirit, 14 July 2013)",
+          "note": "Exact sentence documented in Crumm’s named 2013 interview and retained in the Love Serve Remember Foundation’s official Ram Dass quotation archive.",
+          "verified": true
         }
       },
       {
         "text": "The quieter you become, the more you can hear.",
         "context": "Stillness reveals the deeper patterns that run our lives.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Love Serve Remember Foundation, official Ram Dass Inner Academy teaching archive (accessed 20 September 2026)",
+          "note": "Exact sentence located in the official archive, followed there by “We’re fascinated by the words, but where we meet is in the silence behind them.” The archive does not identify the original talk date.",
+          "verified": true
         }
       }
     ]
@@ -448,7 +448,7 @@
     "era": "modern",
     "eraName": "Contemporary Awakening (1900-Present)",
     "title": "Eckhart Tolle",
-    "period": "21st century",
+    "period": "1997",
     "tradition": "Contemporary Spirituality",
     "keyTeaching": "The Power of Now",
     "cardLines": [
@@ -460,8 +460,8 @@
         "text": "Realize deeply that the present moment is all you have. Make the NOW the primary focus of your life.",
         "context": "Genetic patterns lose their grip when we anchor in present awareness.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
+          "translator_or_edition": "Eckhart Tolle, The Power of Now (Namaste Publishing, 1997); compare New World Library 2010 ed., p. 35",
+          "note": "The exact displayed wording is on Tolle’s official site, but the named book edition reads “all you ever have,” adding “ever.” Because the preserved quote is not verbatim to the primary edition, it remains unverified. Suggested replacement: use the book’s wording with “ever.”",
           "verified": false
         }
       }
@@ -472,7 +472,7 @@
     "era": "modern",
     "eraName": "Contemporary Awakening (1900-Present)",
     "title": "Alan Watts",
-    "period": "20th century",
+    "period": "c. 1960s–1973",
     "tradition": "Eastern-Western Bridge",
     "keyTeaching": "The wisdom of insecurity",
     "cardLines": [
@@ -484,9 +484,9 @@
         "text": "You are an aperture through which the universe is looking at and exploring itself.",
         "context": "Consciousness uses human form to know itself - you are that process.",
         "source": {
-          "translator_or_edition": "",
-          "note": "",
-          "verified": false
+          "translator_or_edition": "Alan Watts, Still the Mind: An Introduction to Meditation, ed. Mark Watts (New World Library, 2000), p. 90",
+          "note": "Exact sentence located on p. 90 of the posthumous edition compiled by Mark Watts from his father’s later lectures and journals: “You are an aperture through which the universe is looking at and exploring itself.”",
+          "verified": true
         }
       }
     ]
