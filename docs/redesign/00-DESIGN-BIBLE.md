@@ -207,7 +207,7 @@ The remaining texts are reached through `EXPLORE ALL TEXTS →`. On `/library/`,
 
 ## 7. Technical requirements
 
-- Static, no build step, zero dependencies, ES modules. **Served over HTTP** — content lives in `data/*.json` fetched at runtime, which browsers block on `file://`, so a zero-build site cannot open by double-clicking the file. Preview with `python -m http.server` from the repo root, then `/new/index.html`. Production is GitHub Pages, which is HTTP, so nothing is lost.
+- Static, no build step, zero dependencies, ES modules. **Served over HTTP** — content lives in `data/*.json` fetched at runtime, which browsers block on `file://`, so a zero-build site cannot open by double-clicking the file. Preview with `python -m http.server` from the repo root, then `/`. Production is GitHub Pages, which is HTTP, so nothing is lost.
 - Performance: LCP < 2.5s on 4G, total JS < 140KB unminified, no CLS from the plates (always reserve dimensions), 60fps scrolling on a mid phone.
 - Accessibility: full keyboard navigation, visible gold focus rings, ARIA landmarks, contrast ≥ 4.5:1 for body text over every plate (darken the vignette until it passes — do not lighten the type), `prefers-reduced-motion` honoured everywhere, all decorative micro-labels and plates hidden from screen readers.
 - Data lives in `data/*.json`; the UI never hard-codes content.

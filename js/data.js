@@ -1,5 +1,5 @@
 const cache = new Map();
-const dataRoot = new URL("../../data/", import.meta.url);
+const dataRoot = new URL("../data/", import.meta.url);
 
 export async function loadData(name) {
   if (!/^[a-z-]+\.json$/i.test(name)) {

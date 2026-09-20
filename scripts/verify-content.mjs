@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const legacySource = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const legacySource = fs.readFileSync(path.join(root, 'legacy', 'index.html'), 'utf8');
 
 function loadJson(filename) {
   return JSON.parse(fs.readFileSync(path.join(root, 'data', filename), 'utf8'));
@@ -12,7 +12,7 @@ function loadJson(filename) {
 
 function readLegacyLiteral(name) {
   const match = new RegExp(`(?:const|let|var)\\s+${name}\\s*=`).exec(legacySource);
-  assert.ok(match, `index.html must contain ${name}`);
+  assert.ok(match, `legacy/index.html must contain ${name}`);
   const expressionStart = match.index + match[0].lastIndexOf('=') + 1;
   const open = legacySource.slice(expressionStart).match(/[^\s]/)?.[0];
   const start = legacySource.indexOf(open, expressionStart);
@@ -64,7 +64,7 @@ function readLegacyLiteral(name) {
       return Function(`"use strict"; return (${literal});`)();
     }
   }
-  assert.fail(`Unterminated ${name} literal in index.html`);
+  assert.fail(`Unterminated ${name} literal in legacy/index.html`);
 }
 
 function wordCount(line) {
@@ -148,11 +148,11 @@ for (const chapter of chapters) {
 
 // The checked-in legacy file contains 16 text records and 28 quotes. The packet's
 // stated “28 texts” is the legacy quote count; preserve the source rather than
-// manufacturing twelve text records that do not exist in index.html.
+// manufacturing twelve text records that do not exist in legacy/index.html.
 assert.equal(legacyTexts.length, 16, 'legacy text count changed; review the packet count note');
 assert.equal(legacyQuoteCount, 28, 'legacy quote count changed');
-assert.equal(texts.length, legacyTexts.length, 'text extraction does not match index.html');
-assert.equal(extractedQuoteCount, legacyQuoteCount, 'quote extraction does not match index.html');
+assert.equal(texts.length, legacyTexts.length, 'text extraction does not match legacy/index.html');
+assert.equal(extractedQuoteCount, legacyQuoteCount, 'quote extraction does not match legacy/index.html');
 assertCardLines(texts, 'text');
 
 for (const [index, text] of texts.entries()) {
@@ -184,11 +184,21 @@ for (const [index, text] of texts.entries()) {
     `quote wording or order changed for ${text.id}`
   );
   for (const quote of text.quotes) {
-    assert.deepEqual(
-      quote.source,
-      { translator_or_edition: '', note: '', verified: false },
-      `new source fields must start unverified for ${text.id}`
+    assert.equal(typeof quote.source, 'object', `quote source missing for ${text.id}`);
+    assert.equal(
+      typeof quote.source.translator_or_edition,
+      'string',
+      `quote translator_or_edition must be a string for ${text.id}`
     );
+    assert.equal(typeof quote.source.note, 'string', `quote source note must be a string for ${text.id}`);
+    assert.equal(typeof quote.source.verified, 'boolean', `quote verified flag must be a boolean for ${text.id}`);
+    if (quote.source.verified) {
+      assert.ok(
+        quote.source.translator_or_edition.trim(),
+        `verified quote must name a translation or edition for ${text.id}`
+      );
+      assert.ok(quote.source.note.trim(), `verified quote must include a location note for ${text.id}`);
+    }
   }
   assert.ok(!Object.hasOwn(text, 'icon'), `emoji icon leaked into text ${text.id}`);
 }
@@ -203,7 +213,7 @@ for (const studyPath of paths) {
   assert.ok(!Object.hasOwn(studyPath, 'icon'), `emoji icon leaked into path ${studyPath.id}`);
 }
 
-assert.equal(connections.connections.length, legacyRelationships.length, 'connection count does not match index.html');
+assert.equal(connections.connections.length, legacyRelationships.length, 'connection count does not match legacy/index.html');
 assert.deepEqual(
   connections.connections,
   legacyRelationships.map(({ from, to, type }) => ({ from, to, type })),
@@ -228,8 +238,8 @@ for (const theme of themes) {
 
 console.table([
   { dataset: 'chapters', expected: 6, actual: chapters.length, status: 'pass' },
-  { dataset: 'texts in index.html', expected: legacyTexts.length, actual: texts.length, status: 'pass' },
-  { dataset: 'quotes in index.html', expected: legacyQuoteCount, actual: extractedQuoteCount, status: 'pass' },
+  { dataset: 'texts in legacy/index.html', expected: legacyTexts.length, actual: texts.length, status: 'pass' },
+  { dataset: 'quotes in legacy/index.html', expected: legacyQuoteCount, actual: extractedQuoteCount, status: 'pass' },
   { dataset: 'study paths', expected: 4, actual: paths.length, status: 'pass' },
   { dataset: 'connections', expected: legacyRelationships.length, actual: connections.connections.length, status: 'pass' },
   { dataset: 'featured themes', expected: 10, actual: themes.filter(({ featured }) => featured).length, status: 'pass' }
